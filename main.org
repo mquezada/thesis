@@ -1,0 +1,56 @@
+#+DATE: <2018-12-12 mié>
+
+
+* Thesis outline
+** Introduction
+   - ???
+   - Problem statement?
+   - Motivation?
+   - Research questions?
+   - Hypotheses??
+   - Thesis statement!
+   - Objectives!?!??!
+
+** State of the art
+   - Extracting useful knowledge from news events on social media
+   - Different problems?
+   - event detection
+   - event modeling
+   - features: popularity / impact / activity / ...
+   - event summarization
+
+** Event detection
+   - Event definition
+   - Data collection methodology
+   - Data description?
+
+** High-activity news on twitter
+   - Motivation / problem statement
+   - hypothesis
+   - proposed solution
+     - event modeling
+     - activity model
+   - findings
+     - characterization of events
+     - classification results
+
+** Location-aware model for news
+   - Motivation / problem statement
+   - hypothesis
+   - proposed solution
+     - location-aware model
+   - findings
+     - characterization of events
+
+** Summarizing url-context(???) news
+   - motivation / problem statement
+   - hypothesis
+   - proposed solution
+     - model definition
+     - methodology for... ?
+   - validation
+     - tweet labeling
+     - external datasets
+   - case studies   
+
+** Conclusions

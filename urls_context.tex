@@ -1,0 +1,149 @@
+\documentclass{article}
+\title{what is a title?}
+
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+\section{Possible questions}
+
+\begin{enumerate}
+\item How to leverage the information about shared URLs?
+\item Is it possible to make use of the redundancy in text to extract
+  useful knowledge?
+\item Can we improve the outcome of topic detection methods using the
+  existence of shared URLs?
+\item The existence of an specific URL tells us something about the
+  topic of the tweet?
+\item Is there a difference between the content about an ongoing news
+  event and non-relevant content, such as spam, by looking at the
+  patterns of shared URLs?
+
+\end{enumerate}
+
+\section{So what}
+% so what? what do we want to achieve?
+
+By studying the patterns of shared URLs in news events in Twitter, we
+would want to achieve the following:
+
+\begin{itemize}
+\item Be able to identify different aspects of an event by looking at
+  sharing patterns of URLs
+\item Differentiate relevant content (event-related content) from
+  non-relevant content (non event-related)
+\item Understand how an event develops in terms of the external
+  content from news sources and other sources.
+\item Understand patterns of shared content: news source-related vs
+  non news source-related
+\end{itemize}
+
+
+\section{Methodology}
+
+Given an event $E=(T, U)$, of tweets and urls:
+
+\begin{itemize}
+\item For each tweet $t$ in $T$:
+  \begin{itemize}
+  \item Extract all occurences of URLs $u_i$
+  \item Create pairs $(t, u_i)$ for each URL
+  \item Create pairs $(t, rt)$ and $(t, rp)$, where $rt$ is a tweet
+    such that $t$ retweets $rt$, and $rp$ is a tweet such that $t$
+    replies to $rp$; do not create them if they do not exist
+  \end{itemize}
+\item Create a graph $G$ using the edges $(t, o)$, generated above,
+  where $o$ is an URL or a tweet.
+\item Return $G$
+\end{itemize}
+
+We call a connected component of $G$ a \emph{component}, denoted $c$,
+identified by all URLs $u^c_1, \ldots, u^c_{|c|}$ that are nodes in
+the connected component.
+
+One issue with this approach is that it may produce very large
+components. Take, for instance, two large components. If one tweet in
+one component replies or retweets a tweet in the other component, or
+it shares an URL already present in the other component, then the two
+will merge. This can happen when sharing the same image across
+different news articles, or when citing the root URL of a news source
+(e.g. citing an article from BBC news media, and also citing the
+root URL of BBC).
+
+One way to reduce this effect is to choose only one URL in a tweet
+that shares more than one. Also, by not considering replies as a way
+to join two tweets. In this case, the methodology results in smaller
+components, with less URLs in each one. One disadvantage of this
+approach is that the same tweet (the same text) may end up in
+different components.
+
+The following procedure describes this version of the methodology:
+
+Given an event $E = (T, U)$ of tweets and URLs:
+
+\begin{itemize}
+\item For each tweet $t$ in $T$:
+  \begin{itemize}
+  \item Extract all occurences of URLs $u_i$
+  \item For each $u_i$, create a copy of $t$, called $t^i$, same with
+    retweet $rt$ and reply $rp$
+  \item Create pairs $(t^i, u_i)$, and $(t^i, rt^i)$ and $(t^i, rp^i)$
+    if applicable
+  \end{itemize}
+\item Create a graph $G$ using the edges $(t, o)$ generated above,
+  where $o$ is an URL or a tweet
+\item Return $G$
+\end{itemize}
+
+In the following sections, we will use this version of the method.
+
+
+\section{Topic detection}
+
+One task we wanted to achieve is to identify topics of the event using
+the aforementioned approach.
+
+Our main hypothesis is that the tweets in a component refer to the
+same topics. Reasons:
+
+\begin{itemize}
+\item When sharing a news article, users would often comment
+  on the most striking aspect of the news.
+\item When a news event breaks, only certain aspects will be known at
+  the time, and news sources and users would focus only on those
+  aspects.
+\item 
+\end{itemize}
+
+In other words, we assume that the text in a tweet that share an URL
+is a surrogate for the content of that URL, in the context of news
+events.
+
+\paragraph{Weaker(?) Hypothesis} The tweets of a component share similar
+patterns? The components form clusters? \\
+
+In order to test this hypothesis, we performed clustering on the
+components and compared the resulting clusters with a simple baseline,
+which is clustering the tweets as if they are not grouped.
+
+To represent each component as a vector, we computed word embeddings
+from the entire collection of events. We used the text of 193 million
+tweets, with 1.1 million unique words, and 3 billion words in
+total. We represented a component as a vector by taking all the words
+from all the tweets inside a component, computed the vector of each
+word, and taken the average of all word vectors. The same process for
+the baseline: take all the words of a tweet, get the word embeddings
+for each word, and average them.
+
+
+\section{Generation of ground truth}
+
+
+
+
+\end{document}
+
+
