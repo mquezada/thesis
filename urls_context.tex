@@ -1,5 +1,9 @@
 \documentclass{article}
-\title{what is a title?}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+\title{Rough draft}
 
 \date{\today}
 \begin{document}
@@ -40,6 +44,33 @@ would want to achieve the following:
 \item Understand patterns of shared content: news source-related vs
   non news source-related
 \end{itemize}
+
+
+
+\section{Contributions}
+
+The contributions of this work are the following:
+
+\begin{itemize}
+\item We propose a lightweight representation of news events from
+  social media based on the co-occurrence of URLs mentioned in the
+  text. With this model, we can ``compress'' social media posts,
+  leveraging the redundancy and noise from raw datasets.
+  
+\item We propose and implemented a system for labeling tweets related
+  to news events, to assign multi-labels to tweets ranked by relevance. (?)
+
+\item We provide case studies validating two applications of our
+  model: exploring the usage of URLs about news events in Twitter, and
+  identifying sub-topics in the events using our model, which allows
+  us to process large amounts of tweets with standard techniques.
+  
+\end{itemize}
+
+
+
+
+
 
 
 \section{Methodology}
@@ -138,8 +169,42 @@ word, and taken the average of all word vectors. The same process for
 the baseline: take all the words of a tweet, get the word embeddings
 for each word, and average them.
 
+\section{Case studies}
 
-\section{Generation of ground truth}
+\subsection{Data and events}
+
+We selected three events from our collection. Those events are a
+terrorist attack in a hotel in Libya in 2015, the trial of Oscar
+Pistorius in 2014 and 2015, and an earthquake in Nepal in 2015
+(Table~\ref{tab:cs-events}).
+
+\paragraph{Data preprocessing} For each tweet in each event, we
+resolved the URLs contained in the text of the tweet, by following
+redirects. Then we removed query strings and hashes from the resolved
+URLs, with few exceptions (e.g., the query string \texttt{v} is used
+by YouTube as the identifier of a video).
+
+\begin{table}[]
+\begin{tabularx}{\textwidth}{@{}Xrr@{}}
+\toprule
+Event name            & Tweets & Unique URLs \\ \midrule
+Libya Hotel Attack    & $20\,077$  & $3\,412$        \\
+Oscar Pistorius Trial & $68\,832$  & $9\,649$        \\
+Nepal Earthquake      & $442\,221$ & $23\,116$       \\ \bottomrule
+\end{tabularx}
+\caption{Amount of tweets and URLs for the events used in the case studies.}
+\label{tab:cs-events}
+\end{table}
+
+
+\subsection{Generation of ground truth}
+
+In order to validate the usefulness of our model at identifying topics
+in events, we asked a group of people to label some of the tweets from
+the events of our case studies.
+
+Due to the amount of tweets in each event, we sampled tweets...
+
 
 
 
