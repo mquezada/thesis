@@ -1,0 +1,348 @@
+\section{Introduction}
+\label{sec:introduction}
+
+%\mq{hablar de multimodal summarization, diferentes tamaños de topicos, clustering incremental, 
+%redundancia ayuda a word embeddings?, complejidad de otros metodos}
+
+%%%%% Index
+% Context
+% Motivation
+% Problem statement
+% Contributions
+
+%%%% Content
+
+
+% Context 
+% \subsection{context}
+
+%Un modelo de "representacion" de informacion (de evento en SM) de manera compacta 
+%para incorporar nuevo conocimiento.... con aplicaciones A, B y C
+
+%Una forma de modelar la informacion .... (alto nivel)
+%Describir semi-formalmente el modelo 
+%Poder separar "señales" o "aspectos" del evento 
+
+%Presentar casos de estudio que muestren las N aplicaciones. Mostrar ejemplos de 
+%cada aplicacion.
+
+%ej, aplicacion "event retrieval": dado un evento, identificar contenido relevante, topicos o aspectos
+%relevantes al evento real (?) 
+
+%modelo con WE exacerba diferencias en los documentos para separar topicos usando UCG (redundancia)
+
+%hipotesis con respecto a agrupar por url: contenido relevante es mas probable de ser compartido con las mismas
+%urls que contenido no relevante 
+
+
+% Nowadays, social media platforms have become a main source of news. According to
+% a recent survey, by 2018 about two thirds of US adults used social media as a
+% source of news~\cite{pewresearch}, and about 70 percent of Twitter users get
+% news from there. With their scale, popularity, and ease of use, social media
+% platforms have drastically lowered the entry barriers to disseminate newsworthy
+% information in real time. 
+%Due to that, news events are often reported earlier in
+%social media than in traditional news media. 
+
+% In particular, impactful or breaking real world events (such as the 2015 Nepal
+% Earthquake or the 2017 Brexit) overflow social media with millions of messages.
+% For that reason, it is a hard task for humans to go through every message in
+% order to understand what an event is about. 
+
+
+
+The overload of information in social media streams makes it difficult for users
+to obtain a comprehensive account of different emerging events reported by
+users.
+%
+%to get a complete picture of an event or find relevant messages.
+%
+The ability to identify and summarize relevant information about newsworthy
+topics that are accounted for by users in social media can be of great use to
+society.
+%
+This is particularly true in the face of high impact and breaking news, like
+natural disasters and crisis
+situations~\cite{ICWSM1817816,castillo2011information}.
+%\bp{agregar mas citas}.
+%
+In general, social media platforms present their content to the consumer in one
+of two ways: (1) by displaying user posts in reverse chronological order, or (2)
+by displaying posts in a personalized fashion, showing first what they deem more
+interesting to the user.
+%
+In this way, social media platforms aim to optimize for certain criteria, such
+as engagement or views.
+%
+However, if the user is seeking information about a specific event, looking for
+complete and trustworthy information, the aforementioned approaches can result
+also in unnecessary exposure to redundant, irrelevant, or even misleading
+facts.
+%
+In this context, delivery of key pieces of information to the user is important,
+and even critical in some cases; 
+%
+for instance, social media is many times used as a complementary source of
+information for disaster management and
+response~\cite{ICWSM1817816,Sarmiento:2018:DDE:3201064.3201077,Mendoza2019,castillo2011information,Sakaki2010}
+%\bp{agregar citas}
+and also to obtain information about newsworthy events not yet reported by
+formal news outlets, such as breaking news. 
+%
+%In this sense, thThis need to produce high-quality real-time information requires effective ways to filter and organize information about real-world events on social media.
+%
+
+Despite the usefulness of social media as a worldwide news information source,
+its consumption is not without challenges.
+%
+These challenges include, among many others, assessing correctly information
+veracity and relevance to a specific topic, as well as dealing with a huge
+volume of data with variable quality. 
+%
+%In this sense, the consumption of social media content for information seeking about particular events requires effective ways to filter and organize streaming data.
+%%
+%
+%Specifically, the task of organizing and filtering
+%
+%Filtering and organizing information in social media can be a
+%particularly challenging task.
+%
+In particular, we study Twitter, a popular microblog platform, in which users
+can post text-based messages.
+%
+These messages, called {\em tweets}, can include links to images, videos, to
+external webpages or to other tweets, making this platform's content multimodal.
+%
+
+%
+%On the other hand, we observe several 
+The URLs shared in Twitter link to varied types of media (articles,
+images, videos, or other tweets), which have been found useful for identifying conversation
+topics~\cite{mishne2012twanchor}.
+%
+In the context of news events, users tend to quickly re-share information if the
+event sparks high interest~\cite{kalyanam2016prediction}, which results in many
+(near-)duplicate messages.
+%
+Prior work has acknowledged the need to develop techniques for dealing
+exclusively with this type of social media data.
+
+%Dealing with content of these characteristics requires different approaches than with traditional media~\cite{Alonso:2017:WHH:3091478.3091484}.\bp{decir algo sobre a que cosa te refieres con la frase anterior, quizas cambiarlo por algo como: }
+
+%%
+
+In this chapter we focus on the problem of producing summarized representations
+of social media data related to news events without significant loss of
+information.
+%
+We present a compact representation for social media content related to news
+events.
+%
+This representation allows us to preserve information about the topics involved
+in an event, and to identify relevant content, while significantly reducing the
+volume of data.
+%
+This can be specially useful for online data processing about developing news
+and news information seeking tasks.
+%
+To achieve this, our model annotates shared URLs with the text of the messages
+in which they appear.
+%
+This is, we use messages as {\em anchor text} or {\em surrogate text}. 
+%
+Firstly, we leverage this idea by identifying relevant URLs that are shared in
+social media during a news event.
+%
+We discard URLs that are too general with respect to an event (e.g. a general
+report), or generic (e.g. linking to a news outlet) as we deemed them as
+non-relevant.
+%
+Then we aggregate all the anchor texts associated with relevant URLs into {\em
+documents}, and all the conversations around those documents as well, in the
+form of retweets and replies.
+
+As a preliminary way to study the usefulness of our event representation, we
+applied it to three news events as a case study.
+%
+We observed that our representation reduces the amount of records needed to
+describe an event by one order of magnitude, compared to using the raw tweets. 
+%
+We were also able to identify sub-topics by mapping the documents into vectors using dense
+word representations, such as neural network--based word embeddings. 
+%
+We show that the sub-topic detection task yields similar external clustering
+criteria measures for our representation, compared to the raw tweets, with
+reduced running time.
+%
+In summary, our contributions are the following:
+
+\begin{enumerate}
+  \item We present a novel compact representation for information about news
+        events in microblogs, based on shared URLs. This representation reduces
+        data volume.
+
+  \item We study the usefulness of our representation through three case studies. We do so by introducing a methodology to represent news events in Twitter and find sub-topics.
+%
+We show that our methodology displays comparable performance to baseline methods at a fraction of the computational resources.
+\end{enumerate}
+
+
+% problemas con representar social media content
+% Representing content generally involves representing its constituent terms in
+% another space. For instance, using weighted term frequency vectors, graph
+% models, or probabilistic models over the distribution of terms. In social media,
+% these methods result in highly dimensional sparse features, which are difficult
+% to manage without large quantities of well-curated messages. On the other hand,
+% it is not trivial to manage large scale data. Current methods can manage large
+% volumes of messages at great computational expense or by splitting the dataset
+% in smaller sets and dealing with them separately. For example, traditional ways
+% of representation of text, such as term frequency weighting, involves the
+% generation of thousands of dimensions on messages that are about 10 to 20 words
+% long.
+
+% Nonetheless, in the context of news events, user-generated content can be leveraged
+% to estimate the relevance of the information and to annotate content from
+% external sources. We start from the assumption that users share and comment on
+% content that is relevant or interesting to them. Hence, the existence of several
+% messages on a topic suggests that the topic is important to users. We can
+% leverage this idea even futher: we can annotate the shared URLs in user posts
+% with the same text that users put in the posts that contains those URLs. In the
+% literature, the text that accompanies a URL is usually known as {\em anchor text}, or
+%   {\em surrogate text}, and this idea has been extensively used in query log
+% mining~\cite{Beeferman:2000:ACS:347090.347176,10.1007/978-3-540-30192-9_58}. We
+% can also take advantage of the redundancy of posts in social media. When exposed
+% to an emergent news, users tend to share information as quickly as
+% possible~\cite{kalyanam2016prediction}, and this often results in duplicate and
+% near-duplicate data. This information can be useful to assess the
+% importance of certain aspects of the event. In this work, we exploit these clues
+% in order to design a model to represent newsworthy information.
+
+% reescribir
+% We propose a lightweight representation of news events in Twitter by aggregating
+% tweets based on the existence of shared URLs. Our representation groups tweets
+% by common shared URLs into {\it components}, and also ignoring highly common
+% URLs in the dataset, in order to avoid having large components of unrelated
+% tweets. This representation reduces the amount of records to be processed by one
+% order of magnitude, and we validate its capabilities by performing clustering on
+% three selected news events to identify sub-topics. By using dense
+% representations of words, such as neural network based word embeddings, our
+% model generates a compact representation of news events. We show that we achieve
+% similar performance on sub-topic detection at a fraction of the time and memory
+% required. Our proposed representation allows us to process raw, un-curated
+% Twitter data faster than with using individual tweets, and it is flexible enough
+% to incorporate new data as the event evolves in time.
+
+% We propose a simple model to represent information about news events in Twitter
+% using aggregations of tweets that mention the same URLs, and that retweet or
+% reply themselves. Then, we model the resulting sets of documents using dense
+% vector representation of terms, such as neural word embeddings, using a corpus
+% of 193 million news-related tweets. With this representation, we exploit
+% features often discarded in similar works, such as repeated messages and URLs
+% mentioned in tweets. This results in a smaller and more flexible representation,
+% which allows us to perform some tasks more efficiently, and to incorporate new
+% information to the model with little effort. Our event representation is
+% compatible with current approaches regarding Twitter event data, such as event
+% detection, filtering, and summarization. We show the effectiveness of this
+% representation by characterizing topics in news events shared in Twitter, which
+% can contain several repeated or irrelevant posts. The topics consist of diverse
+% tweets that share URLs, which can be seen as a multimedia representation of
+% topics, regardless of the content of these URLs (images, videos, news articles,
+% etc.). 
+
+
+
+
+% problemas: mucha info, redundante, etc. 
+% explotamos eso para mejorar la origanizacion de la info
+% mostramos que es util para: ...
+% tiene estas caracteristicas: ...
+
+
+% One particular problem is what is called information overload: when users are
+% exposed to way more information than they can process and understand, and
+% effective methods to find relevant information are missing, assuming that
+% users know what they are looking for. In this context, automatic summarization
+% was proposed as a way to tackle this problem. Given a document or a set of
+% documents about a specific topic, the output of the summarization method is a
+% gist that summarizes the content, under certain criteria and restrictions. 
+
+
+% In this work, we approach the issue of information overload by modeling
+% content associated with online news, as propagated on Twitter. 
+% When a {\em breaking news} occur, users tend to share and
+% forward information about it as quickly as possible {\bf REF PLOS}, and ...
+
+% motivation
+% \subsection{motivation} 
+% user contributed content reflect opinions of users, not media
+% importance given by users
+% free annotations of urls 
+
+
+
+
+% problems with social media
+% \subsection{challenges}
+% events are noisy (different levels of relevance)
+
+
+% However, the scale and rate of publication makes it difficult to understand
+% what is happening or what an event is about. Also, the presence of irrelevant
+% posts makes it even more difficult to understand a specific event. Usually,
+% when a user wants to know about a certain ocurrence, he or she performs a
+% search using some keywords, and a chronologically ordered timeline of the most
+% recent posts is then shown. In other cases, a special sorting is made in order
+% to show the most relevant posts that specific user might like the most, or
+% just the posts with the highest scores in terms of popularity. However, this
+% is not enough to understand the different aspects or topics related to an
+% event.
+
+% Different approaches have been proposed to help users understand the content.
+% For example, automatic text summarization is used in order to select the most
+% salient phrases from a set of documents, aiming for optimizing diverse criteria,
+% such as relevance, coverage, or popularity. However, nowadays online news media
+% has increasingly shifted their focus towards multimedia content {insertar
+% cita}. There have been some efforts in order to summarize content of different
+% modalities, such as images or videos in isolation, but few consider a mixture of
+% them. Our hypothesis is that a summary in different content modalities, such as
+% images, videos, and text, is more effective than a text-only, or images-only
+% summary in order to understand an event. In other words, our hypothesis is that
+% a multimodal summary is more informative than a unimodal one. In this work, we
+% discuss the challenges of the current approaches and tackle the problem of
+% multimedia summarization of events in social media, by considering content
+% independently of its nature.
+
+
+
+% problem statement
+% \subsection{problem statement}
+
+% hypotheses
+% \subsection{hypotheses}
+% Hypotheses: 
+% 1. grouping tweets by url improve the ...
+% 2. the use of word embeddings (fasttext) improve the ...
+
+% % contributions
+% % \subsection{contributions}
+% Our contributions are the following:
+% \begin{enumerate}
+%   \item We investigate 
+%   \item
+%   \item ?
+% \end{enumerate}
+
+
+% % outline of paper
+% % \subsection{outline}
+% This paper is organized as follows. Section ...
+
+% % -----------------------------------------------------------------------
+
+% % Twitter desc
+% On Twitter, each post, called {\em tweet}, is a short text ---traditionally
+% 140 characters long, but by the year of 2017 this limit was extended to 280
+% characters---, which can contain arbitrary URLs, as well as {\em hashtags}
+% (words prepended with a \#, serving to the tweet as tags), {\em cashtags}
+% (prepended by a \$, serving as identifiers for stocks and shares), and mentions
+% (names of Twitter users).

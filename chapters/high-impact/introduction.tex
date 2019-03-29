@@ -1,0 +1,135 @@
+\section*{Abstract}
+
+On-line social networks publish information about a high volume of
+real-world events almost instantly, becoming a primary source for
+breaking news.  Many of the events reported in social media can be of
+high impact to society, such as important political decisions, natural
+disasters and terrorist actions, but they might go unnoticed in their
+early stages due to the overload of other information.  Is it possible
+to clearly and quickly identify which of these news events are going
+to have substantial impact before they actually become a trend in the
+network?
+
+We research 5,234 real-world news events encompassing 43 million
+messages discussed on the Twitter microblogging service for
+approximately 1 year.
+% A novel vectorial representation for events
+% based on the message arrival rates on social media is introduced.
+% Such a representation enables an automatic separation of events
+% into different categories based the chatter or \emph{impact} they create on
+% social media.
+%
+We observe a consistent and strikingly different collective reaction
+from users when exposed to high-impact events.  This reaction is
+independent of an event's size and scope.  We further observe that
+high-impact events have characteristics that are quite distinguishable
+at the beginning stages of their outbreak.  This allows us to predict
+with high precision the top 8\% of events that will have the most
+impact on users by just using the first 5\% of the information of an
+events' lifetime evolution.  This strongly implies that high-impact
+news is naturally filtered by the social network, engaging users early
+on, way before it is brought to the mainstream audience.
+
+
+\section*{Introduction}
+%\section{a}
+
+% Motivation
+Social media has become a primary source of breaking news information
+for millions of users all over the world \cite{Kwak:2010}. On-line
+social networks along with mobile internet devices have crowdsourced
+the task of disseminating real-time information. As a result, both
+news media and news consumers have become inundated with much more
+information than they can process. To handle this data overload, it is
+important to find ways to quickly filter information that has the
+potential of creating an impact on society. Fast identification of
+high-impact news events, at both global and local scales, can help
+improve information delivery, as well as journalistic coverage and
+emergency responses from authorities during crisis situations. We
+address this challenge by analyzing the properties of real-world news
+events in on-line social networks and present our main findings of how
+high-impact events can be clearly identified in the early stages of
+their outbreak.
+
+% Brief background on the problem
+
+The study of information propagation on the Web has sparked tremendous
+interest in recent years. Current literature on the subject primarily
+considers the process through which a {\em meme}, usually a piece of
+media (like a video, an image, or a specific Web article), gains
+popularity
+%\cite{Castillo:2014,Szabo:2010,Lerman:2010,Tatar:2014,Pinto:2013,Ahmed:2013,Li:2016:concept:drift,
+%  Liu:2015:UN}.  
+\cite{Castillo:2014,Szabo:2010,Lerman:2010,Tatar2014,Pinto:2013,Ahmed:2013,Li:2016:concept:drift,
+Liu:2015:UN}.  
+Although relevant, this research faces two major
+shortcomings when it comes to the identification of impactful
+newsworthy events.  The first limitation is that a meme represents a
+simple information unit and its propagation behavior does not
+correspond necessarily to that of more complex information such as
+news events. News events are usually diffused in the network in many
+different formats, e.g., a particular news story such as an {\em
+  earthquake in Japan} can be communicated through images, URLs,
+tweets, videos, etc. The second limitation of prior work comes from
+how the {\em impact} of information is measured. In scientific
+research, impact has been traditionally related to the total amount of
+attention received by a subject
+\cite{berger2012makes,iribarren2011branching,guerini2011exploring,mills2012virality,gaugaz2012predicting}.
+This is, content from on-line social networks that receives
+votes/comments/shares above a certain threshold deemed {\em viral} or
+{\em popular}, therefore having impact. One problem with this
+definition is that it does not consider events of different sizes and
+scopes, and that it is biased towards very large events. It is
+reasonable to consider as high-impact a global breaking news event
+with world-wide coverage that produces a high volume of social media
+messages in a short time.  However, there are other types of events
+that can produce a similar reaction in smaller on-line communities,
+such as a particular country
+% For instance, a global
+% event with world-wide coverage is big news because of the volume of social media
+% posts produced by on-line social networks over a short period of time.
+% Therefore, it is reasonable to consider this news as high-impact.
+% Nevertheless, there are events that create high-impact in smaller
+% on-line communities, such as a particular country 
+(e.g., the
+withdrawal of the main right wing presidential candidate in Chile due
+to psychiatric problems, just before
+elections \cite{chile_elections}).
+%\footnote{\url{http://www.telegraph.co.uk/news/worldnews/southamerica/chile/10188216/Chilean-presidential-candidate-pulls-out-of-election-with-depression.html}
+%  (Accessed: August 25, 2015.)}). 
+Clearly, events of local scope do not produce as much social media
+activity as events of global scope, but they can create a strong and
+immediate reaction from users in local networks, and therefore should
+also be considered as high-impact \cite{ReisBOPKA15}. Conversely,
+there are large events which do not produce strong reactions, such as
+{\em The Oscars} (Fig.~\ref{fig:oscars}), which span a long
+period of time and are discussed by social network users for weeks or
+even months. When considered in its full, this event does generate a
+great volume of social media messages, but this activity is
+distributed over time without producing an immediate reaction from the
+network's users. With these considerations in mind, it is evident that
+a variety of aspects need to be considered when determining the level
+of impact of a particular information topic. Furthermore, qualitative
+evidence gathered from consulting a journalist, indicates that they
+too face the issue of not having a unique measure of impact.
+
+% when
+% consulting journalists on how news media sources measure the impact of
+% news, we learn that they too face the issue of not having a clear way
+% to approach this problem.
+
+% Our contributions
+
+%\newtext{
+Our work focuses on high-impact news events in social media
+with the following contributions:
+\begin{enumerate}
+\item We introduce a new concise measure of information impact in social
+media that is independent of the size and scope of the event, but
+representative of the overall immediacy of the social network's reaction.
+\item We determine the existence of unique characteristics that
+differentiate how high-impact events propagate in the social network.
+\item We show that an important portion of high-impact news events can be
+predicted very early in their lifecycle, indicating that this information is
+spontaneously identified and filtered early on by social network users.
+\end{enumerate}

@@ -1,0 +1,561 @@
+\begin{intro}
+
+% WHAT IS SOCIAL MEDIA
+
+The so-called {\em Web 2.0} represents a change of state in how users interact
+with the Web.
+%
+It is mainly defined as a platform destined to encourage end-users to
+publish content. 
+%
+One of the main manifestations of this phenomena are the {\em online social
+networks}, also called {\em microblogging platforms}.
+%
+Users online make connections with others based on different criteria, and start
+to produce content that might be interesting to other users. 
+%
+Microblogging services such as Facebook~\cite{facebook}, Twitter~\cite{twitter},
+or Sina Weibo~\cite{weibo} are nowadays among the most used platforms for users
+to connect with family, friends, acquaintances, co-workers, or strangers with
+similar interests.   
+%
+Users interact with each other and produce or share content, which could be
+about their lives, their thoughts, about what is happening around the world,
+etc.    
+%
+This collective of information published in these Internet-based applications,
+such as microblogging platforms, blogs, wikis, etc., is what is called {\em
+social media}~\cite{kaplan2010users}.
+
+%%
+
+% CONTENT IN SM
+
+Content in social media is multimodal. 
+%
+Twitter, for example, encourages users to publish short texts (initially limited
+to 140 characters, now 280), but it recently started to incite users to share
+more photographs~\cite{brown_2019}.
+%  
+And with the proliferation of smartphones and internet-connected devices, more
+of this information is also geo-tagged and ``real-time''. 
+%
+Foursquare~\cite{foursquare} (and then
+Swarm~\cite{swarm}) is an application for users to tag
+and comment on locations around the world, which serves as a repository of data
+about business and points of interest.
+%
+Whether via text, images, videos, sounds or hyperlinks, social media lowered the
+entry barriers to content producers and made it easy for consumers to access to
+a myriad of different pieces of information.
+
+
+%%
+
+
+% UTILITY, APPLICATIONS OF SM
+
+The influence of social media on society can not be denied. 
+% 
+It has facilitated the communication and speeded-up the difussion of information
+online. 
+%
+For instance, it is believed that the revolutionary wave of protests and
+uprisings in the Arab states (known as the Arab Spring which began in 2010) was
+highly influenced by social media as a means to organize and facilitate
+communication~\cite{howard2011opening}. 
+%
+Also, for instance, it has permitted many applications in emergency management
+and detection, such as earthquake alert systems using
+Twitter~\cite{Sakaki2010,Sarmiento:2018:DDE:3201064.3201077,Mendoza2019}.
+%
+The usefulness of quantiative analysis of events through time is undeniable, and
+social media offers a window to see and capture information about those events,
+how they develop, and how the world interprets them.
+
+
+
+% NEWS CONSUMPTION AND PRODUCTION
+
+
+One of the main usages of social media platforms is the consumption and
+generation of event-related content. 
+%
+According to a recent 2018 study~\cite{pewresearch}, about two thirds of U.S.
+adults get their news on social media.
+%
+The most used platforms to get the news are Facebook, Youtube, and Twitter,
+while over 70\% of Twitter users surveyed use that platform to do so.
+%
+Furthermore, nowadays almost every news outlet has a presence in social media,
+in order to attract readers and viewers.
+%
+In this way, users comment on the news events, reacting to them according to a
+myriad of factors, and many of these characteristics are present in one way or
+another in social media.
+%
+Therefore, we see social media as a medium that reflects an important 
+part of what society thinks about what is happening the world.
+
+
+
+
+% PROBLEMS
+
+However, the popularity of social media is not without issues. 
+%
+{\em Information overload} refers to the problem of being unable to manage or to
+make decisions based on data, due to the high volume of information available
+and the limited capabilities of the person who is dealing with it. 
+%
+Humans have limited cognitive processing capacities, and when they are
+overloaded with information, their quality of decision making
+suffers~\cite{gross1964managing}. 
+%
+In the context of social media, the high availability of diverse information may
+prevent users to find relevant content.
+
+%%
+
+Finding relevant content in social media is not easily solved by search engines.
+%
+Publications on social media, or {\em posts}, can be of {\em varied quality}.
+%
+Posts are composed of multimedia pieces, but often they are brief.
+%
+For instance, a post can be a very short text, an hyperlink, a single image or
+video with little context.
+%
+They can be also irrelevant to the user's interest, for example, spam posts,
+which contain relevant keywords but in a misleading way, in order to lure users
+into a irrelevant website. 
+%
+Posts can be also out-dated, delivering incorrect or obsolete information. 
+%
+Many posts can be duplicate ones, published by automated agents, or by users
+using ``share buttons'' in websites which publish posts with a template text; 
+%
+they can be also near-duplicate, with little text differences, or sharing the
+same resource from different URLs.
+%
+Another important characteristic of posts is that they are written in natural
+language, so they can be incorrectly capitalized, mispelled, or with ambiguous
+meaning.
+%
+Users make use of colloquial language and different forms of expression when
+publishing content, e.g., abbreviations, hashtags (tags to describe content),
+emojis (ideograms), etc.
+%
+Finally, messages can be also misleading, sharing false information.
+%
+All of these particularities of social media make it difficult to apply standard
+techniques in order for users to find relevant content.
+
+%%
+
+At the same time, there is a massive scale of production of content. 
+%
+Twitter reports that there are about 320 million active monthly users and 500
+million daily tweets published in their platform~\cite{twitter2014}. 
+%
+(These numbers were first stated in 2014 and have not been updated since then.)
+%
+Facebook has nearly 2.32 billion active monthly users~\cite{fbnewsroom}. 
+%
+Sina Weibo has 462 million active monthly users, while 93\% of them are on
+mobile devices~\cite{chinawatch}.
+%
+The amount of content being published requires novel ways to deal with social
+media data, in particular, regarding news events.
+
+
+%%
+
+We regard news events as a higher level abstraction than single
+posts.
+%
+In related work, an event\footnote{In this work, we will use the term {\em news
+event} and {\em event} indistinctly.} is deemed as {\em something that happens
+in a certain place and time}~\cite{yang1999learning}, while other definitions
+consider an event as a collection of documents related to a certain
+occurrence~\cite{Becker:2010:LSM:1718487.1718524}.
+%
+Throughout this dissertation, we will consider an event as a collection of
+social media posts describing or commenting on a real-world occurrence.
+%
+In this sense, an event is a more complex piece of information compared to
+single posts as it leads to new tasks, such as event detection, tracking, or
+summarization.
+%
+Also, an event is comprised of posts of heterogeneous quality, from different
+locations, and at different times.
+%
+This yields to new problems and challenges when studying social media.
+
+%%
+
+% PROPOSAL
+
+In this dissertation, we tackle the problem of {\em extracting useful knowledge}
+from events on social media. 
+%
+In order to be able to infer and extract useful information from events, we
+propose the development of event representations that leverage specific features
+according to the desired goal when analyzing social media data.
+%
+For this, we propose different models or representations of events based on
+three perspectives:
+%
+
+\begin{enumerate}
+    \item {\bf User activity.} 
+    %
+    When users react to an event, they may manifest this reaction on social
+    media, producing or sharing content relevant to the event. 
+    %
+    The characteristics of these manifestations are dependant on the proper
+    features of the occurrence, and not all are equal. 
+    %
+    We look at how the activity of users can give us insights on the proper
+    features of an event, and incorporate this behavior in a compact
+    representation.
+
+    \item {\bf Spatio-temporal context.} 
+    %
+    Events develop in different locations. 
+    %
+    On the other hand, users from different locations may react differently to
+    the same event.
+    % 
+    We study the development of events based on user activity conditioned by the
+    location users are from, proposing a representation of events and locations
+    based on social media posts.
+
+    \item {\bf Common features in content.} 
+    %
+    Users may publish similar pieces of content in social media in reaction to
+    events.
+    %
+    However, each post can contribute to a different aspect of the event, while
+    having some features in common.
+    %
+    We leverage these commonalities in content to produce a compact model that
+    preserve topical information in events.
+    
+\end{enumerate}
+
+
+% OBJETIVES
+
+Our main objective is to develop event representations through different data
+aggregations in order to perform quantiative analysis of news events on social
+media.
+%
+Currently, it is very difficult to manage and analyze the high volume of
+information being published when a event happens in the world. 
+%
+In particular, we want to study events through three perspectives: user reaction
+and activity, spatio-temporal context of events, and content aggregation.
+%
+Understanding reaction involves discriminate which events are more important or
+produce more impact in a community. 
+%
+Understanding spatio-temporal context refers to understand how communities from
+different locations are affected by different events, as seen on social media,
+and identify similar communities and events based on this context. 
+%
+Understanding content refers to the identification of the core aspects of an
+event, without having to go through all the –potentially several– posts.
+%
+In particular, our goal is to propose different models for representing events. 
+%
+These models should be flexible enough to apply diverse methodologies to
+discover useful knowledge from information published on social media about
+real-world events, from the perspectives described above. 
+
+
+%%
+
+% WHY TWITTER
+
+We chose Twitter as our data source for this work. 
+%
+The advantages of using Twitter are that, first, it provides a simple way to
+obtain data and via its API (Application Programming Interface).
+%
+Second, it is not as restrictive as other sources, such as Facebook, which
+incentivate users to mantain a private profile, hence making the data collection
+much more difficult or impossible to perform.
+%
+Also, services like Facebook encourage users to share potentially personal
+content, and not only event-related.
+%
+Third, Twitter it is primarily dedicated to incentivate sharing event-related
+posts, and it is mainly used as a news source by its users (about 70\% of its
+users use Twitter to get news). 
+%
+For instance, its website asks “What’s happening?” to users when publishing
+content, as opposed to Facebook’s “What’s in your mind?”
+%
+\dots
+
+
+
+
+\paragraph{Thesis statement.} 
+%
+This dissertation poses to define flexible models for events on the social
+networking platform Twitter. 
+%
+Having three perspectives in mind, user reaction, spatio-temporal context, and
+content, the defined models should be able to allow us to discover new insights
+about news events reflected on Twitter. 
+%
+In particular, each perspective approaches specific Data Mining and Information
+Retrieval techniques: 
+%
+the study of context involves modeling and exploratory data analysis; 
+%
+reaction involves filtering and classification;
+%
+content involves topic detection and document modeling.
+
+
+The thesis statement is as follows:
+
+\begin{center}
+{\em
+Modeling news events from user-contributed content on Twitter, based on
+their spatio-temporal context, the reaction the users had on them, or the
+multimedia content which the events contain, is novel and effective to perform
+high-level quantitative analysis of news events.
+}
+\end{center}
+
+
+
+\paragraph{Challenges.}
+
+
+
+
+\paragraph{Contributions.}
+
+\begin{enumerate}
+\item an event representation based on user activity triggered by the news;
+\item a spatio-temporal representation based on the location where an event
+happens, and the locations the users commenting on the news are from; and
+\item a compact representation of content based on shared URLs.
+\end{enumerate}
+
+In the context of events, it is often
+difficult to comprehend what is happening in the world due to the high volume of
+available information, potentially redundant, or of little relevance. On the
+other hand, it is very difficult to assess the different aspects of an event,
+when one of these aspects usually take high importance and the others are
+relegated to be less important or popular, and hence more difficult to find
+related information.
+%%
+
+
+The study of news events on social media has several applications in the
+proposed setting. How the community reacts to different events would allow us to
+identify the characteristics of these events by a measure of reaction or other
+features given by the social network or the content of the events. By these
+characteristics, it would be possible to identify or even predict which events
+are going to cause a significative reaction from the community, improving
+journalistic coverage or better response from authorities facing an emergency.
+Additionally, by studying not only the response, but the context of different
+communities and how they respond to certain events, may give us insights about
+the communities themselves, for example, by revealing unexpected relations
+between different communities, or by measuring event similarity using the
+context, instead of content-based features. On the other hand, the study of the
+content is useful to understand the different points of view ahead of an event.
+Users accustomed to the same perspectives given by other users or sources may be
+oblivious of other angles of the same news event. Being capable of identify the
+different aspects of an event and then present these aspects in a concise
+summary can deal with this problem. All in all, the proposed framework can be of
+utility to understand social behavior, to study and decrease the effects of the
+information overload and the echo chamber effect, as well as to perform
+comparative historical research.
+
+
+
+
+
+The echo chamber effect (also known as the filter bubble) refers to the
+situation when, in the end, one’s own opinions are reflected back to oneself.
+Posts and articles are customized to each individual, via recommendation [57],
+due to media coverage [48], or by “the tendency of individuals to associate and
+bond with similar others” 1 , (homophily, which has been seen and studied on
+online social networks [39, 19]), and hence being exposed to similar opinions.
+This effect produces polarization and potentially extreme bias to certain
+tendencies or opinions. 
+
+
+Comparative historical research 2 is a method to examine
+historical events to create explanations about long-term tendencies or social
+processes. So far, historical research has been restricted to traditional
+archival data and historians’ written account of past events. Nevertheless, it
+is undeniable that the data poured into social media about events is of great
+value to society.
+
+
+
+
+
+
+
+Here, a news event is defined as an abstraction of social media data. An event
+is represented as a conglomerate of all the retrieved user-generated posts about
+a real-world occurrence. It has been observed that using aggregated features
+from several posts is more effective to reduce the variance in several studies
+about social media. This is followed by the wisdom of the crowds principle,
+which argues that the aggregation of information from multiple users results in
+better decisions than done by single members of the group. Next we specify what
+we mean by context, content and reaction in the thesis proposal:
+
+Spatio-temporal Context. The study of context surrounding news events refers to
+identify the communities interested in certain events, as well as the events
+that impact a certain community. We believe that the study of context is useful
+to identify communities being affected by specific types of news, and then being
+able to study potential sources of bias, or identify relations between locations
+(e.g. international relations) based on these insights. 
+
+User Reaction. The idea of filtering events based on the impact they may cause
+on the community can deal with the information overload, by being able to
+identify important events based on the activity the users had after reacting to
+these events. Emergency situations could be handled more effectively, improve
+journalistic coverage, or advertising. By identifying the characteristics of
+events that cause certain levels of impact it would be possible to automatically
+classify or predict the activity new events will induce, based on other
+features, such as content-based or network features. 
+
+Multimedia Content. The study of event content and their characteristics is
+meant to provide models for automati- cally summarizing (potentially multimedia)
+content and identify the relevant aspects of an event, while considering
+specific criteria such as coverage, non-redundancy or diversity. The idea is to
+automatically model events to produce comprehensive summaries for humans.
+High-level quantitative analysis of events refers to the study of macro
+relations of events and their general context. Our hypotheses are that (1)
+spatio-temporal models can serve as a base for methodologies to study the
+relationships between locations, based on the events that the users from these
+locations put their attention; (2) reaction models can help us to discriminate
+between events which we would know if they will cause a high impact on society,
+from those which do not, and hence understand the characteristics of these
+events and how they impact the community; (3) content models are useful for
+humans to understand events quickly, and comprehend different points of view
+that would be very difficult to perceive if they had to be searched through
+potentially many messages. We argue that this kind of analysis is novel in an
+automated setting, and the proposed models are useful to achieve this goal. The
+literature often focuses on specific types of events, such as emergencies
+(floods, earthquakes, sports events, etc.), localized events (a small community
+or niches), or memes (atomized pieces of information), and not in global and
+general events, but to detect, track and store them. We defend the hypothesis
+that the proposed models are useful to discover knowledge about world events in
+this setting.
+
+
+Research Questions 
+
+How to model heterogeneous user-contributed data into representative events? 
+
+To what extent social media information can be rearranged in order to extract
+useful knowledge about real-world events? 
+
+How transferable are the proposed methodologies and results from one social
+networking service to another? 
+
+What is the lowest level of granularity in which spatio-temporal context can be
+measured to identify similar events or communities?
+
+How to define a sound measure of reaction, impact or user activity? 
+
+How to validate specific criteria, such as diversity or coverage, when
+evaluating automatic summaries? 
+
+Research Challenges
+
+The identified research challenges are the following: 
+
+Obtain useful and relevant knowledge from microblogs about real-world events.
+Social media offers a partial view of the world. Also, mainstream topics
+obfuscate distinct points of view, which can obstruct retrieval of diverse
+content. Because users are frequently posting messages about their own lives,
+daily situations, or general topics, trends can be only visible when looking at
+large volumes of data. Besides, users tipically post very short texts,
+frequently with spelling and grammar errors. This makes identification of events
+and relevant content a very difficult task.
+
+
+Identify relevant information from potentially noisy data. Due to the
+characteristics of Twitter (or any other social networking service), usually
+messages are very short and with grammar and spelling errors. Also, users
+spontaneously create new ways to refer to the same entities (e.g. via the use of
+hashtags, emojis, or abbreviations), which makes it difficult to identify more
+relevant content when detecting events.
+
+Take into consideration information of different modalities. Relevant multimedia
+content is also difficult to identify. Multimedia content is represented by
+images, videos, text, a mixture of them, etc. This information can be exploited
+to improve the effectiveness of the proposed methodologies. The challenge comes
+in how to identify such content in an efficient way, how to deal with duplicated
+or quasi-duplicated content, and how to evaluate the effectiveness of
+methodologies when presenting multimedia content. 
+
+Deal with the potential bias in the collected data. As we stated above, social
+media offers a partial view of the world. Furthermore, the employed
+methodologies to retrieve or identify events from social media may be biased
+depending on several factors. For instance, our dataset is collected using news
+outlets as sources, being the majority of the outlets coming from the USA or the
+UK. This is a huge challenge in order to provide generalizable results from the
+proposed methodologies. Also, it is challenging to ensure that our results are
+as diverse as the utilized data source. 
+
+General Methodology The general methodology is meant to be applicable to each of
+the steps of this work, by being adapted to them. The proposed methodology is as
+follows: 
+
+1. Data Collection and Event Idenfitication. 
+
+
+The event identification step uses a relevance feedback-like procedure to aim
+for a high precision and recall when retrieving event-related posts. The data
+collection uses several news outlets as sources, as in previous work. These news
+outlets publish content about recent news. The assumption is that if a news
+event is gaining importance, then several news outlets will report it. Using
+standard Data Mining techniques, such as Frequent Itemset Mining, the next step
+is to retrieve the most common words shared by these multiple reports from
+different sources, marking these words as keywords. These keywords are used as
+search terms for querying user-contributed posts about them. These posts
+constitute relevant content for the news event. 
+
+2. Feature Extraction. The next step is to extract relevant features from
+events. As stated above, we consider an event as a high-level representation of
+a real-world occurrence, consisting in all the occurrence-related posts from
+different users on the social networking site. With this in mind, the feature
+extraction phase obtain characteristics from the collective of information about
+events, not necessarily individual posts. For example, when studying context
+features, we would like to identify what place a particular event is referring
+to, as opposed to identify from where a specific user is publishing content,
+which is also a desired feature. 
+
+3. Modeling. The next step is to propose flexible models for events using the
+features computed in the previous step. The purpose of the proposed models is to
+represent events in a succint way for different applications. This involves a
+representation for each one of the perspectives to study: context, reaction and
+content. 
+
+4. Exploration, Analysis and Application. From the computed features and the
+proposed models, the next part is to explore and analyze the events to get
+insights and generate new knowledge. New applications may arise from these
+models, for example, prediction models or automatic summarization algorithms. 
+
+5. Validation and Evaluation. The final step in the pipeline is to validate
+results, by proposing or using standard 4evaluation metrics, such as precision,
+recall, ROUGE [47], comparation with gold standards, or human evaluation. This
+involves validation of previous methodologies and evaluation of the proposed
+models and applications.
+
+
+\end{intro}

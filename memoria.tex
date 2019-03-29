@@ -1,0 +1,90 @@
+\documentclass[upright, contnum]{umemoria}
+
+\usepackage[lined,ruled]{algorithm2e}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+% allow full width tables
+\usepackage{tabularx}
+
+\usepackage{multirow}
+
+
+
+%fix for the oneside argument
+\makeatletter
+\g@addto@macro\titlepage{\pagenumbering{Alph}}
+\g@addto@macro\endtitlepage{\pagenumbering{roman}}
+\makeatother
+
+\depto{Departamento de Ciencias de la Computación}
+\author{Mauricio Daniel Quezada Veas}
+\title{KNOWLEDGE DISCOVERY FROM NEWS EVENTS ON TWITTER}
+\auspicio{\break CONICYT PCHA/Doctorado Nacional 2015/21151445}
+\date{Marzo 2019}
+\guia{BÁRBARA POBLETE}
+\carrera{Doctor en Ciencias, Mención Computación}
+\memoria{Tesis para optar al Grado de \break  Doctor en Ciencias, Mención Computación}
+\comision{AIDAN HOGAN \break MARCELO MENDOZA \break BRIAN D. DAVISON}
+
+\usepackage{lipsum}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+ 
+\begin{document}
+
+\frontmatter
+\maketitle 
+
+\begin{abstract} 
+    Online activity involves the consumption and production of event-related content. On Twitter, about 500 million
+    messages are published every day, and according to surveys, 59\% 
+    of its users use the platform as a way to get the
+    news. The high rate of production of multimodal content (text, images, and videos) makes it a necessity to have flexible
+    models to understand the dynamics of the information disseminated on social media. This thesis proposes the creation of
+    context models from user-generated messages on Twitter to discover knowledge as a way to perform high-level quantitative
+    analysis of news events. These models are meant to be useful in three perspectives: the spatio-temporal context in which
+    the events develop, the activity of users that react when a high-impact event happens, and the multimodal content that can
+    be exploited to generate a comprehensive summary of the event. Our current work involves the creation of a geopolitical
+    model that relates events and countries, allowing us to discover international relations; the study of what features make an
+    event susceptible to provoke high activity from users, and a characterization that allows us to predict with high precision
+    which events are going to produce high activity; and our ongoing work on generating automatic multimodal summaries of
+    events based on the assumption that the users describe the non-textual content in their tweets when they manifest their
+    facts and opinions around events.
+\end{abstract}
+
+\begin{dedicatoria} % opcional
+Una dedicatoria corta. Por ejemplo, al \emph{Centro Tecnológico Ucampus}
+\end{dedicatoria}
+
+\begin{thanks} % opcional
+\lipsum[1-2]
+\end{thanks}
+\cleardoublepage
+
+\tableofcontents
+\listoftables % opcional
+\listoffigures % opcional
+
+\mainmatter
+
+\input{chapters/intro/intro-main}
+\input{chapters/related-work/related-work-main}
+\input{chapters/data/data-main}
+\input{chapters/high-impact/high-impact-main}
+\input{chapters/geopolitical/geopolitical-main}
+\input{chapters/url-model/url-model-main.tex}
+\input{chapters/conclusions/conclusions-main.tex}
+ 
+% \input{glosario.tex} % opcional
+
+\bibliographystyle{plain}
+\bibliography{bibliografia}
+
+% \input{anexo_apendices.tex} % opcionales
+
+\end{document}
