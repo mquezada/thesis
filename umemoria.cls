@@ -34,7 +34,7 @@
 \RequirePackage[utf8]{inputenc} %Encoding
 \RequirePackage[top=2cm, left=3cm, bottom=2cm, right=2cm, paper=letterpaper]{geometry} % Margenes
 \RequirePackage{amsmath, amssymb, amsthm, graphicx} % Varios
-\RequirePackage[spanish, es-nolists, es-lcroman]{babel} % Lenguaje
+\RequirePackage[english]{babel} % Lenguaje  % , es-nolists, es-lcroman
 \RequirePackage[pdfpagelabels]{hyperref} % Links y numeracion del PDF
 \RequirePackage{listings} % Codigo Fuente
 \RequirePackage{pgffor} % foreach
