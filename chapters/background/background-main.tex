@@ -77,7 +77,7 @@ data points.
 \end{figure}%
 
 
-\paragraph{Linear model.} The linear model is the family of functions (or
+\paragraph{Linear models.} The linear model is the family of functions (or
 hypothesis set) defined as $h(\vect{x}) = \vect{w}^\customT\vect{x}$, where
 $\vect{w} \in \mathbb{R}^\textit{d}, \textit{d} > 0$ is a vector of weights, and
 $\vect{x}\in \mathbb{R}^\textit{d}$ is an observation. 
@@ -131,13 +131,18 @@ E_{\text{in}}(h)$, and ``moving'' the weight vector according to the direction
 of the gradient, $\vect{w}_{t+1} = \vect{w}_t - \eta\nabla E_{\text{in}}(h)$.
 %
 There are several strategies to stop the iteration $t$, such as doing it until
-the change is small, a fixed number of times, or when the error is small enough.
+the change is small, a fixed number of times, when the error is small enough, or
+a combination of the above.
 %
 The magnitude of the movement is given by the parameter $\eta$, or {\em learning
 rate} which is usually a fixed value.
 
-
 \paragraph{Neural network models.} 
+
+
+\paragraph{Evaluation.}
+
+
 
 
 \section{Unsupervised learning: Clustering}
@@ -159,12 +164,242 @@ the data.
 
 \paragraph{K-Means.} 
 %
-
+K-Means is a partitional clustering algorithm which assigns each observation to
+exactly one cluster.
 %
+The objective of K-Means~\cite{lloyd1982least} is to minimize the average
+squared Euclidean distance of documents from their cluster
+centers~\cite{manning2010introduction}.
+%
+A cluster center is defined as the mean, or {\em centroid} $\vect{\mu}$ of the
+observations in a cluster $\omega$:
+
+$$\vect{\mu}(\omega) = \frac{1}{|\omega|} \sum_{\vect{x} \in \omega} \vect{x}$$
+
+K-Means aims to minimize the {\em sum of the squared error}, or
+SSE\footnote{Also called {\em Residual Sum of Squares}, or RSS.}, the squared
+distance of each vector from its centroid summed over all vectors:
+
+$$ \text{SSE}_k = \sum_{\vect{x} \in \omega_k} |\vect{x} - \vect{\mu}(\omega_k)|^2 $$
+
+$$ \text{SSE} = \sum_{k = 1}^K \text{SSE}_k, $$
+
+where $K$ is the total amount of clusters, and $\omega_k$ is the $k$-th cluster.
+
+Initially, the algorithm selects the initial $K$ centroids randomly.
+%
+Then it moves the centers around in space in order to minimize SSE.
+%
+Iteratively it reassigns the observations to the cluster with the closest
+centroid, and recomputes each centroid based on the current members of its
+cluster.
+
+\todo[inline]{escribir algoritmo}
+
+K-Means has some considerations to be taken into account:
+
+\begin{itemize}
+\item {\bf Termination condition.} 
+%
+We can apply one of the following termination conditions.
+%
+(i) a fixed number of iterations $I$ has been completed; 
+%
+in this case, the quality of the clusters can be compromised because an
+insufficient number of iterations.
+%
+(ii) the assignment of data points to clusters does not change between
+iterations; 
+%
+this can yield a good clustering solution, except for a bad local minimum.
+%
+(iii) the centroids $\vect{\mu}_k$ does not change between iterations;
+%
+this is equivalent to the assignment not changing.
+%
+(iv) terminate when SSE falls below a certain threshold.
+%
+(v) terminate when the decrease of SSE falls below a certain threshold, meaning
+that we are close to convergence.
+%
+A common strategy is to combine criterions, such as a maximum number of
+iterations, a threhold on the value or decreasing rate of SSE, etc.
+
+\item {\bf How to choose the initial seeds.} 
+%
+Effective heuristics for chosing the initial seeds include:
+%
+(i) excluding outliers from the seed set;
+%
+(ii) trying multiple starting points and choosing the best clustering (in terms
+of SSE);
+%
+(iii) obtain the seeds from another methods, such as hierarchical clustering.
+
+\item {\bf Selecting the number of clusters $K$.}
+%
+One of the most popular heuristics to choose the number of clusters $K$ on
+K-Means, when there is no previously conception of what the number should be, is
+as follows.
+%
+For every value of $K$ in a chosen range, compute K-Means $t$ times (e.g. $t =
+10$), each with a different initialization of seeds, and take the minimum value
+of SSE of the $t$ runs.
+%
+Then, we can inspect the values of SSE for every $K$ and find the ``knee'' or
+``elbow'' in the curve: the point where successive decreases in SSE become
+noticeable smaller.
+%
+This is known as the {\em elbow method} for selecting the number of clusters.
+%
+Another criterion imposes a penalty on the number of clusters.
+%
+For example, the elbow method could suggest different values of $K$, and we
+would prefer a smaller value.
+%
+The criterion uses a weighting factor $\lambda$ on the number of clusters: $K =
+\text{arg min}_K [\text{SSE}_{\text{min}}(K) + \lambda K]$.
+%
+This is similar to the regularization factor in classification.
+%
+The value of $\lambda$ can be derived empirically or use a value that was being
+shown to be effective in the domain of study.
+\end{itemize}
+
+\paragraph{Evaluation of clustering.} 
+%
+Criterions on clustering quality involve two perspectives: internal and external
+evaluation.
+%
+Internal evaluation assesses the characteristics that objective functions in
+clustering try to attain, such as having high intra-cluster similarity (elements
+within a cluster are similar), and low inter-clustering similarity (elements
+from different clusters are dissimilar).
+%
+On the other hand, when we have a {\em gold standard}, or a set of classes
+corresponding to the ``real'' clusters, we can perform external evaluation, by
+comparing our clustering solution to the gold standard.
+
+%%
+
+In the case of K-Means, the value of the SSE is itself an internal criterion,
+because we are validating our solution in terms of the intra-cluster similarity.
+%
+One can use both intra and inter-cluster similarity to judge the quality of the
+clustering. There are other measures, such as the Silhouette
+value~\cite{rousseeuw1987silhouettes}, and the Davies-Bouldin
+index~\cite{davies1979cluster}.
+
+%%
+
+In this section we will describe the following external evaluation measures for
+clustering: {\em purity}, {\em normalized mutual information}, and the {\em rand
+index}.
+
+%%
+
+To compute purity, each cluster is assigned to the class which is most frequent
+in the cluster, and then the accuracy of this assignment is measured by counting
+the number of correctly assigned observations.
+%
+Formally:
+
+$$ \text{purity}(\Omega, \mathbb{C}) = \frac{1}{N} \sum_{k}^K \max_j |\omega_k \cap c_j|$$
+
+where $\Omega = \{\omega_1, \omega_2, \ldots, \omega_K\}$ is the set of clusters
+and $\mathbb{C} = \{c_1, c_2, \ldots, c_J\}$ is the set of classes (the gold
+standard).
+
+%%
+
+Bad clustering solutions have values of purity close to 0, and perfect
+clustering has a value of 1. 
+%
+However, as $K$ increases, the value of purity tends to increase as well. 
+%
+For example, a purity of 1 is achieved when every cluster has only one
+observation.
+
+%%
+
+To make a tradeoff between the number of clusters and the quality of the
+clustering solution, we can use normalized mutual information, or NMI.
+%
+NMI is defined as follow:
+
+$$ \text{NMI}(\Omega, \mathbb{C}) = \frac{I(\Omega; \mathbb{C})}{[H(\Omega) + H(\mathbb{C})]/2} $$
+
+$I$ is mutual information, defined as 
 
 
-\paragraph{Hierarchical clustering.}
+\begin{align}
+    I(\Omega; \mathbb{C}) &= \sum_k \sum_j P(\omega_k \cap c_j) \log \frac{P(\omega_k \cap c_j)}{P(\omega_k) P(\cap c_j)} \label{eq:mutual-info} \\ 
+    & = \sum_k \sum_j \frac{|\omega_k \cap c_j|}{N} \log \frac{N|\omega_k \cap c_j|}{|\omega_k| |c_j|} \label{eq:mutual-info2}
+\end{align}
 
-\paragraph{Online clustering.}
+
+
+where $P(\omega_k)$, $P(c_j)$, and $P(\omega_k \cap c_j)$ are the probabilities
+of the observations being in cluster $\omega_k$, class $c_j$, and in the
+intersection of $\omega_k$ and $c_j$, respectively. 
+%
+Equation~\ref{eq:mutual-info2} is equivalent to \ref{eq:mutual-info} for maximum
+likelihood estimates of the probabilities, that is, the relative frequency.
+%
+$H$ is entropy, defined as 
+
+\begin{align}
+H(\Omega) &= - \sum_k P(\omega_k) \log P(\omega_k) \label{eq:entropy} \\
+&= - \sum_k \frac{|\omega_k|}{N} \log \frac{|\omega_k|}{N} \label{eq:entropy2}
+\end{align}
+    
+The intuition behind mutual information (MI) is that it measures the amount of
+knowledge we gain about the classes when we know what the clusters are. 
+%
+When the clustering assignment is random, we gain no new knowledge, and MI is 0.
+%
+It suffers the same problem as purity, so MI is maximum when the perfect
+clustering is also one cluster per observation.
+%
+For that, NMI normalizes MI using entropy.
+
+%%
+
+Entropy tends to increase with the number of clusters. 
+%
+In this case, NMI is low when $K = N$, because $H(\Omega)$ is maximum when $K =
+N$. 
+%
+The denominator $[H(\Omega) + H(\mathbb{C})]/2$ is a tight upper bound on MI, so
+NMI ranges between 0 and 1.
+
+%%
+
+Another view on clustering is to consider the process as a series of decisions,
+where we decide for each pair of observations, if they belong to the same
+cluster or not.
+%
+We want to assign observations to the same cluster if they are similar (or if
+they both belong to the same class).
+%
+So, if we assign a pair of similar observations to the same cluster, it is
+considered a True Positive (TP). 
+%
+A pair of dissimilar observations assigned to different clusters is a True
+Negative (TN).
+%
+Likewise, two similar observations in different clusters correspons to a False
+Negative (FN), and two dissimilar observations in the same cluster a False
+Positive (FP).
+%
+The Rand Index (RI) measures the percentage of correct decisions, or just the
+accuracy.
+
+\begin{equation}
+    \text{RI} = \frac{ \text{TP} + \text{TN} }{ \text{TP} + \text{FP} + \text{FN} + \text{TN}}
+\end{equation}
+
+From this representation we can define the equivalent to precision, recall, and
+F-score.
 
 \section{Neural Network-based Word Embeddings}
