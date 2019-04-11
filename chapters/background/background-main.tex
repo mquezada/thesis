@@ -40,7 +40,8 @@ The output of a classifier applied to an observation is the label corresponding
 to that observation (Figure~\ref{background:fig:clf-ex}).
 %
 Formally, a classifier is a function $h: \mathcal{D} \rightarrow \{0, 1, \ldots,
-n\}$ which tries to approximate to the {\em real} function $f$.
+n\}$ from a domain $\mathcal{D}$ to a set of classes, or class labels, which
+tries to approximate to the {\em real} function $f$.
 %
 A {\em binary classifier} is a function restricted to only two labels, $h:
 \mathcal{D} \rightarrow \{0, 1\}$.
@@ -142,8 +143,118 @@ rate} which is usually a fixed value.
 
 \paragraph{Evaluation.}
 
+The standard workflow of training a classifier involves splitting the available
+data into a {\em training set} and a {\em test set}. 
+%
+\todo[inline]{escribir sobre holdout y CV} 
+
+The most common metric to evaluate the effectiveness of a classifier is the {\em
+accuracy}, the amount of correctly classified observations over the total amount of
+observations.
+
+\begin{equation}
+    \text{Accuracy} = \frac{\text{\#(correctly\ classified\ observations)}}{N}
+\end{equation}
+
+Where $N$ is the total amoun of observations being classified.
+
+Accuracy does not account for an imbalance in the class distribution.
+%
+For example, when there are two classes, and they are split into 99\% class $0$
+and 1\% class $1$, then it is easy to obtain an accuracy of $0.99$ by
+classifying everything as class $0$.
+%
+The notion of {\em Precision} and {\em Recall} take into account two types of
+error of a classifier.
+
+\begin{equation}
+    \text{Precision}_c = \frac{\text{\#(observations\ correctly\ classified\ as\ } c \text{)}}{ \text{\#(observations\ classified\ as\ } c \text{)} }
+\end{equation}
+
+\begin{equation}
+    \text{Recall}_c = \frac{\text{\#(observations\ correctly\ classified\ as\ } c \text{)}}{ \text{\#(observations\ of\ class\ } c\text{)} } 
+\end{equation}
+
+The related errors are the {\em false positives} (when an observation is
+incorrectly classified as the target class) or FP, the {\em false negatives}
+(when an observation is incorrectly classified as something that is not the
+target class), or FN. 
+%
+When an observation is correctly classified as the target class, we say it is a
+{\em True Positive}, TP, and when it is correctly classified not as the target
+class, a {\em True Negative}, or TN.
+%
+Now we can re-write the definitions of accuracy Accuracy, precision $P$, and recall
+$R$:
+
+\begin{align}
+    \text{Accuracy} &= \frac{\cTP + \cTN}{\cTP + \cFP + \cFN + \cTN} \\
+    P &= \frac{\cTP}{\cTP + \cFP} \\
+    R &= \frac{\cTP}{\cTP + \cFN} 
+\end{align}
+
+A single measure that trades off precision versus recall is the {\em F-score} or
+{\em F measure}, which is the weighted harmonic mean of precision and recall:
+
+\begin{equation}
+    F = \frac{1}{\alpha\frac{1}{P} + (1-\alpha)\frac{1}{R}} = \frac{(\beta^2+1)PR}{\beta^2P+R} \text{\ \ where\ \ } \beta^2 = \frac{1-\alpha}{\alpha}
+\end{equation}
+
+where $\alpha \in [0, 1]$ and thus $\beta^2 \in [0, \infty]$. 
+%
+The default {\em balanced F measure} equally weights precision and recall, which
+means $\alpha=1/2$ or $\beta=1$.
+%
+It is commonly written as $F_1$.
+%
+In this case, the formula translates to:
+
+\begin{equation}
+    F_1 = \frac{2PR}{P+R}
+\end{equation}
+
+%%
+
+The {\em confusion matrix} is a specific table layout that shows the performance
+of a classifier.
+%
+Each row of the matrix represents the instances of the actual class, while each
+column represents the instances in the predicted classes.
+%
+When there are two classes, the cells of the matrix represent the TP, FP, FN,
+and TN of the classifier results.
+%
+Table~\ref{tab:background:example-conf-matrix} shows an example of a confusion
+matrix with three classes.
+
+%%
+
+Another concept sometimes used in the evaluation is the {\em ROC
+curve}\footnote{Or Receiver Operating Characteristics curve.}. 
+%
+The ROC curve plots the {\em true positive rate}, {\em sensitivity} or simply
+recall, against the {\em false positive rate} or $(1 - \mathit{specificity})$.
+%
+The false positive rate is given by $\cFP/(\cFP + \cTN)$.
+%
+The true positive and false positive rates are computed based on different
+threholds imposed to the decision boundary of a classifier, for example, at the
+threshold of a logistic regression classifier when deciding if an observations
+belongs to one or the other class.
 
 
+\begin{table}[]
+    \centering
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+    Actual / Predicted & \textit{Class 0} & \textit{Class 1} & \textit{Class 2} \\ \midrule
+    \textit{Class 0}   & \textbf{10}      & 4                & 6                \\
+    \textit{Class 1}   & 2                & \textbf{14}      & 0                \\
+    \textit{Class 2}   & 4                & 23               & \textbf{9}       \\ \bottomrule
+    \end{tabular}
+    \caption{Example of confusion matrix for a classifier with three classes.}
+    \label{tab:background:example-conf-matrix}
+    \end{table}
 
 \section{Unsupervised learning: Clustering}
 
@@ -192,9 +303,28 @@ Then it moves the centers around in space in order to minimize SSE.
 %
 Iteratively it reassigns the observations to the cluster with the closest
 centroid, and recomputes each centroid based on the current members of its
-cluster.
+cluster. 
 
-\todo[inline]{escribir algoritmo}
+The algorithm is as follows: \vspace{.3cm}
+
+\begin{algorithmic}
+\STATE {\scshape K-Means}$(\{\vect{x}_1, \ldots, \vect{x}_N\}, K)$
+    \STATE $(\vect{s}_1, \vect{s}_2, \ldots, \vect{s}_K) \gets$ {\scshape SelectRandomSeeds}$(\{\vect{x}_1, \ldots, \vect{x}_N\}, K)$
+    \FOR{$k \gets 1\ \TO\ K$} \STATE $\vect{\mu}_k \gets \vect{s}_k$ \ENDFOR
+    \WHILE{stopping\ criterion\ has\ not\ been\ met}
+        \FOR{$k \gets 1\ \TO\ K$}
+            \STATE $\omega_k \gets \{\}$
+        \ENDFOR
+        \FOR{$n \gets 1\ \TO\ N$}
+            \STATE $j \gets \text{arg} \min_{j'} |\vect{\mu}_{j'} - \vect{x}_n|$
+            \STATE $\omega_j \gets \omega_j \cup \{\vect{x}_n\}$
+        \ENDFOR
+        \FOR{$k \gets 1\ \TO\ K$}
+            \STATE $\vect{\mu}_k \gets \frac{1}{\omega_k}\sum_{\vect{x}\in\omega_k}\vect{x}$
+        \ENDFOR
+    \ENDWHILE
+    \RETURN $\{\vect{\mu}_1, \ldots, \vect{\mu}_K\}$
+\end{algorithmic}
 
 K-Means has some considerations to be taken into account:
 
