@@ -119,8 +119,17 @@ minimizing the in-sample error, $E_{\text{in}}(h) = \frac{1}{N} \sum_{n=1}^{N}
 observation.
 %
 For logistic regression, the {\em gradient descent algorithm} provides a way to
-find a local optimum for the in-sample error $E_{\text{in}}(h)$, which is
-defined as the cross-entropy measure between $h(\vect{x})$ and $y$. 
+find a local optimum for the in-sample error $E_{\text{in}}(h)$, where the
+in-sample error is defined by the {\em logistic loss}.
+%
+The logistic loss function is defined as $\ell: x \mapsto (1 +
+\mathit{e}^{-x})$.
+% 
+In other words, the in-sample error for logistic regression is
+$E_{\text{in}}(\vect{w}) = \frac{1}{N}\sum_{n=1}^N
+\ell(-y_n\vect{w}^\text{T}\vect{x}_n)$.
+
+
 
 %%
 
@@ -138,15 +147,14 @@ a combination of the above.
 The magnitude of the movement is given by the parameter $\eta$, or {\em learning
 rate} which is usually a fixed value.
 
-\paragraph{Neural network models.} 
-
-
 \paragraph{Evaluation.}
 
 The standard workflow of training a classifier involves splitting the available
 data into a {\em training set} and a {\em test set}. 
 %
 \todo[inline]{escribir sobre holdout y CV} 
+
+
 
 The most common metric to evaluate the effectiveness of a classifier is the {\em
 accuracy}, the amount of correctly classified observations over the total amount of
@@ -533,3 +541,124 @@ From this representation we can define the equivalent to precision, recall, and
 F-score.
 
 \section{Neural Network-based Word Embeddings}
+
+
+
+\paragraph{Skipgram model~\cite{mikolov2013efficient}.}
+%
+Given a vocabulary of size $W$, where a word is identified by its index $w \in
+\{1, \ldots, W\}$, the goal is to learn a vector representation of each word $w$.
+%
+The word representations are trained with the goal of predict other words that
+are in the same context.
+%
+Given a large sequence of words $w_1, w_2, \ldots, w_T$, the objective of the
+skipgram model is to maximize the following log-likelihood:
+
+$$ \sum_{t=1}^T\sum_{c\in \mathcal{C}_t} \log P(w_c | w_t) $$
+
+\noindent where $\mathcal{C}_t$ is the context of $w_t$, the set of indices of
+words surrounding $w_t$. 
+%
+The probability of observing a context word $w_c$ given $w_t$ will be
+parametrized using the word vectors.
+
+%%
+
+Assume that we are given a scoring function $s$ which maps a pair of (word,
+context) to values in $\mathbb{R}$.
+%
+One way to define the probability of a context word is using the {\em softmax},
+$ P(w_c | w_t) = \frac{ \mathit{e}^{s(w_t, w_c)} }{ \sum_{j=1}^W \mathit{e}^{s(w_t, j)} } $.
+%
+There are two problems with this approach: one being the amount of output units
+of the neural network ($W$ in this case, one for each word in the vocabulary),
+which does not scale with the amount of training data required, and the other is
+that it implies that, given a word $w_t$, we only predict one context word
+$w_c$.
+
+%%
+
+In the original proposal, there are three ways to approximate the softmax:
+%
+hierarchical softmax,
+%
+Noise Contrastive Estimation, and
+%
+negative sampling.
+%
+We will describe negative sampling briefly.
+% 
+The problem of predicting context words can be framed as a set of independent
+binary classification tasks.
+%
+Then the goal is to predict the presence or the absence of context words. 
+%
+For the word at position $t$ we consider all context words as positive examples,
+and sample negative examples at random from the vocabulary.
+%
+For a chosen context position $c$, and using the logistic loss for binary
+classification, the log-likelihood is as follows:
+
+$$ \log (1 + \mathit{e}^{-s(w_t, w_c)}) + \sum_{n\in \mathcal{N}_{t,c}} \log(1 + \mathit{e}^{s(w_t, n)})$$
+
+\noindent where $\mathcal{N}_{t,c}$ is a set of negative examples sampled from
+the vocabulary. 
+%
+By denoting the logistic loss function as $\ell : x \mapsto \log(1+\mathit{e}^{-x})$, we
+can rewrite the objective function as:
+
+$$\sum_{t=1}^T \Big[ \sum_{c\in\mathcal{C}_t} \ell(s(w_t, w_c)) + \sum_{n\in\mathcal{N}_{t,c}}\ell(-s(w_t, n))\Big]$$
+
+Finally, the scoring function $s$ can be parametrized using the word vectors. 
+%
+For each word $w$ we define two vectors $\vect{u}_w$ and $\vect{v}_w$.
+%
+These two vectors are sometimes referred as {\em input} and {\em output}
+vectors, respectively.
+%
+Then the score is computed as the scalar product between the vectors as $s(w_t,
+w_c) = \vect{u}^\text{T}_{w_t}\vect{v}_{w_c}$.
+%
+This model is the skipgram model with negative sampling, introduced by Mikolov
+et al.~\cite{mikolov2013distributed}.
+
+
+\paragraph{fastText~\cite{bojanowski2017enriching}.} 
+By using a distinct vector representation for each word, the skipgram model
+ignores the internal structure of words. 
+%
+Some languages, such as French or Spanish, which contains several cases for
+verbs or nouns, contain many word forms that occur rarely in the training
+corpus, making it difficutlt to learn good word representations.
+%
+In the case of Twitter, the vocabulary is very large due to the usage of
+uncommon or rare words (misspellings, new words, abbreviations, etc.).
+%
+For this, each word in the vocabulary is represented as a bag of character
+n-grams. 
+%
+Two special symbols {\tt <} and {\tt >} are added to the beginning and end of
+each word, respectively, to distinguish prefixes and suffixes from other
+sequences.
+%
+Additionally, the word $w$ itself is added to the set of n-grams, to learn a
+representation for the words as well. 
+%
+Suppose we are given a set of n-grams of size $G$. 
+%
+Given a word $w$, denote by $\mathcal{G}_w \subset \{1, \ldots, G\}$ the set of
+n-grams appearing in $w$.
+%
+We associate a vector representation $\vect{z}_g$ to each n-gram $g$. 
+%
+We represent a word by the sum of the vector representations of its n-grams.
+%
+Thus, the new scoring function is
+
+$$s(w, c) = \sum_{g\in\mathcal{G}_w}\vect{z}^\text{T}_g\vect{v}_c$$
+
+This model allows us to share the representation across words, thus allowing us
+to learn reliable representation of rare words.
+%
+This is the {\em fastText} model.
