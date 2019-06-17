@@ -1,11 +1,12 @@
 \section*{Abstract}
 
-
-On-line social networks publish information on a high volume of real-world
-events almost instantly, becoming a primary source for breaking news.  
+Users publish a high volume of information about real-world events on social
+media almost instantly.
 %
-Some of these real-world events can end up having a very strong impact on
-on-line social networks.  
+This makes social media a primary source for breaking news.
+%
+Some of these real-world events can end up having a very strong impact on the
+network.  
 %
 The effect of such events can be analyzed from several perspectives, one of them
 being the intensity and characteristics of the collective activity that it
@@ -43,11 +44,12 @@ collectively by the social network, engaging users early on, way before they are
 brought to the mainstream audience.
 
 
-\section*{Introduction}
+\section{Introduction}
 % Motivation
 
-Social media can be considered a primary source of breaking news information for
-millions of users all over the world~\cite{Kwak:2010}.\todo[inline]{more recent refs}
+Social media is now a primary source of breaking news information for millions
+of users all over the
+world~\cite{Kwak:2010,petrovic2013can,broersma2013twitter,tandoc2016most}.
 %
 Social media along with mobile internet devices have crowdsourced the
 task of disseminating real-time information. 
@@ -55,7 +57,7 @@ task of disseminating real-time information.
 As a result, both news media and news consumers have become inundated with much
 more information than they can process. 
 %
-One possible way of handling this data overload, is to find ways to filter and
+One possible way of handling this data overload is to find ways to filter and
 prioritize information that has the potential of creating a strong collective
 impact. 
 %
@@ -75,6 +77,7 @@ extremely high-activity can be clearly identified in the early stages of their
 outbreak.
 
 % Brief background on the problem
+\section{Background}
 
 The study of information propagation on the Web has sparked tremendous interest
 in recent years. 
@@ -96,6 +99,34 @@ through images, URLs, tweets, videos, etc.
 Therefore, current research can benefit from analyzing the effects of more
 high-level forms of information. 
 
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering 
+        \includegraphics[width=.8\textwidth]{figures/high-activity/fig1a}
+        \caption{Death of Nelson Mandela}
+        \label{fig:hi:example-mandela}
+    \end{subfigure}
+    
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=.8\textwidth]{figures/high-activity/fig1b}
+        \caption{One week after 2014 The Oscars}
+        \label{fig:hi:example-oscars}
+    \end{subfigure}
+
+    \caption[Example histograms of time differences between tweets]{Histograms
+        of the time differences between consecutive tweets in two example
+        events: the death of Nelson Mandela (collected on 2013-12-05) and the
+        commentary about the 2014 Oscars, several weeks after the main event
+        (collected on 2014-03-23). Since there is a high concentration in the
+        first histogram bin for the first histogram, we conclude that the social
+        media posts for this event occur in cascades of quick successions,
+        almost instantaneously. The arrival times of the posts on the second
+        event are much more spread out. The $y$-axis is in square root scale.}
+    \label{fig:hi:examples}
+\end{figure}
+
 Traditionally, the impact of information in on-line social networks has been
 measured in relation to the total amount of attention that this subject receives
 \cite{berger2012makes,iribarren2011branching,guerini2011exploring,mills2012virality,gaugaz2012predicting}.
@@ -108,7 +139,7 @@ that produces very large volumes of social media messages.
 %
 Naturally, global breaking news that has world-wide coverage and that produces a
 high volume of activity in a short time should be considered as having a strong
-impact on the network.  
+impact on the network (Figure~\ref{fig:hi:example-mandela}).  
 %
 However, there are other types of events that can produce a similar reaction in
 smaller on-line communities such as, for example, on users from a particular
@@ -118,12 +149,12 @@ elections~\cite{chile_elections}).
 %
 Clearly, events of local scope do not produce as much social media activity as
 events of global scope, but they can create a strong and immediate reaction from
-users in local networks \cite{ReisBOPKA15}. 
+users in local networks~\cite{ReisBOPKA15}. 
 %
 Conversely, there are large events which do not produce an intense reaction,
-such as {\em The Oscars} (Fig~\ref{fig:fig1}), which span a long period of time
-and are discussed by social network users for weeks or even months, but do not
-spark intense user activity. 
+such as {\em The Oscars} (Figure~\ref{fig:hi:example-oscars}), which span a long
+period of time and are discussed by social network users for weeks or even
+months, but do not spark intense user activity. 
 %
 Therefore, it is reasonable to consider additional dimensions, than just volume,
 when analyzing the impact of information in on-line communities.  
@@ -159,6 +190,8 @@ knowledge, it has not yet been analyzed quantitatively.
 % Our contributions
 
 %\newtext{
+
+\section{Contributions}
 
 Our work focuses on high-activity events in social media produced by real-world
 news, with the following contributions:

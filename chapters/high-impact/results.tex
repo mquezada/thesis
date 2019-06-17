@@ -1,234 +1,224 @@
-\section*{Results and Discussion}
-%\newtext{ 
-Our main objective in this work is to analyze the
-  characteristics of high-impact events which differentiate them from
-  other types of events. In particular, we identify how early in an
-  event's evolution is it possible to determine if an event is going
-  to be of high impact in the on-line social network.
+\section{Results and Discussion}
 
-Tables~\ref{table:high-impact-sample}
-and~\ref{table:low-impact-sample} show examples of events from the high-impact category and 
-low-impact category. We recall that the high-impact
-events are those which were in the top 8\% of the ranking obtained by
-sorting the event clusters according concentration of social media
-posts in bins that correspond to the shortest time interval.  Table
-\ref{table:high-impact-sample}, shows two events of different sizes
-(large and small) and different scopes (one global and the other more local)
-categorized as high impact in our dataset. The first event, the death
-of Nelson Mandela, is one of the large events in the dataset, with
-$\approx$ 134,000 tweets. The histogram representation of this event,
-shown in Figure \ref{fig:nelson_mandela} suggested that more than $80\%$ of
-the tweets arrived almost instantaneously. This is an event of
-international political and social importance, which created an
-overwhelming flood of messages on social media.  Hence, it makes sense
-for such an example to be placed in the high-impact category.  The
-second event, on the other hand, about the 2013 Mumbai Gang Rape is of
-much smaller scale, with a total of $\approx$ 1,700 tweets.  However,
-this event caused considerable amount of immediate reaction on social
-media, with more than $48\%$ of its messages arriving almost
-instantaneously.  Despite its smaller size, and its possible
-confinement to a localized on-line community, this event has been
-placed in the high-impact category.
-
-Table \ref{table:low-impact-sample} shows events that have been
-classified by our methodology in the category of low impact.  The
-first event, about a teen surviving after hiding in the wheel of a
-airplane, had only a little more than $25\%$ of its messages arriving
-instantaneously although it had over 18,000 messages.  The second
-event, about the damages caused by a tornado in Canada, did not garner
-much immediacy in attention since only $7\%$ of its messages arrived
-instantaneously. Most of the messages of this event were spaced out in
-time. Even though, we cannot say whether or not this event had
-significant implications in the real-world, we can say that it did not 
-have considerable impact on the Twitter network. The lack of interest
-could be due to several factors that are currently beyond the scope of
-this work, ranging from the lack of Twitter users in the locality of
-the event, to the fact that the tornado did not cause big damages. 
-
-Fig.~\ref{fig:highest}, Fig.~\ref{fig:low}, Fig.~\ref{fig:cdf-highest} and
-Fig.~\ref{fig:cdf-lowest} show the average histograms and the average
-cumulative distribution functions of the events corresponding to the
-high and low impact categories, respectively.  Visually, the average
-high-impact event vector representations starkly differs from that of
-a low-impact event in that the histogram in Fig.~\ref{fig:highest}
-seems to possess an exponential decay, while the histogram in
-Fig.~\ref{fig:low} does not.  To test this hypothesis, we fit
-exponential function of the form $f(x)=ae^{bx}$ to the event
-histograms. Table~\ref{tab:curve_fitting} summarizes the results from
-statistical significance tests performed on the parameters $a$ and
-$b$, and on the residual least squares error used for fitting the
-exponential curves.  The differences between these values is
-statistically significant ($p$-value $\leq2.2\times 10^{-16}$), thus demonstrating
-that high-impact events, on an average, fit the exponential decay
-curve much better than their low-impact counterparts.  In addition,
-Fig.~\ref{fig:param_est} shows two scatter plots with the resulting
-exponential parameters $a$ and $b$.  We observe that the majority
-($97.4\%$) of high-impact events have an exponent $b \leq -50$,
-separating them unequivocally from other events.
-%}
+Our main objective in this work is to analyze the characteristics of
+high-activity events which differentiate them from other types of events. 
+%
+In particular, we identify how early on in an event's lifecycle can we determine
+if an event is going produce high activity in the on-line social network.
 
 
- 
+\input{chapters/high-impact/events_example_PLOS_revision.tex}
 
-\begin{figure}
-  \centering 
-  \begin{subfigure}{\textwidth}
-    %\includegraphics[width=\textwidth]{figures/avg_hist_3_7}
-    \caption{High-impact event summary histogram. %\inote{Mauricio:
-                                %change label for the   x-axis}
-    }
-    \label{fig:highest}
-  \end{subfigure}%
+Tables~\ref{table:high-impact-sample} and~\ref{table:low-impact-sample} show
+examples of events from the high-activity category and low-activity category. 
+%
+We recall that the high-activity events are those which were in the top 8\% of
+the ranking obtained by sorting the event clusters according to concentration of
+interarrival times of social media posts in the shortest interarrival time of
+the VQ-event model.  
+%
+Table \ref{table:high-impact-sample} shows two events of different sizes (large
+and small) and different scopes (one global and the other of more local scope)
+categorized as high activity in our dataset. 
+%
+The first event, the death of Nelson Mandela, is one of the largest events in
+the dataset, with $\approx 134,000$ tweets. 
+%
+The histogram representation of this event, shown in
+Fig~\ref{fig:hi:example-mandela}, suggests that more than $80\%$ of the activity
+of the event was produced in high-activity periods.
+%
+This is an event of international, political, and social importance, that
+produced an overwhelming flood of messages on social media. %% add detail about reach and scope
+%
+Hence, it makes sense for such an example to be a high-activity event. 
+%
+The second event, on the other hand, about the 2013 Mumbai Gang Rape is of much
+smaller scale, with a total of $\approx 1,700$ tweets. 
+%
+However, this event caused considerable amount of immediate reaction on social
+media, with close to $50\%$ of its activity concentrated within high-activity
+periods. 
+%
+Despite its smaller size, in comparison to the previous event, this event
+displays a similar reaction to that of other high-activity events, but at a
+smaller scale. 
+%
+More detailed inspection of the event shows that geo-located users which
+discussed this event were mostly from India and the U.K. 
+%
+In addition, we find that in the following days other events that are
+repercussions of this event gather a great deal of attention (with $\approx
+12,700$ tweets).
 
-  ~%add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-  % (or a blank line to force the subfigure onto a new line)
-  \begin{subfigure}{\textwidth}
-    %\includegraphics[width=\textwidth]{figures/avg_hist_0_1}
-    \caption{Low-impact event summary histogram. %\inote{Mauricio:
-                                %change label for   x-axis}
-    }
-    \label{fig:low}
-  \end{subfigure}%
-  ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-  % (or a blank line to force the subfigure onto a new line)
 
-  \caption{\textbf{Fig.~\ref{fig:highest} and~\ref{fig:low} show the average
-    histogram of the high-impact and lowest impact groups respectively in our dataset. The $y$-axis is in square root
-      scale.
+Table \ref{table:low-impact-sample} shows events that have been classified by
+our methodology in the category of low activity. 
+%
+The first event, about a teen surviving after hiding in the wheel of a airplane,
+had only a little more than $25\%$ of its messages arriving with high-activity
+bursts although it had over $18,000$ messages.  
+%
+The second event, about the damages caused by a tornado in Canada, did not
+garner much immediacy in attention of Twitter users, with only $7\%$ of its
+messages produced with short interarrival times. 
+%
+Most of the messages of this event were well spaced out in time. 
+%
+Even though we cannot say whether or not this event had significant implications
+in the real-world, we can say that it did not have considerable impact on the
+Twitter network. 
+%
+The lack of interest could be due to several factors that are currently beyond
+the scope of this work, ranging from the lack of Twitter users in the locality
+of the real-world event, to it not being considered urgent by Twitter users. 
+%
+We intend to research the relation between the real-world impact of an event and
+the network reaction in future work.
+
+
+\begin{figure}[!htb]
+  \centering
+   \includegraphics[width=\textwidth]{figures/high-activity/fig4}
+  \caption{Average histograms of the high activity, medium-high activity,
+      medium-low activity and low activity clusters in our dataset (from left to
+      right and top to bottom). All histograms include standard deviation bars
+      and were cut-off at 60 second length for better visibility.
       % \inote{change labels of x and y axis}
-    }}\label{fig:histograms}
+    }\label{fig:hi:avg-hist}
 \end{figure}
+
+Figure~\ref{fig:hi:avg-hist} shows the average histograms for events that belong
+to the high activity, medium-high activity, medium-low activity and low-activity
+clusters (displayed from left to right and top to bottom). 
+%
+All histograms show a quick decay in average relative frequency (resembling a
+distribution from the exponential family). 
+%
+In particular, the high-activity group concentrates most of its activity in the
+shortest interarrival rate, with lower activity groups mostly concentrating
+their activity in the second bin with slower decay. 
+%
+Figure~\ref{fig:hi:scatter} further characterizes the differences in behavior of
+the high and low-activity groups, showing that high-activity events concentrate
+on average $70\%$ fo their activity in the smallest bin ($0$ sec.), against
+$8\%$ for low-activity events. 
+%
+In addition, Figure~\ref{fig:hi:cdf} (left) shows the cumulative distribution
+function (CDF) for each group of events, and Figure~\ref{fig:hi:cdf} (right)
+shows $\log{(1 - \mathrm{CDF})}$. 
+%
+Visual inspection shows a clear difference in how interarrival rates are
+distributed within each group, however, these figures do not indicate a
+power-law distribution nor exponential distribution.%%
+
+\begin{figure}[!htb]
+  \centering
+    \includegraphics[width=\textwidth]{figures/high-activity/fig5}
+  \caption{Scatter plots of the average relative frequencies of interarrival
+times for the high-activity and low-activity clusters of events (i.e., scatter
+plots of the histograms in Figure~\ref{fig:hi:avg-hist} in log-log scale). $y$-axis
+represents the average relative frequency of social media messages and $x$-axis
+the interarrival time.}
+\label{fig:hi:scatter}
+\end{figure}
+
 \begin{figure}
   \centering
-  \begin{subfigure}{.5\textwidth}
-    %\includegraphics[width=\textwidth]{figures/cdf-highest}
-    \caption{Average cumulative distribution function of high-impact events. %\inote{Mauricio:
-                                %change label for the   x-axis}
-    }
-    \label{fig:cdf-highest}
-  \end{subfigure}%
-  ~%add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-  % (or a blank line to force the subfigure onto a new line)
-  \begin{subfigure}{.5\textwidth}
-    %\includegraphics[width=\textwidth]{figures/cdf-lowest}
-    \caption{Average cumulative distribution function of low-impact events. %\inote{Mauricio:
-                                %change label for   x-axis}
-    }
-    \label{fig:cdf-lowest}
-  \end{subfigure}%
-  ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-  % (or a blank line to force the subfigure onto a new line)
-
-  \caption{\textbf{%\newtext{
-        Fig.~\ref{fig:cdf-highest} and~\ref{fig:cdf-lowest} show the average
-    cumulative distribution function of the high-impact and lowest impact groups respectively in our dataset. %}
+  \includegraphics[width=\textwidth]{figures/high-activity/fig6_log}
+  \caption{{(Left) Average cumulative distribution function (CDF) for the high
+activity, medium-high activity, medium-low activity and low activity clusters in
+our dataset. (Right) $\log{(1 - \mathrm{CDF})}$ for the same clusters. 
       % \inote{change labels of x and y axis}
-    }}\label{fig:cdfs}
+    }}\label{fig:hi:cdf} %% fig6_long_inf_omitted.pdf
 \end{figure}
 
 
-\begin{figure}
-  \centering
-  \begin{subfigure}{.5\textwidth}
-    %\includegraphics[width=\textwidth]{figures/param_est_a}
-    \caption{Coefficient $a$ parameter estimation summary per event impact category. %\inote{Mauricio:
-                                %change label for the   x-axis}
-    }
-    \label{fig:param-a}
-  \end{subfigure}%
-  ~%add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-  % (or a blank line to force the subfigure onto a new line)
-  \begin{subfigure}{.5\textwidth}
-    %\includegraphics[width=\textwidth]{figures/param_est_b}
-    \caption{Exponent $b$ parameter estimation summary per event impact category. %\inote{Mauricio:
-                                %change label for   x-axis}
-    }
-    \label{fig:param-b}
-  \end{subfigure}%
-  ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-  % (or a blank line to force the subfigure onto a new line)
 
-  \caption{\textbf{Fig.~\ref{fig:param-a} and~\ref{fig:param-b} show the parameter value estimation for $f(x)=ae^{bx}$.}}
-  \label{fig:param_est}
-\end{figure}
+Further analysis of the high-activity events shows significant differences to
+other events, in the following aspects: 
+%
+(i) how the information about these events is propagated, 
+%
+(ii) the characteristics of the conversations that they generate, and 
+%
+(iii) how focused users are on the news topic. 
+%
+In detail, high-activity events have a higher fraction of {\em retweets} (or
+shares) relative to their overall message volume. 
+%
+On average, a tweet from a high-activity event is retweeted 2.36 times more than
+a tweet from a low activity event. 
+%
+The most retweeted message in high-activity events is retweeted 7 times more
+than the most retweeted message in a medium or low activity event. 
+%
+We find that a small set of initial social media posts are propagated quickly
+and extensively through the network without any rephrasing by the user (just
+plain forwarding). 
+%
+Intuitively, this seems justified given general topic urgency of high-activity
+events. 
+%
+Events that are not high-activity did not exhibit these characteristics.
 
+%%
 
-\begin{table}
-  \centering
-  \begin{tabularx}{\textwidth}{cccc}
-    \toprule
-    \textbf{Parameter} & \textbf{Mean (high-impact)} & \textbf{Mean (low-impact)} & \textbf{$p$-value} \\ \midrule
-    $a$ & $0.7129$ & $0.0822$ & $\leq2.2\times 10^{-16}$  \\ 
-    $b$ & $87.1903$ & $3.8013$ &$\leq2.2\times 10^{-16}$ \\
-    Error & $0.003$ & $0.008$ & $\leq2.2\times 10^{-16}$ \\ \bottomrule
-  \end{tabularx}
-  \caption{\textbf{%\newtext{
-        Results from the statistical significance tests performed on the parameters $a$ and $b$
-    and on the residual error for the exponential curve fitting.%}
-    }}
-  \label{tab:curve_fitting}
-\end{table}
+Our research also revealed that high-activity events tend to spark more
+conversation between users, 33.4\% more than other events. 
+%
+This is reflected in the number of {\em replies} to social media posts. 
+%
+The number of different users that engage with high-activity events is 32.7\%
+higher than in events that are not high-activity. 
+%
+Posts about high-activity events are much more topic focused than in other
+events. 
+%
+The vocabulary of unique words as well as {\em hashtags} used in high-activity
+events is much more narrow than for other events. 
+%
+Medium and low activity events have over 7 times more unique hashtags than
+high-activity events. 
+%
+This is intuitive, given that if a news item is sensational, people will seldom
+deviate from the main conversation topic.
 
-Further analysis of the high-impact events shows significant
-differences to other events, in the following aspects: (i) how the
-information about these events is propagated, (ii) the characteristics
-of the conversations that they generate, and (iii) how focused users
-are on the news topic. In detail, high-impact events have a higher
-fraction of {\em retweets} (or shares) relative to their overall
-message volume. On average, a tweet from a high-impact event is
-retweeted 2.36 times more than a tweet from a low impact event. The
-most retweeted message in high-impact events is retweeted 7 times more
-than the most retweeted message in a medium or low impact event. We
-find that a small set of initial social media posts are propagated
-quickly and extensively through the network without any rephrasing by
-the user (plain forwarding). Intuitively, this seems justified given
-general topic urgency of high-impact events. Events that are not
-high-impact did not exhibit these characteristics.
+%%
 
-Our research also revealed that high-impact events tend to spark more conversation
-between users, 33.4\% more than other events. This is reflected in the
-number of {\em replies} to social media posts. The number of different
-users that engage in high-impact events is 32.7\% higher than in
-events that are not high-impact. Posts about high-impact events are
-much more topic focused than in other events. The vocabulary of unique
-words as well as {\em hashtags} used in high-impact events is much
-more narrow than for other events. Medium and low impact events have
-over 7 times more unique hashtags than high-impact events. This is
-intuitive, given that if a news item is sensational, people will
-seldom deviate from the main conversation topic.
+In a real-world scenario, in order to predict if an early breaking news story
+will have a considerable impact in the social network, we will not have enough
+data to create its activity-based model, i.e., we will not yet know the
+distribution of the speed at which the social media posts will arrive for the
+event. 
+%
+For instance, an event can start slowly and later produce an explosive reaction,
+or start explosively and decay quickly to an overall slower message arrival
+rate. 
+%
+Still, reliable early prediction of very high-activity news is important in many
+aspects, from decisions of mass media information coverage, to natural disaster
+management, brand and political image monitoring, and so on.
 
-% We have presented an analysis of high-impact news events based on
-% the data of their entire life-cycle in the social network. We used
-% the arrival time intervals to create a model that allows us to
-% classify the event according to its impact. Nevertheless,
+%%
 
-In a real-world scenario, in order to predict if an early breaking
-news story will have a considerable impact in the social network, we
-will not have enough data to create its impact-based model, i.e., we
-will not yet know the distribution of the speed at which the social
-media posts will arrive for the event. For instance, an event can
-start slowly and later produce an explosive reaction, or start
-explosively and decay quickly to an overall slower message arrival
-rate. Still, reliable early prediction of very high-impact news is
-important in many aspects, from decisions of mass media information
-coverage, to natural disaster management, brand and political image
-monitoring, and so on.
+For the task of early prediction of high-activity events we use features that
+are independent of our activity-based model such as the retweets, the sentiment
+of the posts about the event, etc. These features are computed on the early 5\%
+of messages about the event.
+%
+The results are an average from a 5-fold cross validation with randomly selected
+60\% training, 20\% validation and 20\% test splits. 
+%
+The high-activity events are identified with a precision of 82\% using only the
+earliest 5\% of the data of each event (Table~\ref{tab:classification_results}).
+%
+Additionally, we were able to identify with high accuracy a considerable
+percentage of all high-activity events ($\approx 46\%$) at an early stage, with
+very few false positives (Table~\ref{tab:classification_results}
+and~\ref{tab:confusion_matrix}).
 
-For the task of early prediction of high-impact events, we use features 
-that are independent of our impact-based model, such as
-the retweets, the sentiment of the posts about the event, etc. 
-These features are computed on the early 5\% of messages about the event.
-% More details are provided in the supplementary material.
-The results are an average from a 5-fold cross validation with
-randomly selected 60\% training, 20\% validation and 20\% test splits.
-The high-impact events are identified with a precision of 82\% using
-only the earliest 5\% of the data of each event
-(Table~\ref{tab:classification_results}).  Additionally, we were able to
-identify with high accuracy a considerable percentage of all
-high-impact events ($\approx 46\%$) at an early stage, with very few
-false positives (Table~\ref{tab:classification_results} and~\ref{tab:confusion_matrix}).
-
-\begin{table}
+\begin{table}[!htb]
   %\begin{adjustwidth}{-10mm}{-10mm}
   \centering
   {\small
@@ -238,18 +228,18 @@ false positives (Table~\ref{tab:classification_results} and~\ref{tab:confusion_m
       \midrule
       & FP-Rate & Precision & Recall & ROC-area & FP-Rate & Precision & Recall & ROC-area \\
       % \midrule
-      high-impact & 0.009 & 0.819 & 0.455 & 0.900 & 0.01 & 0.830 & 0.540 & 0.945 \\
-      non-high-impact & 0.545 & 0.954 & 0.991 & 0.900 &  0.460 & 0.960 & 0.990 & 0.945 \\
+      high-activity & 0.009 & 0.819 & 0.455 & 0.900 & 0.01 & 0.830 & 0.540 & 0.945 \\
+      non-high-activity & 0.545 & 0.954 & 0.991 & 0.900 &  0.460 & 0.960 & 0.990 & 0.945 \\
       \bottomrule
     \end{tabularx}
   }
-  \caption{\textbf{Classification of high-impact events.}}
+  \caption{\textbf{Classification of high-activity events.}}
   \label{tab:classification_results}
   %\end{adjustwidth}
 %                                                                                                                                448,1         93%
 \end{table}
 
-\begin{table}
+\begin{table}[!htb]
   \centering
   % {\scriptsize
   \begin{tabularx}{\textwidth}{lcc|cc}
@@ -257,25 +247,32 @@ false positives (Table~\ref{tab:classification_results} and~\ref{tab:confusion_m
     \multirow{2}{*}{ }& \multicolumn{2}{c}{\textbf{Early 5\% Tweets}} & \multicolumn{2}{c}{\textbf{All Tweets}} \\
     \midrule
     % \cmidrule{2-5} \cline{2-5}
-    & high-impact & non-high-impact & high-impact & non-high-impact \\
+    & high-activity & non-high-activity & high-activity & non-high-activity \\
     % \midrule
-    high-impact & $194$ & $232$ & $230$ & $196$\\
-    non-high-impact & $43$ & 4,765 & 47 & 4,761 \\
+    high-activity & $194$ & $232$ & $230$ & $196$\\
+    non-high-activity & $43$ & 4,765 & 47 & 4,761 \\
     \bottomrule
   \end{tabularx}
   % }
-  \caption{\textbf{Confusion matrix for high-impact events prediction.}}
+  \caption{\textbf{Confusion matrix for high-activity events prediction.}}
   \label{tab:confusion_matrix}
 \end{table}
 
 
 
-The precision using only the early tweets is almost as good as using
-all tweets in the event (0.819 to 0.830). This suggests that the
-social network somehow acts as a natural filter in separating out the
-high-impact events fairly early on.  The recall goes from 0.455 to
-0.540. This indicates that there are some high-impact events which
-require more data in order to determine what kind of impact they will
-produce, or events for which impact occurs due to random conditions. A
-detailed description of the features and different classification
-settings are provided in the supplementary material.%\supplementary.
+The precision using only the early tweets is almost as good as using all tweets
+in the event (0.819 to 0.830). 
+%
+This suggests that the social network somehow acts as a natural filter in
+separating out the high-activity events fairly early on.  
+%
+The recall goes from 0.455 to 0.540. 
+%
+This indicates that there are some high-activity events which require more data
+in order to determine what kind of activity they will produce, or events for
+which activity occurs due to random conditions. 
+%
+A detailed description of the features and different classification settings are
+provided in the supplementary material. \todo{sup}
+
+

@@ -15,13 +15,12 @@ Users online make connections with others based on different criteria, and start
 to produce content that might be interesting to other users. 
 %
 Microblogging services such as Facebook~\cite{facebook}, Twitter~\cite{twitter},
-or Sina Weibo~\cite{weibo} are nowadays among the most used platforms for users
-to connect with family, friends, acquaintances, co-workers, or strangers with
-similar interests.   
+or Sina Weibo~\cite{weibo} are now among the most used platforms to connect with
+family, friends, acquaintances, co-workers, or strangers with similar interests.
+
 %
-Users interact with each other and produce or share content, which could be
-about their lives, their thoughts, about what is happening around the world,
-etc.    
+Users interact with each other and produce or share content about their lives,
+thoughts, or what is happening around the world, etc.    
 %
 This collective of information published in these Internet-based applications,
 such as microblogging platforms, blogs, wikis, etc., is what is called {\em
@@ -38,12 +37,11 @@ to 140 characters, now 280), but it recently started to incite users to share
 more photographs~\cite{brown_2019}.
 %  
 And with the proliferation of smartphones and internet-connected devices, more
-of this information is also geo-tagged and ``real-time''. 
+of this information is also geo-tagged and in ``real-time''. 
 %
-Foursquare~\cite{foursquare} (and then
-Swarm~\cite{swarm}) is an application for users to tag
-and comment on locations around the world, which serves as a repository of data
-about business and points of interest.
+For instance, Foursquare~\cite{foursquare} is an application for smartphone
+users for tagging and commenting on locations around the world, which serves as
+a repository of data about businesses and points of interest.
 %
 Whether via text, images, videos, sounds or hyperlinks, social media lowered the
 entry barriers to content producers and made it easy for consumers to access to
@@ -55,17 +53,16 @@ a myriad of different pieces of information.
 
 % UTILITY, APPLICATIONS OF SM
 
-The influence of social media on society can not be denied. 
-% 
-It has facilitated the communication between people and speeded-up the difussion
-of information online. 
+The influence of social media on society can not be denied, as it facilitates
+the communication between people and speeds-up the difussion of information
+online. 
 %
 For instance, it is believed that the revolutionary wave of protests and
 uprisings in the Arab states (known as the Arab Spring which began in 2010) was
-highly influenced by social media as a means to organize and facilitate
+highly influenced by social media as a means of organizing and facilitating
 communication~\cite{howard2011opening}. 
 %
-Also, for instance, it has permitted many applications in emergency management
+Also, it has permitted many applications to proliferate in emergency management
 and detection, such as earthquake alert systems using
 Twitter~\cite{Sakaki2010,Sarmiento:2018:DDE:3201064.3201077,Mendoza2019}.
 %
@@ -84,10 +81,10 @@ generation of event-related content.
 According to a recent 2018 study~\cite{pewresearch}, about two thirds of U.S.
 adults get their news on social media.
 %
-The most used platforms to get the news are Facebook, Youtube, and Twitter,
+The most used platforms for news are Facebook, Youtube, and Twitter,
 while over 70\% of Twitter users surveyed use that platform to do so.
 %
-Furthermore, nowadays almost every news outlet has a presence in social media,
+Furthermore, almost every news outlet has a presence in social media
 in order to attract readers and viewers.
 %
 In this way, users comment on the news events, reacting to them according to a
@@ -129,28 +126,28 @@ video with little context.
 %
 They can be also irrelevant to the user's interest, for example, spam posts,
 which contain relevant keywords but in a misleading way, in order to lure users
-into a irrelevant website. 
+to a irrelevant website. 
 %
-Posts can be also out-dated, delivering incorrect or obsolete information. 
+Posts can also be out-dated, delivering incorrect or obsolete information. 
 %
 Many posts can be duplicate ones, published by automated agents, or by users
-using ``share buttons'' in websites which publish posts with a template text; 
+using ``share buttons'' in websites publishing posts with a template text; 
 %
-they can be also near-duplicate, with little text differences, or sharing the
+they can also be near-duplicates, with minor text differences, or sharing the
 same resource from different URLs.
 %
 Another important characteristic of posts is that they are written in natural
-language, so they can be incorrectly capitalized, mispelled, or with ambiguous
+language, so they can be incorrectly capitalized, misspelled, or with ambiguous
 meaning.
 %
 Users make use of colloquial language and different forms of expression when
 publishing content, e.g., abbreviations, hashtags (tags to describe content),
 emojis (ideograms), etc.
 %
-Finally, messages can be also misleading, sharing false information.
+Finally, messages can also be misleading, sharing false information.
 %
 All of these particularities of social media make it difficult to apply standard
-techniques in order for users to find relevant content.
+techniques for users to find relevant content.
 
 %%
 
@@ -167,7 +164,7 @@ Sina Weibo has 462 million active monthly users, while 93\% of them are on
 mobile devices~\cite{chinawatch}.
 %
 The amount of content being published requires novel ways to deal with social
-media data, in particular, regarding news events.
+media data, in particular, news events.
 
 
 %%
@@ -185,8 +182,10 @@ Throughout this dissertation, we will consider an event as a collection of
 social media posts describing or commenting on a real-world occurrence.
 %
 In this sense, an event is a more complex piece of information compared to
-single posts as it leads to new tasks, such as event detection, tracking, or
-summarization.
+single posts.
+%
+The notion of event is convenient as it is the base unit for new tasks, such as
+event detection, tracking, or summarization.
 %
 Also, an event is comprised of posts of heterogeneous quality, from different
 locations, and at different times.
@@ -197,12 +196,14 @@ This yields to new problems and challenges when studying social media.
 
 % PROPOSAL
 
+\subsection*{Proposal}
+
 In this dissertation, we tackle the problem of {\em extracting useful knowledge}
 from events on social media. 
 %
-In order to be able to infer and extract useful information from events, we
-propose the development of event representations that leverage specific features
-according to the desired goal when analyzing social media data.
+To be able to infer and extract useful information from events, we propose the
+development of event representations that leverage specific features according
+to the desired goal when analyzing social media data.
 %
 For this, we propose different models or representations of events based on
 three perspectives:
@@ -214,11 +215,11 @@ three perspectives:
     When users react to an event, they may manifest this reaction on social
     media, producing or sharing content relevant to the event. 
     %
-    The characteristics of these manifestations are dependant on the proper
+    The characteristics of these manifestations are dependent on the proper
     features of the occurrence, and not all are equal. 
     %
-    We look at how the activity of users can give us insights on the proper
-    features of an event, and incorporate this behavior in a compact
+    We look at how the activity of users offers insight on the proper
+    features of an event and incorporates this behavior in a compact
     representation.
 
     \item {\bf Spatio-temporal context.} 
@@ -238,7 +239,7 @@ three perspectives:
     events.
     %
     However, each post can contribute to a different aspect of the event, while
-    having some features in common.
+    sharing some common features.
     %
     We leverage these commonalities in content to produce a compact model that
     preserve topical information in events.
@@ -247,26 +248,26 @@ three perspectives:
 
 
 % OBJETIVES
+\subsection*{Objectives}
 
-Our main objective is to develop event representations through different data
-aggregations in order to perform quantiative analysis of news events on social
-media.
+Our main objective is to define event representations through different data
+aggregations to perform quantitative analysis of news events on social media.
 %
 Currently, it is very difficult to manage and analyze the high volume of
 information being published when a event happens in the world. 
 %
-In particular, we want to study events through three perspectives: user reaction
+In particular, we study events through three perspectives: user reaction
 and activity, spatio-temporal context of events, and content aggregation.
 %
-Understanding reaction involves discriminate which events are more important or
-produce more impact in a community. 
+Understanding user reaction involves discriminating which events are more
+important or produce more impact in a community. 
 %
-Understanding spatio-temporal context refers to understand how communities from
+Analyzing spatio-temporal context refers to understanding how communities from
 different locations are affected by different events, as seen on social media,
-and identify similar communities and events based on this context. 
+and identifying similar communities and events based on this context. 
 %
 Understanding content refers to the identification of the core aspects of an
-event, without having to go through all the –potentially several– posts.
+event, without having to go through all the --potentially various-- posts.
 %
 In particular, our goal is to propose different models for representing events. 
 %
@@ -283,10 +284,10 @@ We chose Twitter as our data source for this work.
 %
 Twitter provides a simple way to obtain data and via its API (Application
 Programming Interface), from which we can obtain tweets automatically and
-programatically.
+programatically. 
 %
 Furthermore, it is not as restrictive as other sources, such as Facebook, which
-incentivate users to mantain a private profile, hence making the data collection
+encourages users to maintain a private profile, hence making the data collection
 much more difficult or impossible to perform.
 %
 Also, services like Facebook encourage users to share potentially personal
@@ -296,8 +297,8 @@ Twitter is primarily dedicated to encourage users to share event-related posts,
 and it is mainly used as a news source by its users (about 70\% of its users use
 Twitter to get news). 
 %
-For instance, its website asks “What’s happening?” to users when publishing
-content, as opposed to Facebook’s “What’s in your mind?”
+For instance, its website asks ``What's happening?'' to users when publishing
+content, as opposed to Facebook's ``What's in your mind?''
 %
 Therefore we think that Twitter is a suitable platform for this type of work.
 
@@ -311,8 +312,9 @@ characteristics of these events by a measure of reaction or other features given
 by the social network or the content of the events. 
 %
 By these characteristics, it would be possible to identify or even predict which
-events are going to cause a significative reaction from the community, improving
-journalistic coverage or better response from authorities facing an emergency.
+events are going to cause a significant reaction from the community, hence
+improving journalistic coverage or better responses from authorities facing an
+emergency.
 %
 Additionally, by studying not only the response, but the context of different
 communities and how they respond to certain events, may give us insights about
@@ -326,22 +328,22 @@ different points of view ahead of an event.
 Users accustomed to the same perspectives given by other users or sources may be
 oblivious of other angles of the same news event. 
 %
-Being capable of identify the different aspects of an event and then present
+Being capable of identifying the different aspects of an event and then presenting
 these aspects in a concise summary can deal with this problem. 
 %
 All in all, the proposed framework can be of utility to understand social
-behavior, to study and decrease the effects of the information overload, as well
+behavior, study and decrease the effects of the information overload as well
 as to perform comparative historical research~\cite{wiki:comparative}.
 
 %%
 
-\paragraph{Thesis statement.} 
+\subsection*{Thesis statement} 
 %
-This dissertation poses to define flexible models for events on the social
+This dissertation defines flexible models for events on the social
 networking platform Twitter. 
 %
-Having three perspectives in mind, user reaction, spatio-temporal context, and
-content, the defined models should be able to allow us to discover new insights
+Having three perspectives in mind: user reaction, spatio-temporal context, and
+content, the defined models should be able to allow us new insights
 about news events reflected on Twitter. 
 %
 In particular, each perspective approaches specific Data Mining and Information
@@ -355,14 +357,21 @@ content involves topic detection and document modeling.
 
 The thesis statement is as follows:
 
-{\em
+{\bf \em
 Modeling news events from user-contributed content on Twitter, based on
 their spatio-temporal context, the reaction the users had on them, or the
-multimedia content which the events contain, is novel and effective to perform
-high-level quantitative analysis of news events.
+multimedia content which the events contain, is novel and effective for performing
+high-level quantitative analyses of news events.
 }
 
-\paragraph{Challenges.} We identify three main challenges for this work.
+% Statement of purpose
+
+\todo[inline]{statement of purpose}
+
+
+\subsection*{Challenges} 
+
+We identify three main challenges for this work:
 
 \begin{itemize}
     \item {\bf Retrieval of relevant posts.} 
@@ -372,69 +381,66 @@ high-level quantitative analysis of news events.
     obstruct retrieval of diverse content. 
     %
     Because users are frequently posting messages about their own lives, daily
-    situations, or general topics, trends can be only visible when looking at large
+    situations, or general topics, trends can only be visible when looking at large
     volumes of data. 
     %
     This makes identification of events and relevant content a very difficult task.
     %
     And due to the characteristics of Twitter (or any other social networking
-    service), usually messages are very short and with grammar and spelling
-    errors. 
+    service), messages are usually very short and with grammatical errors. 
     %
-    Also, users spontaneously create new ways to refer to the same entities
-    (e.g. via the use of hashtags, emojis, or abbreviations), which makes it
+    Users also spontaneously create new ways to refer to the same entities
+    (e.g., via the use of hashtags, emojis, or abbreviations), making it
     difficult to identify more relevant content when detecting events.
     %
     Relevant multimedia content is also difficult to identify. 
     %
-    Multimedia content is represented by images, videos, text, a mixture of
-    them, etc. 
+    Multimedia content is represented by images, videos, text, or mix of them,
+    etc. 
     %
     This information can be exploited to improve the effectiveness of
     the proposed methodologies. 
     %
-    The challenge comes in how to identify such content in an efficient way, how
+    The challenge is just how to identify such content in an efficient way, how
     to deal with duplicated or quasi-duplicated content, and how to evaluate the
     effectiveness of methodologies when presenting multimedia content. 
 
     \item {\bf Data bias.}
-    As we stated above, social media offers a partial view of the world. 
+    As stated above, social media offers a partial view of the world. 
     %
     Furthermore, the employed methodologies to retrieve or identify events from
     social media may be biased depending on several factors. 
     %
-    For instance, our dataset is collected using news outlets as sources, being
+    For instance, we collected our dataset using news outlets as sources, being
     the majority of the outlets coming from the USA or the UK. 
     %
-    Also, our sources use specific words and ways to express the information,
+    Our sources also use specific words and ways to express the information,
     which can also create a bias in the way we further retrieve more tweets.
     %
     This is a huge challenge in order to provide generalizable results from the
     proposed methodologies. 
     %
-    Also, it is challenging to ensure that our results are as diverse as the
+    In addition, it is challenging to ensure that our results are as diverse as the
     utilized data source. 
 
     \item {\bf Validating results.} 
     As data in social media is being published at all times, it is unfeasible to
     apply standard measures such as Recall when evaluating a methodology,
-    because we do not have available all the relevant content.
+    because we do not have all the relevant content available.
     %
-    On the other hand, there are no {\em gold standards} we can contrast our
-    models with. 
+    On the other hand, there are no {\em gold standards} to which we can
+    contrast our models. 
     %
-    We need to come up with methodologies to validate our results, in order to
+    We need to come up with methodologies to validate our results in order to
     provide generalizable results.
 
     
 \end{itemize}
 
 
+\subsection*{Contributions} 
 
-
-
-
-\paragraph{Contributions.} There are four main contributions in this dissertation:
+There are four main contributions in this dissertation:
 
 \begin{enumerate}
 \item A novel event representation based on user activity triggered by news
@@ -445,8 +451,8 @@ This representation allows us to rank events into different levels of activity.
 We also show that the activity can be determined by other event features, and
 that these features appear early on the development of events.
 %
-We show that it is possible to early {\em predict} the level of activity of an
-event using aggregated post features.
+We show that it is possible to {\em predict} early on the level of activity of
+an event using aggregated post features.
 
 \item A spatio-temporal representation based on the location where an event
 happens, and the locations the users commenting on the news are from.
@@ -469,28 +475,30 @@ required.
 
 \item An event collection methodology based on {\em seed news outlets}.
 %
-Given a set of news outlets, we extract every hour the most relevant keywords
+Given a set of news outlets, every hour we extract the most relevant keywords
 from their headlines and use them to retrieve relevant tweets from regular
 users.
 %
-We also made available a dataset of 193 million tweets of 25\,000 news events,
+We also made available a dataset of 193 million tweets of $25,000$ news events,
 from 2013 to 2015.
 \end{enumerate}
 
 Even though the different points of view posed as themes for this project cover
 mostly independent approaches of event mining, they have in common the goal of
-exploring and studying how different data aggregations can be useful to extract
-useful knowledge from events. 
+exploring and studying how different data aggregations can be useful for
+extracting useful knowledge from events. 
 %
 This dissertation can be viewed as an exploration on how different data
-aggregation strategies applied to events on social media are useful to easily
-extract knowledge or to serve as building blocks for new models and
+aggregation strategies applied to events on social media are useful for easily
+extracting knowledge or to serve as building blocks for new models and
 methodologies.
 
 
 
 
-\paragraph{Publications.} This work has produced the following publications:
+\subsection*{Publications} 
+
+The following publications are associated with this dissertation:
 
 {\bf Journal papers.}
 \begin{itemize}
@@ -503,6 +511,7 @@ methodologies.
     spatio-temporal real-world news analysis using Twitter.} In EPJ Data Science
     6, no. 1 (2017): 25. 2017.
 \end{itemize}
+
 
 {\bf Conference and Workshop papers.}
 
