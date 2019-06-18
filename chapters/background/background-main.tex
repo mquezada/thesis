@@ -342,26 +342,29 @@ Iteratively it reassigns the observations to the cluster with the closest
 centroid, and recomputes each centroid based on the current members of its
 cluster. 
 
-The algorithm is as follows: \vspace{.3cm}
+The algorithm is listed in Algorithm~\ref{alg:kmeans}.
 
-\begin{algorithmic}
-\STATE {\scshape K-Means}$(\{\vect{x}_1, \ldots, \vect{x}_N\}, K)$
-    \STATE $(\vect{s}_1, \vect{s}_2, \ldots, \vect{s}_K) \gets$ {\scshape SelectRandomSeeds}$(\{\vect{x}_1, \ldots, \vect{x}_N\}, K)$
-    \FOR{$k \gets 1\ \TO\ K$} \STATE $\vect{\mu}_k \gets \vect{s}_k$ \ENDFOR
-    \WHILE{stopping\ criterion\ has\ not\ been\ met}
-        \FOR{$k \gets 1\ \TO\ K$}
-            \STATE $\omega_k \gets \{\}$
-        \ENDFOR
-        \FOR{$n \gets 1\ \TO\ N$}
-            \STATE $j \gets \text{arg} \min_{j'} |\vect{\mu}_{j'} - \vect{x}_n|$
-            \STATE $\omega_j \gets \omega_j \cup \{\vect{x}_n\}$
-        \ENDFOR
-        \FOR{$k \gets 1\ \TO\ K$}
-            \STATE $\vect{\mu}_k \gets \frac{1}{\omega_k}\sum_{\vect{x}\in\omega_k}\vect{x}$
-        \ENDFOR
-    \ENDWHILE
-    \RETURN $\{\vect{\mu}_1, \ldots, \vect{\mu}_K\}$
-\end{algorithmic}
+\begin{algorithm}
+    \caption{{\scshape K-Means}$(\{\vect{x}_1, \ldots, \vect{x}_N\}, K)$}
+    \label{alg:kmeans}
+    \begin{algorithmic}[1]
+        \STATE $(\vect{s}_1, \vect{s}_2, \ldots, \vect{s}_K) \gets$ {\scshape SelectRandomSeeds}$(\{\vect{x}_1, \ldots, \vect{x}_N\}, K)$
+        \FOR{$k \gets 1\ \TO\ K$} \STATE $\vect{\mu}_k \gets \vect{s}_k$ \ENDFOR
+        \WHILE{stopping\ criterion\ has\ not\ been\ met}
+            \FOR{$k \gets 1\ \TO\ K$}
+                \STATE $\omega_k \gets \{\}$
+            \ENDFOR
+            \FOR{$n \gets 1\ \TO\ N$}
+                \STATE $j \gets \text{arg} \min_{j'} |\vect{\mu}_{j'} - \vect{x}_n|$
+                \STATE $\omega_j \gets \omega_j \cup \{\vect{x}_n\}$
+            \ENDFOR
+            \FOR{$k \gets 1\ \TO\ K$}
+                \STATE $\vect{\mu}_k \gets \frac{1}{\omega_k}\sum_{\vect{x}\in\omega_k}\vect{x}$
+            \ENDFOR
+        \ENDWHILE
+        \RETURN $\{\vect{\mu}_1, \ldots, \vect{\mu}_K\}$
+    \end{algorithmic}
+\end{algorithm}
 
 K-Means has some considerations to be taken into account:
 

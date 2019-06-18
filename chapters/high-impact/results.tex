@@ -80,10 +80,11 @@ the network reaction in future work.
 \begin{figure}[!htb]
   \centering
    \includegraphics[width=\textwidth]{figures/high-activity/fig4}
-  \caption{Average histograms of the high activity, medium-high activity,
-      medium-low activity and low activity clusters in our dataset (from left to
-      right and top to bottom). All histograms include standard deviation bars
-      and were cut-off at 60 second length for better visibility.
+  \caption[Average histograms of activity levels]{Average histograms of the high
+      activity, medium-high activity, medium-low activity and low activity
+      clusters in our dataset (from left to right and top to bottom). All
+      histograms include standard deviation bars and were cut-off at 60 second
+      length for better visibility.
       % \inote{change labels of x and y axis}
     }\label{fig:hi:avg-hist}
 \end{figure}
@@ -115,20 +116,21 @@ power-law distribution nor exponential distribution.%%
 \begin{figure}[!htb]
   \centering
     \includegraphics[width=\textwidth]{figures/high-activity/fig5}
-  \caption{Scatter plots of the average relative frequencies of interarrival
-times for the high-activity and low-activity clusters of events (i.e., scatter
-plots of the histograms in Figure~\ref{fig:hi:avg-hist} in log-log scale). $y$-axis
-represents the average relative frequency of social media messages and $x$-axis
-the interarrival time.}
+  \caption[Relative frequencies of interarrival times]{Scatter plots of the
+average relative frequencies of interarrival times for the high-activity and
+low-activity clusters of events (i.e., scatter plots of the histograms in
+Figure~\ref{fig:hi:avg-hist} in log-log scale). $y$-axis represents the average
+relative frequency of social media messages and $x$-axis the interarrival time.}
 \label{fig:hi:scatter}
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{figures/high-activity/fig6_log}
-  \caption{{(Left) Average cumulative distribution function (CDF) for the high
-activity, medium-high activity, medium-low activity and low activity clusters in
-our dataset. (Right) $\log{(1 - \mathrm{CDF})}$ for the same clusters. 
+  \caption[Cumulative Distribution Functions of activity levels]{{(Left) Average
+cumulative distribution function (CDF) for the high activity, medium-high
+activity, medium-low activity and low activity clusters in our dataset. (Right)
+$\log{(1 - \mathrm{CDF})}$ for the same clusters. 
       % \inote{change labels of x and y axis}
     }}\label{fig:hi:cdf} %% fig6_long_inf_omitted.pdf
 \end{figure}
@@ -143,8 +145,67 @@ other events, in the following aspects:
 (ii) the characteristics of the conversations that they generate, and 
 %
 (iii) how focused users are on the news topic. 
+
+\subsection{Information Forwarding Characteristics}
+\label{subsec:info_forwarding}
+
+We found that high-activity events possess more information forwarding
+characteristics than other events. 
 %
-In detail, high-activity events have a higher fraction of {\em retweets} (or
+We present four features which support this argument. 
+%
+The features, their description and their values are listed in
+Table~\ref{tab:information_forwarding}.
+
+The \texttt{retweet\_count} is generally higher for high-activity events.
+%
+This feature is the fraction of retweets present in the event, log-normalized by
+the total amount of tweets in the event. 
+%
+A higher value suggests that people have a greater tendency to spread the
+occurrence of these events, and forward this information to their followers. 
+
+The \texttt{tweets\_retweeted} is lower for high-activity events than for the
+rest. 
+%
+This feature is the number of tweets which have been retweeted, log-normalized
+by the total number of tweets in the event. 
+%
+This suggests that the high amount of retweets for the high-activity events
+actually originates from fewer tweets. This suggests that fewer tweets become
+popular and are retweeted several times.
+
+The \texttt{retweets\_most\_retweeted} is the total number of retweets of the
+tweet that has been retweeted the most. 
+%
+This number is much higher for high-activity events than for low-activity
+events, suggesting that the most popular tweet indeed becomes very popular when
+the event is of high-impact.
+
+\begin{table}
+  \centering
+  {\small
+    \begin{tabular}{llll}
+      \toprule
+      Feature Name &  \multicolumn{1}{l}{Description} & high-activity, others& Hypothesis, $p$-value\\
+      \midrule
+      \texttt{retweet\_count} & \pbox{20cm}{$\log($total retweet count \\in the event divided by total\\ tweets in the event$)$} & $2.205, 1.473$ & $1$, $p = 0$ \\
+      \midrule
+      \texttt{tweets\_retweeted} & \pbox{20cm}{$\log($number of tweets \\retweeted divided by\\ total tweets in the event$)$} & $-1.091, -0.964$ & $1$, $p = 2.7\times10^{-5}$ \\
+      \midrule
+      \texttt{retweets\_most\_retweeted} & \pbox{20cm}{number of tweets of the most \\retweeted tweet} & $284.491, 40.261$ & $1$, $p = 0$ \\
+      \bottomrule
+    \end{tabular}
+  }
+  \caption[Information forwarding characteristics of events]{Features which characterize the information forwarding aspect of an event.
+  In general, high-activity events tend to have higher values for information forwarding 
+  features than other events.}
+  \label{tab:information_forwarding}
+\end{table}
+
+%%
+
+In summary, high-activity events have a higher fraction of {\em retweets} (or
 shares) relative to their overall message volume. 
 %
 On average, a tweet from a high-activity event is retweeted 2.36 times more than
@@ -162,18 +223,133 @@ events.
 %
 Events that are not high-activity did not exhibit these characteristics.
 
+% %%
+
+
+\subsection{Conversational Characteristics}
+\label{subsec:conversational}
+
+We found that high-activity events in general tend to generate more conversation
+between users than the events in other categories. 
+%
+We observe this behavior through several features. 
+%
+Refer to Table~\ref{tab:conversational}.
+
+\begin{table}
+  \centering
+  {\small
+    \begin{tabular}{llll}
+      \toprule
+      Feature Name &  \multicolumn{1}{l}{Description} & high-activity, others & Hypothesis, $p$-value\\
+      \midrule
+      \texttt{replies} & \pbox{20cm}{$\log($total replies divided by total tweets$)$} & $-1.4016, -1.6474$ & $1$, $p = 10^{-4}$ \\
+      \midrule
+      \texttt{norm\_replies} & \pbox{20cm}{$\log($number of replies divided by\\ total number of unique users$)$} & $-1.5796, -1.9294$ & $1$, $p = 6.7\times10^{-4}$ \\
+      \midrule
+      \texttt{tweets\_replied} & \pbox{20cm}{$\log($number of tweets which generated\\ replies divided by total tweets$)$} & $-1.7784, -2.0668$ & $1$, $p = 0.001$ \\
+      \midrule
+      \texttt{uniq\_users\_replied} & \pbox{20cm}{$\log($unique users who have written\\ a reply divided by total tweets$)$} & $-1.7524, -2.0352$ & $1$, $p = 0.001$ \\
+      \bottomrule
+    \end{tabular}
+  } \caption[Conversational features of events]{Features which characterize the
+  conversational aspect of high-activity and remaining events. We argue that
+  high-activity events tend to invoke more conversation amongst users than their
+  counterparts.}
+  \label{tab:conversational}
+\end{table}
+
+The features \texttt{replies} and \texttt{norm\_replies} both count the number
+of replies, but have been normalized slightly differently. 
+%
+Both have a higher value for high-activity events suggesting that high-activity
+events in general tend to spark more conversation between the users. 
+%
+The \texttt{tweets\_replied} feature counts the number of tweets which have
+generated replies (it has been log-normalized by the total number of tweets in
+the event). 
+%
+This is also higher for high-activity indicating that such events on average
+have more tweets which invoke a reply from people. 
+%
+The \texttt{uniq\_users\_replied} feature counts the number of unique users who
+have participated in an conversation. 
+%
+Again, this number is found to be higher for high-activity events than for
+others suggesting that more users tend to engage in a conversation about these
+events. 
+%
+All these features collectively suggest that high-activity events tend to have a
+\emph{conversational characteristic} associated with them.
+
 %%
 
-Our research also revealed that high-activity events tend to spark more
-conversation between users, 33.4\% more than other events. 
+In summary, high-activity events tend to spark more conversation between users,
+33.4\% more than other events. 
 %
 This is reflected in the number of {\em replies} to social media posts. 
 %
 The number of different users that engage with high-activity events is 32.7\%
 higher than in events that are not high-activity. 
+
+
+
+\subsection{Topical Focus Characteristics}
+\label{subsec:topical_focus}
+
+
+We find that high-activity events have a lot more focus in terms of the topical
+content than the remaining events. 
 %
-Posts about high-activity events are much more topic focused than in other
-events. 
+This possibly suggests that when a news item is sensational, people seldom
+deviate from the topic of the news to other things. 
+
+We used four features listed in Table~\ref{tab:topical_focus} to study the topic
+focus characteristics of high-impact events.
+
+\begin{table}
+  \centering
+  {\small
+    \begin{tabular}{llll}
+      \toprule
+      Feature Name &  \multicolumn{1}{l}{Description} & high-activity, others & Hypothesis, $p$-value\\
+      \midrule
+      \texttt{uniq\_words} & \pbox{20cm}{$\log($total unique words \\divided by total tweets$)$} & $-0.1982, 0.1651$ & $1$, $p = 0$ \\
+      \midrule
+      \texttt{uniq\_chars} & \pbox{20cm}{$\log($total unique characters \\divided by total tweets$)$} & $2.0009, 2.0456$ & $1$, $p = 0$ \\
+      \midrule
+      \texttt{uniq\_hashtags} & \pbox{20cm}{$\log($number of unique hashtags\\ divided by total tweets$)$} & $-1.1126, 0.8761$ & $1$, $p = 0$ \\
+      \midrule
+      \texttt{uniq\_urls} & \pbox{20cm}{$\log($number of unique urls \\divided by total tweets$)$} & $-0.7194, -0.4951$ & $1$, $p = 0$ \\
+      \bottomrule
+    \end{tabular}
+  } \caption[Topical focus features of events]{Features that were used to study
+  the topical focus characteristics of high-activity events.}
+  \label{tab:topical_focus}
+\end{table}
+
+The number of unique words (\texttt{uniq\_words}) and characters
+(\texttt{uniq\_chars}) for high-activity events is lower than the remaining
+events suggesting that the information content for high-activity events is more
+focused than for the remaining events (as they do not need a diverse
+vocabulary). 
+%
+Hashtags on Twitter are a sequence of characters that follow the \# symbol.
+%
+Conventionally, their purpose is to indicate the topic of the tweet. 
+%
+Again, this number (\texttt{uniq\_hashtags}, log-normalized by the total number
+of tweets) is lower for the high-activity events than for the remaining events.
+%
+The number of unique URLs (\texttt{uniq\_urls}, which can be taken to interpret
+similar semantics as the hashtags) is also lower for high-activity events than
+for the rest. 
+
+
+%%
+
+Summarizing, posts about high-activity events are much more topic focused than
+in other events. 
 %
 The vocabulary of unique words as well as {\em hashtags} used in high-activity
 events is much more narrow than for other events. 
@@ -185,6 +361,8 @@ This is intuitive, given that if a news item is sensational, people will seldom
 deviate from the main conversation topic.
 
 %%
+
+\subsection{Predicting the Activity of Events}
 
 In a real-world scenario, in order to predict if an early breaking news story
 will have a considerable impact in the social network, we will not have enough
@@ -207,8 +385,14 @@ are independent of our activity-based model such as the retweets, the sentiment
 of the posts about the event, etc. These features are computed on the early 5\%
 of messages about the event.
 %
+A list of all the features used for classification is shown in Table
+\ref{tab:feats}.
+%
 The results are an average from a 5-fold cross validation with randomly selected
-60\% training, 20\% validation and 20\% test splits. 
+60\% training, 20\% validation and 20\% test splits.
+%
+The classification was carried using logistic regression provided by the Weka
+package.
 %
 The high-activity events are identified with a precision of 82\% using only the
 earliest 5\% of the data of each event (Table~\ref{tab:classification_results}).
@@ -218,7 +402,7 @@ percentage of all high-activity events ($\approx 46\%$) at an early stage, with
 very few false positives (Table~\ref{tab:classification_results}
 and~\ref{tab:confusion_matrix}).
 
-\begin{table}[!htb]
+\begin{table}
   %\begin{adjustwidth}{-10mm}{-10mm}
   \centering
   {\small
@@ -233,13 +417,13 @@ and~\ref{tab:confusion_matrix}).
       \bottomrule
     \end{tabularx}
   }
-  \caption{\textbf{Classification of high-activity events.}}
+  \caption{{Classification results of high-activity events.}}
   \label{tab:classification_results}
   %\end{adjustwidth}
 %                                                                                                                                448,1         93%
 \end{table}
 
-\begin{table}[!htb]
+\begin{table}
   \centering
   % {\scriptsize
   \begin{tabularx}{\textwidth}{lcc|cc}
@@ -254,7 +438,7 @@ and~\ref{tab:confusion_matrix}).
     \bottomrule
   \end{tabularx}
   % }
-  \caption{\textbf{Confusion matrix for high-activity events prediction.}}
+  \caption{{Confusion matrix for high-activity events prediction.}}
   \label{tab:confusion_matrix}
 \end{table}
 
@@ -271,8 +455,76 @@ The recall goes from 0.455 to 0.540.
 This indicates that there are some high-activity events which require more data
 in order to determine what kind of activity they will produce, or events for
 which activity occurs due to random conditions. 
-%
-A detailed description of the features and different classification settings are
-provided in the supplementary material. \todo{sup}
 
+
+
+{\footnotesize
+  \begin{longtable}{l|l|l}
+
+    \hline \textbf{Feature Name} & \textbf{Normalized By} &
+    \textbf{Normalization
+      Method} \\
+    \hline
+    \endfirsthead
+    \multicolumn{3}{l}%
+    {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+    \hline \textbf{Feature Name} & \textbf{Normalized By} &
+    \textbf{Normalization
+      Method} \\
+    \hline
+    \endhead
+    \hline \multicolumn{3}{l}{\textit{Continued on next page}} \\
+    \endfoot
+    \hline
+    \endlastfoot
+
+
+    \texttt{component\_size}	&	 None	&	  \\
+    \texttt{total\_seconds}	&	 \texttt{total\_tweets}	& $\log(x) - \log(y)$ \\
+    \texttt{total\_tweets}	&	 None	&	  \\
+    \texttt{total\_retweets}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_tweets\_retweeted}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{retweets\_most\_retweeted}	&	 \texttt{total\_retweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_mentions}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_unique\_mentions} &
+    \texttt{total\_mentions}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_tweets\_with\_mention}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_tweets\_with\_mostfrequent\_mention}	&	 \texttt{total\_tweets\_with\_mention}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_hashtags}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_unique\_hashtags}	&	 \texttt{total\_hashtags}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_tweets\_with\_hashtag}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_tweets\_with\_mostfrequent\_hashtag}	&	 \texttt{total\_tweets\_with\_hashtag}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_urls}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_unique\_urls}	&	 \texttt{total\_urls}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_tweets\_with\_url}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_tweets\_with\_mostfrequent\_url}	&	 \texttt{total\_tweets\_with\_url}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_unique\_verified\_users}	&	 \texttt{total\_verified\_users}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_verified\_users}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_unique\_users}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_replies} & \texttt{total\_unique\_users} &
+    $\log(x) - \log(y)$ \\
+    \texttt{total\_tweets\_first\_replied} & \texttt{total\_tweets} &
+    $\log(x) - \log(y)$ \\
+    \texttt{total\_unique\_users\_replied} &
+    \texttt{total\_unique\_users} &
+    $\log(x) - \log(y)$ \\
+    \texttt{total\_tweets\_replied}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_words}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_unique\_words}	&	 \texttt{total\_words}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_characters}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_rt\_count}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_fav\_count}	&	 \texttt{total\_tweets}	&	 $\log(x) - \log(y)$ \\
+    \texttt{total\_positive\_sentiment}	& \texttt{total\_tweets}	&	 $x / y$ \\
+    \texttt{total\_negative\_sentiment}	&	 \texttt{total\_tweets}	&	 $x / y$ \\
+    \hline
+
+    \caption[Features used for classification of activity]{List of
+        features used for characterization and classification. The
+        ``Normalization Method'' column corresponds to the method used to
+        normalize the value of the first column using the value of the second
+        column. For example, the total number of retweets was normalized
+        dividing it by the total number of tweets, and then taking the
+        logarithm. Zero values were replaced by $10^{-8}$.}
+    \label{tab:feats}
+  \end{longtable}}
 

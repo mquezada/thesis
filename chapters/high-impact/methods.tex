@@ -1,4 +1,4 @@
-\section{Methodology}
+\section{The VQ-Event Model}
  
 We define an {\bf event} as a conglomerate of information that encompasses all
 of the social media content related to a real-world news occurrence. 
@@ -22,12 +22,18 @@ between two consecutive social media messages $i$ and $i+1$ that arrived in
 moments $t_i$ and $t_{i+1}$, respectively).
 
 
-We introduce a novel vectorial representation based on a {\em vector
-quantization of the interarrival time distribution}, which we call {\em
-``VQ-event model''}. 
+% We introduce a novel vectorial representation based on a {\em vector
+% quantization of the interarrival time distribution}, which we call {\em
+% ``VQ-event model''}. 
+% %
+We introduce a novel vectorial representation based on a vector quantization of
+the interarrival time distribution, which we call ``VQ-event model". 
 %
 This model is designed to filter events based on the distribution of the
 interarrival times between consecutive messages.  
+%
+The most representative interarrival times are learned from a large training
+corpus. 
 %
 This approach is inspired by the {\em codebook-based representation} from the
 field of multimedia content analysis, which has been used in audio processing
@@ -41,7 +47,7 @@ and the complete learned set is known as the {\em codebook}~\cite{Vaizman}.
 %
 Each event is then modeled using a vector quantization (VQ) that converts the
 interarrival times of an event into a discrete set of values, each value
-corresponding to the closest codeword in the codebook \todo{sup}. 
+corresponding to the closest codeword in the codebook. 
 %
 The resulting VQ-event model is then a vector in which each dimension contains
 the percentage of interarrival times of the event that were assigned a
@@ -64,6 +70,93 @@ possible interval, zero.
 %
 In other words, events for which the overall activity is extremely intense in
 comparison with other events.
+
+%%
+
+We represent an event $\mathit{e}$, belonging to a collection of events
+$\mathcal{E}$, as a tuple $(\mathcal{K}_\mathit{e}, \mathcal{M}_\mathit{e})$,
+where $\mathcal{K}_\mathit{e}$ is a set of \emph{keywords} and
+$\mathcal{M}_\mathit{e}$ is a set of \emph{social media messages}.
+%
+Both the keywords and the messages are related to a real-world occurrence. 
+%
+The keywords are extracted in order to succinctly describe the occurrence, and
+the messages are posts from users about the event.
+
+%%\mathit{i}
+
+To learn the most representative interarrival times we perform the following:
+%
+for each $\mathit{e} \in \mathcal{E}$ with messages $\mathcal{M}_\mathit{e} =
+\lbrack m_{1}^\mathit{e}, m_{2}^\mathit{e}, \ldots m_{n}^\mathit{e} \rbrack$ and
+their corresponding time-stamps $\lbrack t_{1}^\mathit{e}, t_{2}^\mathit{e},
+\ldots t_{n}^\mathit{e} \rbrack$ where $t_{\mathit{i}} \leq t_{\mathit{i}+1}
+\forall \mathit{i} \in [1,n]$, we compute all the interarrival times
+$d_{\mathit{i}}^\mathit{e} =
+t_{\mathit{i}}^\mathit{e}-t_{\mathit{i}-1}^\mathit{e}$ (the value of $t_{0}$ is
+considered equal to $t_{1}$ for initialization purposes). 
+%
+Then, the values of $d_{\mathit{i}}^\mathit{e}$ for all events in $\mathcal{E}$
+are clustered to identify the {\em most representative} interarrival times.
+
+%%
+
+Once the most representative interarrival times have been learned, the vector
+quantizations for each event is produced as follows: 
+%
+for each event, obtain all the interarrival times, and quantize each of the
+interarrival times to the closest codeword in the codebook.  
+%
+This process is summarized in Algorithm~\ref{alg:learn_representation}.
+%
+Line~\ref{alg:line:all_time_diff} collects all of the interarrival times for all
+the events in $\mathcal{E}$ in \textbf{f}. 
+%
+Line~\ref{alg:line:cluster} is a clustering algorithm which takes \textbf{f} and
+the number of clusters $k$ as inputs and returns the centroids of the clusters
+as the output in \textbf{c}. 
+%
+The centroids can be thought of as the most representative interarrival times
+for the event set $\mathcal{E}$. 
+%
+After that, the interarrival times of each event $e$ is vector quantized in
+terms of the centroids to obtain a $k$-dimensional real valued representation of
+the event (Line~\ref{alg:line:vq}). 
+%
+In this representation, each entry is the percentage of messages with that
+particular codeword as the interarrival time.
+
+\begin{algorithm}
+  \caption{{\scshape Learn-VQ-Representation}$(\mathcal{E}, k)$}
+  \label{alg:learn_representation}
+  \begin{algorithmic}[1]
+    \STATE $\textbf{f} \gets \{d_{i}^\mathit{e}\text{ } | \text{ } m_{\mathit{i}}^\mathit{e} \in
+    \mathcal{M}_\mathit{e}, \mathit{e} \in \mathcal{E} \}$ \label{alg:line:all_time_diff}
+    \STATE \textbf{c} $\gets$ {\tt cluster(}$\textbf{f}, k${\tt)} \label{alg:line:cluster}
+    \FOR{$\mathit{e} \in \mathcal{E}$} 
+      \STATE \textbf{\textit{e}} $\gets$ {\tt vq(}$d_{i}^\mathit{e}, \textbf{c}${\tt)}\\ \label{alg:line:vq}
+    \ENDFOR
+    \RETURN A representation in $\mathbb{R}^{k}$ of each event $\mathit{e} = (\mathcal{K}_\mathit{e}, \mathcal{M}_e) \in \mathcal{E}$.
+  \end{algorithmic}
+\end{algorithm}
+
+%\mathit{e}
+% \todo[inline]{uniforme con algoritmo en Background}
+% \begin{algorithm}
+%   \caption{{\tt learn\_representation()}}
+%   \label{alg:learn_representation}
+%   \begin{algorithmic}[1]
+%     \REQUIRE Event set $\mathcal{E}$, and number of codewords $k$ in the codebook.\\
+%     \ENSURE A representation in $\mathbb{R}^{k}$ of each event $\mathit{e} = (\mathcal{K}_\mathit{e}, \mathcal{M}_e) \in \mathcal{E}$.\\
+%     \STATE $\textbf{f} \leftarrow \{d_{i}^\mathit{e}| m_{\mathit{i}}^\mathit{e} \in
+%     \mathcal{M}_\mathit{e}, \mathit{e} \in \mathcal{E} \}$
+%     \\ \label{alg:line:all_time_diff} \STATE \textbf{c} $\leftarrow$
+%     {\tt cluster(}$\textbf{f}, k${\tt)} \label{alg:line:cluster}
+%     \FOR{$\mathit{e} \in \mathcal{E}$} \STATE \textbf{\textit{e}} $\leftarrow$ {\tt
+%       vq(}$d_{i}^\mathit{e}, \textbf{c}${\tt)}\\ \label{alg:line:vq}
+%     \ENDFOR
+%   \end{algorithmic}
+% \end{algorithm}
 
 %%
 
@@ -98,128 +191,3 @@ in intensity over a long (or short) period of time,
 that interest throughout their long (or short) lifespan, or 
 %
 (d) events that are a concatenation of any of the above, etc.
-
-
-
-
-
-
-\section{Experimental Analysis}
-
-We study a dataset of news events gathered from news headlines from a
-\emph{manually curated} list of well-known news media accounts (e.g., @CNN,
-@BreakingNews, @BBCNews, etc.) in the microblogging platform
-Twitter~\cite{twitter}. \todo{sup}
-%
-Headlines were collected periodically every hour, over the course of
-approximately one year. 
-%
-In parallel, all the Twitter messages were extracted for each news event using
-the public API \cite{twitterapi}.
-%
-This process was performed by automatically extracting descriptive sets of
-keywords for each event using a variation of frequent itemset
-extraction~\cite{Tan_Steinbach_Kumar} over the event's headlines. 
-%
-These sets of keywords were then used to retrieve corresponding user tweets for
-each event. 
-%
-We validate the events gathered in our data collection process to ensure that
-each group of social media posts corresponds to a meaningful and cohesive news
-event. 
-%
-We provide a detailed description of the collection methodology and of
-the validation of event cohesiveness in the supplementary material.\todo{sup} 
-%
-Overall, the resulting dataset contains $43,256,261$ tweets that account for
-$5,234$ events (Table~\ref{table:dataset-stats}).
-
-
-\begin{table}
-  \centering
-  \begin{tabularx}{\textwidth}{@{}p{6cm}llll@{}}
-    \toprule
-    \textbf{News events' property} & \textbf{Minimum} & \textbf{Mean} & \textbf{Median} & \textbf{Maximum} \\ \midrule
-    \# of posts & 1,000 & 8,254 & 2,474 & 510,920 \\
-    \# of keywords & 2 & 3.77 & 3 & 39 \\
-    Event duration (hours) & 0.12 & 20.93 & 7.46 & 190.43 \\ \bottomrule
-  \end{tabularx}
-  \caption{\bf High-level description of the dataset of news events.} 
-  \label{table:hi:dataset-stats}
-\end{table}
-
-
-
-In Figure~\ref{fig:hi:components} we characterize an example event from our
-dataset, by showing the set of keywords and a sample of tweets associated to the
-event. 
-%
-These keywords form a semantically meaningful event; they refer to the incident
-where soccer player Luis Suarez was charged for biting another player during the
-FIFA World Cup in 2014. 
-%
-This general collection process results in a set of social media posts
-associated to an event which can encompass several memes, viral tweets and
-pieces of information. 
-%
-Therefore, an event is composed of diverse information, addressing more
-heterogeneous content than prior
-work~\cite{Castillo:2014,Szabo:2010,Lerman:2010,Tatar:2011,Pinto:2013,Ahmed:2013,suh2010want}
-which focus on single pieces of information (e.g., a particular meme, a viral
-tweet etc.).
-
-
-\begin{figure}
-  \includegraphics[width=\textwidth]{figures/high-activity/fig2}
-  \caption[Example event]{A representative event, collected on 2014-06-25 with
-      keywords (left) and sample user posts (right) collected from the Twitter
-      Search API. Collected user posts contain at least one pair of keywords. }
-  \label{fig:hi:components}
-\end{figure}
-
-
-The collection of events is converted into their VQ-event model representation. 
-%
-Using this model, we can identify events that have produced similar levels of
-activity in the social network. 
-%
-In other words, events are considered to have similar activity if the
-interarrival times between their social media posts are similarly distributed,
-implying a very much alike collective reaction from users to the events within a
-group. 
-%
-In order to identify groups of similar events, we cluster the event models. 
-%
-We sort the resulting groups of events from highest to lowest activity,
-according to the concentration of social media posts in the bins that correspond
-to short interarrival times. 
-%
-We consider the events that fall in the top cluster to be high-activity events
-as most of their interarrival times are concentrated in the smallest interval of
-the VQ-event model.
-%
-In our dataset, these correspond to roughly 8\% of the events. 
-%
-We consider the next clusters in the sorted ranking to form medium-high activity
-events, and so on. 
-%
-Thus we end with four groups of events: high, medium-high, medium-low and low.
-Figure~\ref{fig:hi:heatmap} shows a heatmap of the interarrival relative
-frequency for each cluster. 
-%
-This classification of events based on activity intensity is independent of
-event size. 
-%
-More details of this methodology are provided in S1 Appendix.
-\todo{supp material}
-
-\begin{figure}
-  \includegraphics[width=\textwidth]{figures/high-activity/fig3}
-  \caption[Heatmap of the categorization of events into clusters of
-  activity.]{{Heatmap of the categorization of events into clusters of activity.
-  Each row is the average representation of all the events in that clusters.  A
-  darker cell represents a higher value. The y-axis specifies the number of
-  events in that cluster. Clusters are (top to bottom): high-impact,
-  medium-high, medium-low, and low.}}
-  \label{fig:hi:heatmap}
-\end{figure}
