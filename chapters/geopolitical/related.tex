@@ -1,0 +1,131 @@
+\subsection{Background}\label{sec:related}
+
+Certain studies focused specifically on the task of detecting events and tagging
+their relevant geolocations. 
+%
+In particular, some works targeted the detection of localized
+events~\cite{Watanabe:Jasmine:2011,Abdelhaq:EvenTweet:2013,Walther:2013fb,Lee:A:2011,Krumm:2015},
+others the detection of global events~\cite{sankaranarayanan:twitterstand:2009},
+and the detection of critical
+events~\cite{Sakaki:Tweet:2013,DeLongueville:2009}.  
+%
+Dong et al.~\cite{Dong2015}, specifically, considered that events had different
+temporal and spatial scales and proposed a multi-scale event detection approach
+for social media. 
+%
+This approach focuses on detecting and reporting events with geolocalization.
+%
+Our current approach differs from existing work, in that we create an aggregated
+representation of the information about real-world events, producing a
+high-level representation that includes the event's geographical context, which
+is extracted from social media. 
+%
+In addition, we enrich the information about an event by using the locations of
+the users that post information about it.
+
+Wang et al.~\cite{Wang:LeadLine:2012} visualized topics based on the extraction
+of geographical entities from tweet text. 
+%
+They did not use this information to establish the location of an event, but
+rather for event exploration. 
+%
+SensePlace2~\cite{MacEachren:SensePlace2:2011} is a Visual Analytics tool that
+allows users to explore a set of tweets and models them by showing two
+geographical types of information: the locations from where users discussed the
+topic and the locations being mentioned in tweets. 
+%
+However, unlike our work, this information was only used at single tweet level,
+and not at event level.
+
+In the domain of cyber-physical systems, {\em events} are viewed as conditions
+of interest~\cite{st-model_2009} within a cyber-physical system, or as the
+co-occurrence of two people in the same physical place~\cite{STEvent_2010}.
+%
+In general, events are modeled according to the state of the objects in the
+system, considering attributes, time and location. 
+%
+The work presented by Tan et al.~\cite{st-model_2009} bears certain similarities
+with our own, in the sense that they considered an event to encompasses multiple
+information about a condition of interest in the system (in our case in the
+online social network), including time and physical locations. 
+%
+In addition, the authors defined different kinds of temporal and geographical
+scopes for their events, which are similar to our definition of {\em event
+impact}. 
+%
+The main difference relies in that our approach aims to capture high-level
+information of how a complex exogenous event, such as a news event, is perceived
+by social network users in an aggregated way. 
+%
+Therefore, we focus on geopolitical divisions as units of aggregated spatial
+information and on representing geopolitical interactions.
+
+%%
+
+Despite that the idea of adding spatio-temporal context to social media data is
+not novel, to the best of our knowledge our work is the first that formally
+introduces {\em protagonist} and {\em interested} locations in a high-level
+event representation.  
+%
+The novelty of our approach relies on the extension of the notion of spatial
+context, first by associating real-world news to one or more protagonist
+locations, and second by associating real-world news to the locations where they
+generated interest.  
+%
+In addition, our work does not focus on event detection, classification or
+summarization, as most of the prior work on event analysis does.
+
+\paragraph{Quantitative Historical Event Analysis.}
+We provide a revision of the literature on {\em quantitative history} research
+applied to event analysis and social media. Quantitative history is an approach
+to historical research that makes use of quantitative and digital
+tools. 
+%
+To the best of our knowledge, our work is among the first to make use of social
+media data for quantitative historical research.
+
+Prior work used digitized newspapers and books for extracting quantitative
+knowledge~\cite{Michel176,leetaru2011culturomics,chadefaux2014early}. 
+%
+Michel et al.~\cite{Michel176} built a corpus of 5 million books and analyzed
+them using word frequencies to investigate cultural trends, and called this type
+of study ``Culturomics.''
+%
+Leetaru~\cite{leetaru2011culturomics} performed a large-scale study of 30 years
+of digitized newspapers.
+%
+Chadefaux~\cite{chadefaux2014early} used a dataset from Google News Archive to
+predict military conflicts.
+
+A different line of research covers digitized writings and the Semantic Web.
+%
+Suchanek and Preda~\cite{Suchanek:2014:SC:2732977.2732994} proposed the study of
+``Semantic Culturomics'', in which the analysis of newspapers should go beyond
+the study of word frequencies in order to integrate knowledge bases (such as
+DBPedia~\cite{dbpedia}) to answer complex user queries. 
+%
+Additional research has used knowledge bases along with human writings, such as
+newspapers~\cite{Huet:2013:MHL:2509558.2509567,DS/CN175}. 
+%
+A survey on this topic is provided by Mero\~no-Pe\~nuela et
+al.~\cite{merono2014semantic}.
+
+Compared to prior work, our approach among the first to consider user-generated
+information networks, such as online social networks, which are a growing data
+source at much larger scale.  
+%
+We consider that social media can provide additional and novel information to
+that found in news articles and books. 
+%
+User-generated content reflects social opinions and points of view related to
+current world-events. 
+%
+This content is generated in real-time, it is not edited and does not depend on
+the editorial lines of formal news outlets.  
+%
+We believe that these unique characteristics make social media a challenging and
+valuable source of historical information.  
+%
+Our approach incorporates the content of social media platforms about real-world
+news, as well as aggregated geographical information that conveys the importance
+and scope of these events.

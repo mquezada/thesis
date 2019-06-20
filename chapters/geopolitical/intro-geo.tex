@@ -1,0 +1,204 @@
+
+\section*{Abstract}
+
+The immense growth of the social Web, which has made a large amount of user data
+easily and publicly available, has opened a whole new spectrum for research in
+social behavioral sciences.  
+%
+However, as the volume of social media content increases at a very fast rate, it
+becomes extremely difficult to systematically obtain high-level information from
+this data.  
+%
+As a consequence, tasks related to the analysis of historical news events based
+on social media data have not been explored, which limits any type of
+comparative historical research, causality analysis, and discovery of knowledge
+from patterns extracted from aggregated social media event information.
+
+In this chapter we target this issue by proposing a compact high-level
+representation of news events using social media information. 
+%
+This representation explicitly includes temporal information about the event and
+information about locations, in particular of geopolitical entities. 
+%
+We call this a {\em spatio-temporal context-aware event representation}. 
+%
+Our hypothesis is that by including social, temporal, and spatial information in
+the event representation, we are enabling the analysis of historical world news
+from a social and geopolitical perspective.  
+%
+This facilitates, new information retrieval tasks related to historical event
+information extraction and international relations analysis. 
+%
+We support our claims by presenting a quantitative analysis of a 2-year Twitter
+dataset of news events reported by U.S. and U.K.  media, which we explore using
+data mining techniques on our event representations. 
+%
+We also show how using a visual tool, named Galean, we can explore and retrieve
+historical news events within their geopolitical and temporal context.
+
+
+
+
+\section{Introduction}\label{sec:introduction}
+
+As social media becomes massively popular, it is used as a reliable and
+efficient news source.  
+%
+Many users turn to social media platforms to obtain information, especially
+breaking news~\cite{Rogers:2013:DTT:2464464.2464511}. 
+%
+Even traditional mass media organizations such as newspapers and TV news
+channels now use social media platforms to inform their audience more quickly.
+%
+Social media users are not only consumers of this information, but also
+producers and broadcasters. 
+%
+Millions of people from all over the world have assumed the task of reporting
+and commenting on newsworthy events.  
+%
+In particular, the social platform Twitter has become a preferred source for
+users to find up-to-date information.  
+%
+When breaking news occurs, Twitter users quickly react by generating content and
+producing interactions.  
+%
+The particular nature of Twitter messages, as well as the fact that most of its
+users use the platform from mobile devices, facilitates extremely fast
+information propagation.
+
+%%% NEED - why something needed to be done at all
+%
+Twitter provides excellent conditions for social behavior analysis, as well as
+comparative historical research, among many other social and scientific
+disciplines.  
+%
+In particular, the field of {\em comparative historical
+research}\footnote{\url{https://en.wikipedia.org/wiki/Comparative_historical_research}
+(Accessed: June 19, 2019.) See also
+\url{https://en.wikipedia.org/wiki/Comparative_research} (Accessed: June 19,
+2019)} examines historical events in comparison to other historical events to
+gain general knowledge that goes beyond a particular event. 
+%
+So far, historical research had been restricted to traditional archival data and
+historians' written account of past events. 
+%
+Nevertheless, it is undeniable that the data poured into social media about
+world events is of great value to society. 
+%
+The evidence is in the increasing body of scientific work surrounding retrospective
+microblog data.  
+%
+Just to mention a few examples: Castillo et al.~\cite{castillo2011information}
+extracted information to predict the credibility of rumors in social media,
+Sakaki et al.~\cite{Sakaki2010} used Twitter for real-time earthquake detection,
+Pak and Paroubek~\cite{Pak:Twitter:2010} studied Twitter messages as a corpus
+for sentiment analysis, and Saravanou et al.~\cite{Saravanou:Twitter:2015} used
+tweet coordinates to find locations that have been affected by floods.
+
+%%
+
+Despite the usefulness of historical information extracted from social media,
+there is not much research addressing the topic of retrospective analysis of
+this data.
+%
+Social media in general, and Twitter in particular, produce streaming data that
+is volatile, which most likely explains why existing research concentrates only
+on a particular event, such as an earthquake or on predefined datasets.
+
+%%% Task - what the we undertook to address the need (first person, past
+%%% tense)
+We addressed this issue by introducing novel data mining tasks, based on a
+compact representation of real-world news events. 
+%
+This representation was designed to summarize information about real-world
+events from social media data, which is enhanced with the event's geographical
+and temporal context.
+
+%%
+
+Our event representation incorporates two types of spatial data about an event:
+%
+1) locations directly {\em involved} in the real-world event occurrence (i.e.,
+the main places that are mentioned in messages about the event), which we refer
+to as {\em protagonist locations}, and 
+%
+2) locations from where social network users {\em comment} on the event (i.e,
+the places where users that comment are located), which we refer to as {\em
+interested locations}.  
+%
+For example, when an earthquake took place in Nepal in April, 2015, most of the
+messages mentioned Nepal, which indicated that this was the location where the
+event had taken place. 
+%
+Therefore, if we consider locations at a country level, Nepal can be regarded as
+the {\em protagonist location} of that event. 
+%
+However, the users that posted the messages about Nepal were distributed all
+over the world, indicating that this event had global impact. 
+%
+Furthermore, some countries had more users interested in the event than other
+countries, such as, neighboring countries and countries with citizens among the
+victims.  
+%
+These would be considered as the {\em interested locations} of that event.
+
+%%
+
+Our work is based on the hypothesis that by adding spatio-temporal context to
+news events, such as protagonist and interested locations, and the time at which
+it occurred, we can discover new information based solely on social media data.
+%
+In particular, the application of our event representation allows us to find
+relationships among events and among locations, such as:
+
+\begin{enumerate}
+\item{\bf event similarity:}
+  \begin{itemize}
+  \item {\bf based on their protagonist locations}, i.e., retrieve all the
+    events that occurred in certain location, or that directly involved similar
+    groups of locations;
+  \item {\bf based on the locations that are interested in the event}, i.e.,
+    retrieve all of the events that produced the similar interest in other
+    locations.
+  \end{itemize}
+\item{\bf location similarity:}
+  \begin{itemize}
+  \item {\bf based on events in which a location is protagonist}, i.e., retrieve
+the locations that are protagonists in the same events;
+  \item {\bf based on their interest in events}, i.e.,  retrieve sets of
+locations that showed similar levels of interest in the same events.
+  \end{itemize}
+\item{\bf any combination of the above.}
+\end{enumerate}
+
+These similarity relationships along with temporal context can facilitate the
+implementation of novel information retrieval tasks. 
+%
+These tasks include: event search, event understanding, geopolitical analysis,
+international relations analysis (when considering locations at a country
+level), historical comparative analysis, among others.
+
+\medskip
+\subsection{Contributions}
+\noindent{\bf Our contributions are the following}:
+\begin{enumerate}
+\item We present a novel high-level representation of news events based on
+information extracted from social media. This representation emphasizes the
+geographical and temporal context of news;
+\item We present an exploratory analysis of a 2-year data collection in which we
+use our proposed event representation to identify connections and similarity
+patterns among countries; and
+\item We show how a visual tool, named Galean, designed for exploration of
+historical news event collections based on our proposed approach, allows users
+to view event evolution over long periods of time, the relationship between the
+geopolitical entities that participate in them, and emergent patterns.
+\end{enumerate}
+
+An application of the model and visual tool proposed in this chapter and
+corresponding publications can be found in the work of Maldonado et
+al.~\cite{maldonado2015spatio}.
+%
+They show a version of Galean specifically designed for exploring Chilean news.
+%
+An online version of this application can be found in \url{http://galean.cl/}
+(Accessed: June 19, 2019).
