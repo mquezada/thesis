@@ -1,4 +1,4 @@
-\section{Event Representation}\label{sec:model}
+\section{Event Representation}\label{sec:geo:model}
 
 We introduce a novel high-level event representation, called {\em
 spatio-temporal context-aware event representation}, with the purpose of gaining
@@ -292,143 +292,140 @@ number of tweets in $E$, for a given $\alpha$.
 
 
 \subsection{System Architecture}\label{sec:framework}
+
 We present a general overview of the architecture for generating our event
-representations in order to use them in our application.  The architecture, shown in Figure~\ref{fig:sys_architecture},
-consists of the following three parts: {\em ``input''}, {\em ``event
-representation generator''}, and {\em
-``visualization''}.  The first component, (1) ``input'', is not part of our contribution, and
-is currently fulfilled by using existing methods, which
-can be replaced transparently as long as the requirements detailed
-next are met. On the other hand, the other two components, (2) ``event
-representation generator'' and (3) ``visualization'', are the core of our
-contribution and therefore essential to our system.
+representations in order to use them in our application.  
+%
+The architecture, shown in Figure~\ref{fig:sys_architecture}, consists of the
+following three parts: {\em ``input''}, {\em ``event representation
+generator''}, and {\em ``visualization''}.  
+%
+The first component, (1) ``input'', is not part of the particular contribution
+of this chapter\footnote{The {\it News event extractor} module is part of our
+data collection methodology, as described in Chapter~\ref{chapter:data}}, and is
+currently fulfilled by using existing methods, which can be replaced
+transparently as long as the requirements detailed next are met. 
+%
+On the other hand, the other two components, (2) ``event representation
+generator'' and (3) ``visualization'', are the core of our contribution and
+therefore essential to our system.
 
 
-\begin{figure*}[b]
-    \caption{Framework consisting of three parts: 1) input,
-    which collects data related to news event activity from social media and extracts
-    its geographical
+\begin{figure*}[t]
+    \includegraphics[width=\textwidth]{figures/geopolitical/architecture.pdf}
+    \caption[Data architecture for Spatio-Temporal Model.]
+    {Framework consisting of three parts: 1) input, which collects data related
+    to news event activity from social media and extracts its geographical
     information; 2) the event representation generator, which generates our
-    representation of
-    the input events and 3) the visualization, which consumes these events.
-    Our contribution is related to the two latter modules, the first module
-    can be replaced according to the task and/or
-    state-of-the-art.}
+    representation of the input events and 3) the visualization, which consumes
+    these events. Our contribution is related to the two latter modules, the
+    first module can be replaced according to the task and/or state-of-the-art.}
     \label{fig:sys_architecture}
 \end{figure*}
 
-Given an input from the Twitter data stream we specify the following components of our
-framework (the particular setup for our proposed applications is
-detailed in Section~\ref{sec:setup}):
+Given an input from the Twitter data stream we specify the following components
+of our framework:
+
+%%
 
 \begin{enumerate}
 
-\item{\bf Input:} This module requires two subparts, the {\em ``news event
-extractor''} and the {\em ``geographical context extractor''}.
-\begin{enumerate}
+\item{\bf Input:} 
+%
+This module requires two subparts, the {\em ``news event extractor''} and the
+{\em ``geographical context extractor''}.
+%
+    \begin{enumerate}
+    %
+    \item{\em News event extractor:} 
+    %
+    This submodule must output groups of tweets, where each group of tweets $T$
+    should represent a cohesive news topic $E$.  
+    %
+    In particular, most of the tweets in the set $T$ of an event $E$ must be on
+    the topic of a particular news events. 
+    %
+    However, as we use a high-level representation of events, some noise is
+    tolerated (i.e., tweets that do not correspond to the event).
 
-\item{\em News event extractor:} This submodule must output groups
-of tweets, where each group of tweets $T$ should represent a cohesive news
-topic $E$.  In particular, most of the tweets in the set $T$ of an event $E$
-must be on the topic of a particular news events. However, as we
-use a high-level representation of events, some noise is tolerated (i.e.,
-tweets that do not correspond to the event).
+    \item{\em Geographical context extractor:} 
+    %
+    This submodule associates spatial context to each tweet in $T$ of each event
+    $E$ produced by the ``news event extractor'' module. 
+    %
+    Therefore, it must provide the geographical locations of the places
+    mentioned in the text of the message and the geographical location of the
+    author of the message (i.e., protagonist and interested locations,
+    respectively). 
+    %
+    This module must locate the majority of the tweets in $E$ correctly (i.e.,
+    with good precision) based on GPS coordinates and/or textual content, so
+    that locations mentioned in tweets can be geotagged, and users can be
+    geotagged as well (users can set their location using GPS coordinates or by
+    using natural text).
 
-\item{\em Geographical context extractor:} This submodule
-associates spatial context to each tweet in $T$ of each event $E$ produced
-by the ``news event extractor'' module. Therefore, it must provide the
-geographical locations of the places mentioned in the text of the message and the
-geographical location of the author of the message (i.e., protagonist and interested
-locations, respectively). This module must locate the majority of the tweets in $E$
-correctly (i.e., with good precision) based on GPS coordinates and/or textual
-content, so that locations mentioned in tweets can be geotagged, and users
-can be geotagged as well
-(users can set their location using GPS coordinates or
-by using natural text).
-
-\end{enumerate}
-\item{\bf Event representation generator}: This component creates the event
-representations $E$ for each of the groups of tweets provided by the
-``input'' module. In particular this module must create a tuple $E$ for each
+    \end{enumerate}
+%
+\item{\bf Event representation generator}: 
+%
+This component creates the event representations $E$ for each of the groups of
+tweets provided by the ``input'' module. 
+%
+In particular this module is responsible for creating a tuple $E$ for each
 event, as specified by our definition in Section~\ref{sec:model_definition}.
-This means that it has to produce the date $D$ of the first tweet, a set of keywords
-$K$ that describe the event, the set $T$ of tweets and the $\mathbf{P}$ and
-$\mathbf{I}$ location vectors of the event.
+%
+This means that it has to produce the date $D$ of the first tweet, a set of
+keywords $K$ that describe the event, the set $T$ of tweets and the $\mathbf{P}$
+and $\mathbf{I}$ location vectors of the event.
 
-\item{\bf Visualization}: This module consumes the event
-representations produced by the ``event representation generator'' module and
-produces the event visualization interface.
+%%
 
-\end{enumerate}
-
-
-
-\noindent{\bf News event extraction setup.} The news event extraction module
-corresponds to that used by Kalyanam et al.~\cite{10.1371/journal.pone.0166694},
-which consists of an ongoing process that periodically retrieves
-tweets about real-world news. We provide an
-overview of this process, which produces coherent sets of tweets about news topics,
-although with certain degree of noise that is well tolerated by our system. In particular,
-this is a two-stage iterative process that consists of 1) {\em news topic
-identification} (i.e., detection), and 2) {\em event tweet extraction}. We describe them
-briefly next (more details on this method, including the validation of the cohesiveness
-of the resulting events can be found in Kalyanam et al.~\cite{10.1371/journal.pone.0166694}):
-
-\begin{enumerate}
-
-\item{\bf Topic identification.} This approach does not detect events
-directly, but rather restricts itself to topics that have been posted on Twitter by
-mainstream news media accounts. The system
-periodically (each hour) retrieves headlines posted on Twitter by a set of
-{\em seed} news accounts, which must be provided.  Using
-association rule analysis over the set of headlines collected in the cycle,
-the system outputs high-support sets of keywords ($\{K_1,
-K_2,\ldots, K_n\}$). These sets of keywords constitute terms that were
-posted together in a headline by more than one news outlet within an hour.
-
-In this particular setup, the seed set of news accounts correspond to
-$55$ well-known international news media outlets (with verified
-accounts). These accounts are mostly from English-speaking sources
-based in the United States and Great Britain, such as @BreakingNews,
-@CNN, @NYTimes, @Jerusalem\_Post, @AJEnglish, @NDTV,
-etc.\footnote{Each Twitter account can be accessed
-in \url{https://twitter.com/accountname}, where \texttt{accountname}
-is the name of the account.}
-
-\item{\bf Data collection.} This stage iteratively
-takes the keyword-sets produced in (1), and uses each keyword-set
-$K \in \{K_1, K_2,\ldots, K_n\}$ to query the Twitter Search API in
-order to retrieve tweets $T$ from {\em regular users} that also contain the keyword-set
-(i.e., that are commenting on the same news topic as the headlines).
-The search is done within
-the same hour in which the headlines were retrieved, removing tweets that
-where more than a few hours old, narrowing down the
-number of tweets that do not belong to the news topic due to the temporal
-relevance of the event. In principle,
-each keyword-set $K$ is considered to be related to a unique news
-topic $E$. However, several keyword-sets could be referring to a same
-news topic (within one cycle or across several collection cycles),
-therefore an additional step is applied to merge one or more set of
-tweets into one within a one-day time window.
+\item{\bf Visualization}: 
+%
+This module consumes the event representations
+produced by the ``event representation generator'' module and produces the event
+visualization interface.
 
 \end{enumerate}
+
+
+
+\noindent{\bf News event extraction setup.} 
+%
+The news event extraction module corresponds to that proposed in
+Chapter~\ref{chapter:data}, which consists of an ongoing process that
+periodically retrieves tweets about real-world news. 
+%
+The process produces coherent sets of tweets about news topics, although with
+certain degree of noise that is well tolerated by our system. 
+%
+In particular, this is a two-stage iterative process that consists of the
+following steps:
+%
+(1) {\em news topic identification} (i.e., detection), and 
+%
+(2) {\em event tweet extraction}. 
+
 
 \smallskip
 \noindent{\bf Geographical context extraction setup.}
-We create a methodology for extracting the protagonist and interested
-locations, as well as their frequency for an event $E$
-with a set of tweets $T$.  The toponym (i.e., location name)
-extraction and resolution phases are carried out using the
-off-the-shelf geoparser,
-CLAVIN~\cite{clavin}. However, since tweets are short and do
-not provide much context for toponym disambiguation, our methodology
-boosts the performance of the geoparser by adding context from other
-tweets in $E$.
+%
+We create a methodology for extracting the protagonist and interested locations,
+as well as their frequency for an event $E$ with a set of tweets $T$.  
+%
+The {\em toponym} (i.e., location name) extraction and resolution phases are
+carried out using the off-the-shelf geoparser, CLAVIN~\cite{clavin}. 
+%
+However, since tweets are short and do not provide much context for toponym
+disambiguation, our methodology boosts the performance of the geoparser by
+adding context from other tweets in $E$.
 
-As detailed in Section~\ref{sec:model}, this methodology relies in a
-ratio named $\alpha$ which we empirically set to $19\%$
-as that which provides the best tradeoff between F1 and
-recall, according to Figure~\ref{fig:eval}. This is, a location must have
-at least $19\%$ of the mentions of the most frequent location of an event,
-to be considered as part of that event as well. Otherwise, we consider
-that this location was not actually involved in the event.
+As detailed in Section~\ref{sec:geo:model}, this methodology relies in a ratio
+named $\alpha$ which we empirically set to $19\%$ as that which provides the
+best tradeoff between F1 and recall, according to Figure~\ref{fig:eval}. 
+%
+This is, a location must have at least $19\%$ of the mentions of the most
+frequent location of an event, to be considered as part of that event as well.
+%
+Otherwise, we consider that this location was not actually involved in the
+event.

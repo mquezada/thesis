@@ -1,131 +1,136 @@
 \section{Known Limitations}\label{sec:limitations}
-There are several limitations that we
-consider important to address. In particular, these limitations are
-not related to our proposed event representation, framework and implementation of our
-applications, but rather to the data extraction methodology which
-depends on external functionalities.
+\todo[inline]{poner esto en las conclusiones o en el chap3}
+There are several limitations that we consider important to address. 
+%
+In particular, these limitations are not related to our proposed event
+representation, framework and implementation of our applications, but rather to
+the data extraction methodology which depends on external functionalities.
 
-The news event extraction methodology relies on the headlines
-published by news media accounts. This technique provides good
-precision in terms of reporting events that did in fact exist in the
-real-world, but might omit informative events that did not receive
-media coverage. Therefore, the current data extraction approach can
-fail to retrieve events such as citizen movements and other important
-events that were informed only via social networks.  In addition, as
-mentioned in Section~\ref{sec:mining}, in the current data extraction
-setup the initial seeds for the event collection came from a reduced list
-of news media accounts, with limited country coverage and languages.
-Although the news event dataset likely represents a great majority of
-the news events and related tweets posted on Twitter, the collection
-will miss the long tail of events that had impact in other less
-represented countries worldwide. We
-note that there are several ways in which this bias can be mitigated
-in the future (see Section~\ref{sec:mining}), all of them related to
-replacing external modules in the data input phase of the framework.
+The news event extraction methodology relies on the headlines published by news
+media accounts. 
+%
+This technique provides good precision in terms of reporting events that did in
+fact exist in the real-world, but might omit informative events that did not
+receive media coverage.
+%
+Therefore, the current data extraction approach can fail to retrieve events such
+as citizen movements and other important events that were informed only via
+social networks.  
+%
+In addition, in the current data extraction setup the initial seeds for the
+event collection came from a reduced list of news media accounts, with limited
+country coverage and languages.
+%
+Although the news event dataset likely represents a great majority of the news
+events and related tweets posted on Twitter, the collection will miss the long
+tail of events that had impact in other less represented countries worldwide. 
+%
+We note that there are several ways in which this bias can be mitigated in the
+future, all of them related to replacing external modules in the data input
+phase of the framework.
 
-In addition, we note that although our proposed event representation can be considered
-generalizable to other social media platforms, we have not validated it on
-other sources of information besides Twitter. It is not certain that for
-other social media platforms we will have enough information, regarding
-user location and data availability, in order to produce accurate event
-representations.
+In addition, we note that although our proposed event representation can be
+considered generalizable to other social media platforms, we have not validated
+it on other sources of information besides Twitter. 
+%
+It is not certain that for other social media platforms we will have enough
+information, regarding user location and data availability, in order to produce
+accurate event representations.
 
 Overall, basic future improvements of our work should consider:
+%
 \begin{itemize}
-\item Implementing automatic event detection techniques for Twitter
-based on the data stream and network properties, as well as
-more comprehensive microblog event extraction approaches.
+\item Implementing automatic event detection techniques for Twitter based on the
+data stream and network properties, as well as more comprehensive microblog
+event extraction approaches.
+
 \item Improving the geolocation tool accuracy. Despite CLAVIN's maturity as a
-geolocation tool, it does not recognize
-location names in languages other than English (even though the
-documentation of the tool indicates that it does recognize alternative
-location
-names~\cite{clavin}).
+geolocation tool, it does not recognize location names in languages other than
+English (even though the documentation of the tool indicates that it does
+recognize alternative location names~\cite{clavin}).
+
 \item Adding finer granularity to the geographical context extractor of our
-system, in order to include more precise
-administrative divisions such as cities and states.
-\item Merging events that discuss the same news topic in different languages. Recent approaches in cross-language
-microblogging retrieval \cite{Godavarthy2016} can be integrated for
-news event retrieval within our framework.
+system, in order to include more precise administrative divisions such as cities
+and states.
+
+\item Merging events that discuss the same news topic in different languages.
+Recent approaches in cross-language microblogging retrieval
+\cite{Godavarthy2016} can be integrated for news event retrieval within our
+framework.
 \end{itemize}
 
 All of these improvements are however beyond the current scope of our work,
 which focuses on providing proof of the usefulness of the proposed event
-representation as well as the interactice user interface.
-Nevertheless, we are working on improving all of these
-features in future versions of our applications.  For example, we have
-already started the task of providing more fine-grained locations for Chile
-and comprehensive sets of local news sources as in the work of Maldonado et
-al.~\cite{maldonado_2015}.
+representation. 
+%
+Nevertheless, we are working on improving all of these features in future
+versions of our applications.  
+%
+For example, we have already started the task of providing more fine-grained
+locations for Chile and comprehensive sets of local news sources as in the work
+of Maldonado et al.~\cite{maldonado2015spatio}.
 
-Regarding our visualization tool, we note that even though it is an event
-retrieval tool, it does not focus on event ranking nor tweet
-ranking. At the moment the tool is centered on
-event exploration within spatio-temporal filters. In the
-future, event and tweet ranking functionalities could be added as
-optional features, incorporating state-of-the-art algorithms from these areas. So
-far, we have seen evidence that diplaying the complete set of events, and tweets, by their chronological
-order, appears to to be sufficient for event exploration.
 
 
 \section{Conclusions and Future Work} \label{sec:conclusions}
-We have presented a spatio-temporal context-aware representation for news
-events in social media. Using this representation we have introduced a
-visual analytics tool named Galean that allows
-for retrospective analysis of real-world events
-through the aggregation of information posted by social media users. The
-main goal of our tool and our event representation is to allow exploration
-and quantitative analysis of events
-from a geographical and temporal perspective. In particular we
-introduce two types of geographical contexts for events: 1) protagonist
-locations, and 2) interested locations. The first corresponds to
-locations, in this case geopolitical divisions, that were involved in
-the event itself, and the second corresponds to locations where the event's
-information had the most impact.
 
-Galean is designed to allow users to manually explore news events world-wide, as well as their impact and
-international relations implications. Using this tool, we show that the proposed event representation
-allows us to perform historical analysis of events and countries over time.
-Also, the visualization enables users to discover non-trivial information
-and patterns within events. To the best of our
-knowledge, this is the first tool that explicitly shows geopolitical links
-among locations given real-world events, allowing users to retrieve
-news by those relationships.
+
+We have presented a spatio-temporal context-aware representation for news events
+in social media. 
+%
+Using this representation we have introduced a visual analytics tool named
+Galean that allows for retrospective analysis of real-world events through the
+aggregation of information posted by social media users. 
+%
+The main goal of our tool and our event representation is to allow exploration
+and quantitative analysis of events from a geographical and temporal
+perspective. 
+%
+In particular we introduce two types of geographical contexts for events: 1)
+protagonist locations, and 2) interested locations. 
+%
+The first corresponds to locations, in this case geopolitical divisions, that
+were involved in the event itself, and the second corresponds to locations where
+the event's information had the most impact.
+
 
 In addition, we introduce a quantitative data mining study over a 2-year Twitter
-dataset, in which we explore the properties of news events in social media
-and the international relations that are induced by those events.  Our
-findings indicate that indeed there is new information, which can be
-extracted at large scale, about how countries relate and how information is
-perceived in different places.  Most interestingly, these relationships
-reflect historical relations that are found in the real world, indicating
-that there is value in social media data for historical research.
+dataset, in which we explore the properties of news events in social media and
+the international relations that are induced by those events.  
 %
-Overall, our representation allows us to perform new IR tasks, related to exploring
-international relations and historical event retrieval.
+Our findings indicate that indeed there is new information, which can be
+extracted at large scale, about how countries relate and how information is
+perceived in different places. 
+%
+Most interestingly, these relationships reflect historical relations that are
+found in the real world, indicating that there is value in social media data for
+historical research.
+%
+Overall, our representation allows us to perform new IR tasks, related to
+exploring international relations and historical event retrieval.
+
+\todo[inline]{future work aca o al final?}
 
 In the future we will extend our representation to incorporate higher-level
-temporal properties of events, such as if the event is long-term, punctual
-or recurring, as defined in the work of Tan et al.~\cite{st-model_2009}.
-Furthermore, we are interested in investigating how to automatically
-and visually support the discovery of cause/effect relationships
-over time for events.
-We are researching effective ways to display geographical and temporal
-evolution of variables (such as event impact) over time.
+temporal properties of events, such as if the event is long-term, punctual or
+recurring, as defined in the work of Tan et al.~\cite{st-model_2009}.
+%
 
 Another interesting line of research for future work is that of studying how
-pairwise similarities between countries evolve over time. This could be
-useful to automatically discover when new relationships arise and when
-deviations from normal patterns occur.
+pairwise similarities between countries evolve over time. 
+%
+This could be useful to automatically discover when new relationships arise and
+when deviations from normal patterns occur.
 
-Finally, we are researching techniques to improve data
-extraction for news events, based on techniques such as those reported by
-Hasan et al.~\cite{doi:10.1177/0165551517698564}, to achieve a better representation
-of different locations, and to improve geolocation.
-Also, we are working towards
-creating automatic summaries of events in social media, on how to track and
-visualize event evolution over time, in particular the relations among
-protagonist countries that happen as consequence of these
-events, as well as incorporating approaches of
-cross-language information retrieval\cite{grefenstette2012cross} for news
-event recommendations in microblogs.
+Finally, we are researching techniques to improve data extraction for news
+events, based on techniques such as those reported by Hasan et
+al.~\cite{doi:10.1177/0165551517698564}, to achieve a better representation of
+different locations, and to improve geolocation. 
+%
+We are also working towards creating automatic summaries of events in social
+media, on how to track and visualize event evolution over time. 
+%
+In particular the relations among protagonist countries that happen as
+consequence of these events, as well as incorporating approaches of
+cross-language information retrieval\cite{grefenstette2012cross} for news event
+recommendations in microblogs.
