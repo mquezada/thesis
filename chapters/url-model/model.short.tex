@@ -1,7 +1,7 @@
 \section{Event representation}\label{sec:model}
 
-In this section we introduce our model and the methodology for applying it a set of messages that represent
-events in social media.
+We introduce our model and the methodology for applying it to messages that
+describe events in social media.
 
 % We introduce a scalable high-level news event representation from microblog data, leveraging
 % social media features such as redundancy. Specifically, we define our
@@ -35,51 +35,67 @@ events in social media.
 % de coocurrencia.
 % tres tipos de urls: "especificas" (topic-specific), generales e irrelevantes
 
-\subsection{Representation definition}
+%\paragraph{\bf{Representation definition}}
 
-Our model is based on the assumption that {\em most of the social media posts that discuss a specific event and at the same time contain a URL, are messages that cover a particular portion or sub-topic of the event}.
+Our model is based on the assumption that {\em most of the social media posts
+that discuss a specific event and contain a URL, are messages that cover a
+particular portion or sub-topic of the event}.
 %
-For example, in the case of an earthquake occurrence, tweets that refer to damages
-to building infrastructure might share a URL to an external news report on this topic, similarly a tweet that discusses the magnitude of the event can link to the official seismological report, and so on.
+For example, in the case of an earthquake, tweets that refer to damages to
+buildings may share a URL to an external news report; similarly, a tweet that
+discusses the magnitude of the event may link to the official seismological
+report.
 %
-This assumption may not hold in all cases, for example, for URLs that address general aspects of an event (e.g., a summary report of an
-entire event), or that are generic (e.g., refer to a online news website's root URL), or irrelevant to the event (e.g., direct to spam, or unrelated information).
+We define an event as a tuple $\mathcal{E} = (M, U)$, where $M$ is the set of
+messages that discuss a real-world occurrence, and $U$ is
+the set of {\em topic-specific} URLs that are mentioned or shared by messages in
+$M$. 
 %
-However, we deal with these cases in our methodology for generating event models, presented in Section \ref{sec:methodology}.
+We denote the URLs $U$ as {\em topic-specific}, assuming that each URL in $U$
+identifies only one of the different topics within the real-world event.
+%
+Our representation is a graph $\mathcal{G} = (V, E)$, where $V \subseteq M \cup
+U$ is the set of nodes, comprised of {\em messages} and {\em URLs}, and there is
+an edge $(i, j) \in E$ if at least one of the following conditions hold: (1)
+$m=i$ is a message and $u=j$ is a URL and $m$ shares $u$, (2) $m_1=i$ and
+$m_2=j$ are messages and $m_1$ re-shares $m_2$, or (3) $m_1=i$ and $m_2=j$ are
+messages and $m_1$ replies to $m_2$ (see an example in
+Figure~\ref{fig:model-example}).
+%
+Finally, a {\em document} is a connected component of $\mathcal{G}$.
+%
+In this case, a document is defined as a collection of messages that discuss
+only one aspect of the event.
+
+%%
+
+The assumption of $U$ to be a set of topic-specific URLs may not hold in all
+cases, for example, for URLs that address general aspects of an event (e.g., a
+summary report of an entire event), or that are generic (e.g., refer to a online
+news website's root URL), or irrelevant to the event (e.g., spam, or unrelated
+information).
+%
+We deal with these cases in our methodology for generating event models,
+presented below.
 % In other cases, a message could share more than one URL, and the two of them can
 % be complementary, for example, sharing a news report along with a relevant image
 % or video.
 %
-In that sense, our model and proposed methodology are focused on identifying URLs that are specific to one aspect of an event, and use those URLs to aggregate similar messages.
+In that sense, our model and methodology focus on identifying URLs that are
+specific to one aspect of an event, and use those URLs to aggregate similar
+messages.
 %
-Our goal is to represent underlying sub-topics of an event by just using shared URLs.
+Our goal is to represent underlying sub-topics of an event by just using shared
+URLs. 
+
 
 %%
 
-We define an event as a tuple $\mathcal{E} = (M, U)$, where $M$ is the set of
-social media posts that discuss a real-world occurrence (i.e., news event), and $U$ is the set of
-{\em topic-specific} URLs that are mentioned or shared by messages in $M$. 
-%
-We denote the URLs $u\in U$ as {topic-specific}, assuming that each URL identifies only one
-of the different topics within the real-world event.
-%
-Then, we define our representation as follows.
-%
-Our representation is a graph $\mathcal{G} = (V, E)$, where $V \subseteq M
-\cup U$ is the set of nodes, comprised of {\em messages} and {\em URLs}, and
-there is an edge $(u, v) \in E$ if at least one of the following conditions
-hold: (i) $u$ is a message and $v$ is a URL and $u$ shares $v$, (ii) $u$ and
-$v$ are messages and $u$ re-shares $v$, or (iii) $u$ and $v$ are messages and
-$u$ replies to $v$ (see an example in Figure~\ref{fig:model-example}).
-%
-Finally, a {\em document} is a connected component of $\mathcal{G}$.
-%
-In this case, a document intends to be a collection of messages that discuss only one aspect of the event.
 %\bp{creo que lo anterior esta incompleto y algo confuso: Falta decir que en realidad una componente conexa es un documento (al final esta es la representacion). Tambien hay que decir que en realidad una componente se entiende como elementos que hablan de lo mismo y por eso se modelan como un unico documento. El resto de identificar urls problematicas esta bien que quede en la metodologia.}
 
 \begin{figure}[t]
   \centering
-  \resizebox {0.8\columnwidth} {!} {
+  \resizebox {0.6\columnwidth} {!} {
     \begin{tikzpicture}[
     every edge/.style={draw, line width=1pt, align=left, sloped}
     ]
@@ -119,12 +135,10 @@ In this case, a document intends to be a collection of messages that discuss onl
 
   \end{tikzpicture}
   }
-  \caption{
+  \caption[Example representation of messages.]{
     Example representation of messages. 
-    Two messages are joined by an edge if one shares or replies to the other. 
-    A message $m$ and a URL $u$ are joined by an edge if the $m$ shares $u$.
-    Each connected component is a {\em document}.
-    %A {\em document} is a connected component of the graph. 
+    Messages $m_1$ and $m_4$ shares URLs $u_1$ and $u_2$, while $m_2$ only shares $u_1$;
+    $m_8$ and $m_9$ share or reply one to another. Each connected component is a {\em document}.
   }
   \label{fig:model-example}
 
@@ -175,48 +189,52 @@ In this case, a document intends to be a collection of messages that discuss onl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsection{Generation methodology}\label{sec:methodology}
+%\paragraph{\bf{Generation methodology}}\label{sec:methodology}
+
+\subsection*{Methodology for representing events}
 
 Given a set of event-related social media messages, we propose the following
 methodology for representation generation:
   
-{\bf Identify non-specific URLs:} 
+{\bf Filter out generic URLs:} 
 %
-In order to avoid having large components in our representation, we identify
-generic URLs (too general with respect to the event) as those that co-occur with
-several different other URLs in the same messages. 
+We identify generic URLs (too general with respect to the event) as those that
+co-occur with several different other URLs in the same messages. 
 %
 %A URL co-occur with another one if they both are shared by the same message.
 %
-Highly connected URLs can be considered "stop"-URLs: links that are very generic
-(e.g., {\tt cnn.com}) or very general to the event (e.g., links pointing to
-general reports). 
+Highly connected URLs do not contribute to specific topics: links that are very
+generic (e.g., {\tt cnn.com}) or very general to the event (e.g., general
+reports). 
 %
-As a consequence, all the messages mentioning these URLs would fall into the
-same component, regardless of their differences in content. 
+All of the messages mentioning these URLs would fall into the same component,
+regardless of their differences in content. 
 %
-We set a value of three as a threshold experimentally, which yielded the best
-results in our case studies.
+We removed URLs that co-occurred with three or more different URLs across
+messages.
+%
+This threshold yielded the best results in our case studies.
+
 
 {\bf Representation generation:} 
 %
 The generation step consists of grouping messages that end up in the same
 component, as described in the previous section.
 %
-For that, a straightforward method is to compute all pairs of messages and
-URLs/messages that fulfill the conditions stated in the representation
+For that, a straightforward method is to compute all pairs of messages and pairs
+of URLs and messages that fulfill the conditions stated in the representation
 definition and then find connected components using a union-find algorithm.
 %
-The URLs in this case are the non-generic URLs identified in the previous step.
+The URLs are the non-generic ones identified in the previous step, as an
+approximation to the topic-specific URLs.
 
 
-{\bf Document generation:} 
+{\bf Vector representation of documents:} 
 %
-Finally, we convert all the messages in a component into a dense vector using
-some aggregation strategy.
+Finally, we aggregate messages into documents in order to produce a vector
+representation, using neural network-based word embeddings.
 %
-In our case, we consider all the messages in a component as a document and
-compute a dense vector using word embeddings.
+This procedure generates dense document representations.
 
 
 

@@ -1,4 +1,4 @@
-\section{Related Work}\label{sec:related}
+\subsection{Background}\label{sec:related}
 % There is extensive work on automatic summarization on microblogs\mq{ref}. In
 % this work, we approach the problem from a practical point of view, where our
 % goal is to benefit from the characteristics of social media posts, in
@@ -14,33 +14,32 @@ microblogs and topic detection methods using different aggregation strategies.
 
 %\bp{No hay literatura de representaciones compactas de eventos para sumarizacion?}
 
-
-%%%%% Studies from 201x have shown that around 25\% of tweets contain at least one URL.
-There have been studies about the usefulness of anchor texts in Twitter. 
 %
-Raux et al.~\cite{raux2011describing} used anchor texts from tweets pointing to a
+About the usefulness of anchor texts on Twitter, Raux et
+al.~\cite{raux2011describing} used anchor texts from tweets pointing to a
 predefined set of URLs to characterize general topics, by clustering a bipartite
 graph of words and URLs. 
 %
-We instead focus on news events, and tweets related to these news, without using
-predefined URLs, but instead the actual shared URLs. 
+We instead focus on news events, and tweets related to these news, which have
+their own particularities, in contrast to long lasting general topics. 
 %
-Mishne and Lin~\cite{mishne2012twanchor} studied the
-contribution of anchor texts compared to the text of the websites behind the
-URLs, concluding that anchor text add new terms not seen in the website content,
-by looking also at the conversations around the sharing tweets. 
+Mishne and Lin~\cite{mishne2012twanchor} studied the contribution of anchor
+texts compared to the text of the websites behind the URLs, concluding that
+anchor text add new terms not seen in the website content, by looking also at
+the conversations around the sharing tweets. 
 %
-Alonso et al.~\cite{Alonso:2015:WCW:2740908.2745397} had similar findings examining
-Facebook posts. 
+Alonso et al.~\cite{Alonso:2015:WCW:2740908.2745397} had similar findings
+examining Facebook posts. 
 %
-In another work by Alonso et al.~\cite{Alonso:2017:WHH:3091478.3091484}, the authors designed a social search
-engine using the propagation of shared URLs as cues to measure virality, and anchor texts to augment metadata of the search results with social
-content. 
-% In a previous work~\cite{quezada2013understanding}, we showed a
-% prototype of a multimodal summarization methodology using anchor texts. In this
-% work, we do not make use of or compare to the content of the URLs themselves,
-% but use solely the anchor texts as a mean to represent the content about a news
-% event.
+In another work by Alonso et al.~\cite{Alonso:2017:WHH:3091478.3091484}, the
+authors designed a social search engine using the propagation of shared URLs as
+cues to measure virality, and anchor texts to augment metadata of the search
+results with social content. 
+%
+In a previous work~\cite{quezada2013understanding}, we showed a proof of concept
+of automatic summarization of documents using anchor texts.
+%
+
 
 Topic modeling of tweets is an active line of research, and there are some
 studies which investigate the effectiveness of aggregation of tweets to improve
@@ -48,16 +47,22 @@ topic
 detection~\cite{Hong:2010:EST:1964858.1964870,Mehrotra:2013:ILT:2484028.2484166,alvarez2016topic}.
 Hong and Davison~\cite{Hong:2010:EST:1964858.1964870} analyzed the effects of
 different aggregation strategies of tweets when finding topics with Latent
-Dirichlet Allocation. They found that some schemes yield better results at some
-tasks, such as classification problems related to tweets. In a similar fashion,
-Mehrotra et al.~\cite{Mehrotra:2013:ILT:2484028.2484166} observed that
-aggregating hashtags (also denoted as {\em pooling} of tweets by hashtags) is a
-more effective strategy to identify topics from tweets, but at the cost of
-longer running times due to the duplication of tweets. Finally, Alvarez-Melis
-and Saveski~\cite{alvarez2016topic} found that adding the threads of
-conversation into the pooling is more effective than pooling by hashtag in their
-observations. We instead aggregate by shared URLs and conversations, yielding
-similar performance to our baseline, with reduced running time.
+Dirichlet Allocation (LDA). 
+%
+They found that some schemes yield better results at some tasks, such as
+classification problems related to tweets. 
+%
+In a similar fashion, Mehrotra et al.~\cite{Mehrotra:2013:ILT:2484028.2484166}
+observed that aggregating hashtags (also described as {\em pooling} of tweets by
+hashtags) is a more effective strategy to identify topics from tweets, but at
+the cost of longer running times due to the duplication of tweets. 
+%
+Finally, Alvarez-Melis and Saveski~\cite{alvarez2016topic} found that adding the
+threads of conversation into the pooling is more effective than pooling by
+hashtag in their observations. 
+%
+We instead aggregate by shared URLs and conversations, with the goal of
+generating a compact representation without major loss of information.
 
 
 

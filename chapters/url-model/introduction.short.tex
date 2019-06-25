@@ -61,9 +61,8 @@ The ability to identify and summarize relevant information about newsworthy
 topics that are accounted for by users in social media can be of great use to
 society.
 %
-This is particularly true in the face of high impact and breaking news, like
-natural disasters and crisis
-situations~\cite{ICWSM1817816,castillo2011information}.
+This is particularly true in the case of high impact and breaking news, like
+natural disasters and crisis situations~\cite{ICWSM1817816}.
 %\bp{agregar mas citas}.
 %
 In general, social media platforms present their content to the consumer in one
@@ -71,23 +70,21 @@ of two ways: (1) by displaying user posts in reverse chronological order, or (2)
 by displaying posts in a personalized fashion, showing first what they deem more
 interesting to the user.
 %
-In this way, social media platforms aim to optimize for certain criteria, such
-as engagement or views.
-%
-However, if the user is seeking information about a specific event, looking for
-complete and trustworthy information, the aforementioned approaches can result
-also in unnecessary exposure to redundant, irrelevant, or even misleading
-facts.
+However, if the user 
+%consuming social media content 
+is seeking information about a specific event, the aforementioned approaches can
+result also in unnecessary exposure to redundant, irrelevant, or even misleading
+information.
 %
 In this context, delivery of key pieces of information to the user is important,
 and even critical in some cases; 
 %
-for instance, social media is many times used as a complementary source of
+for instance, social media is often used as a complementary source of
 information for disaster management and
-response~\cite{ICWSM1817816,Sarmiento:2018:DDE:3201064.3201077,Mendoza2019,castillo2011information,Sakaki2010}
+response~\cite{ICWSM1817816,Sarmiento:2018:DDE:3201064.3201077}
 %\bp{agregar citas}
 and also to obtain information about newsworthy events not yet reported by
-formal news outlets, such as breaking news. 
+formal news outlets. 
 %
 %In this sense, thThis need to produce high-quality real-time information requires effective ways to filter and organize information about real-world events on social media.
 %
@@ -95,7 +92,7 @@ formal news outlets, such as breaking news.
 Despite the usefulness of social media as a worldwide news information source,
 its consumption is not without challenges.
 %
-These challenges include, among many others, assessing correctly information
+These challenges include, among many others, correctly assessing information
 veracity and relevance to a specific topic, as well as dealing with a huge
 volume of data with variable quality. 
 %
@@ -107,59 +104,62 @@ volume of data with variable quality.
 %Filtering and organizing information in social media can be a
 %particularly challenging task.
 %
-In particular, we study Twitter, a popular microblog platform, in which users
-can post text-based messages.
+In particular, we study Twitter, in which users can post text-based messages.
 %
-These messages, called {\em tweets}, can include links to images, videos, to
+These messages, called {\em tweets} can include links to images, videos, to
 external webpages or to other tweets, making this platform's content multimodal.
-%
 
 %
+%From the perspective of understanding current events, tweets contain a large volume of irrelevant and redundant content, which can often be misspelled, or unreliably capitalized, 
+%
 %On the other hand, we observe several 
-The URLs shared in Twitter link to varied types of media (articles,
-images, videos, or other tweets), which have been found useful for identifying conversation
+The URLs shared in Twitter often link to varied types of media (articles,
+images, or videos), which have been found useful for identifying conversation
 topics~\cite{mishne2012twanchor}.
 %
 In the context of news events, users tend to quickly re-share information if the
-event sparks high interest~\cite{kalyanam2016prediction}, which results in many
-(near-)duplicate messages.
+event sparks high interest (see Section~\ref{subsec:info_forwarding}), which
+results in many (near-)duplicate messages.
+%
+Dealing with content of these characteristics requires different approaches
+than with traditional media~\cite{Alonso:2017:WHH:3091478.3091484}.
 %
 Prior work has acknowledged the need to develop techniques for dealing
 exclusively with this type of social media data.
 
-%Dealing with content of these characteristics requires different approaches than with traditional media~\cite{Alonso:2017:WHH:3091478.3091484}.\bp{decir algo sobre a que cosa te refieres con la frase anterior, quizas cambiarlo por algo como: }
+
 
 %%
 
-In this chapter we focus on the problem of producing summarized representations
-of social media data related to news events without significant loss of
+
+In this work we focus on the problem of producing summarized representations of
+social media data related to news events without significant loss of
 information.
 %
 We present a compact representation for social media content related to news
 events.
 %
 This representation allows us to preserve information about the topics involved
-in an event, and to identify relevant content, while significantly reducing the
-volume of data.
+in an event, and to identify relevant content, while reducing the volume of
+data.
 %
-This can be specially useful for online data processing about developing news
+This can be especially useful for online data processing about developing news
 and news information seeking tasks.
 %
 To achieve this, our model annotates shared URLs with the text of the messages
 in which they appear.
 %
-This is, we use messages as {\em anchor text} or {\em surrogate text}. 
+Here we use messages as {\em anchor text} or {\em surrogate text}. 
 %
-Firstly, we leverage this idea by identifying relevant URLs that are shared in
+We first leverage this idea by identifying relevant URLs that are shared in
 social media during a news event.
 %
 We discard URLs that are too general with respect to an event (e.g. a general
-report), or generic (e.g. linking to a news outlet) as we deemed them as
-non-relevant.
+report), or generic (e.g. linking to the homepage of a news outlet) as we deemed
+them as non-relevant.
 %
 Then we aggregate all the anchor texts associated with relevant URLs into {\em
-documents}, and all the conversations around those documents as well, in the
-form of retweets and replies.
+documents}, and all the conversations around those documents as well. 
 
 As a preliminary way to study the usefulness of our event representation, we
 applied it to three news events as a case study.
@@ -167,23 +167,28 @@ applied it to three news events as a case study.
 We observed that our representation reduces the amount of records needed to
 describe an event by one order of magnitude, compared to using the raw tweets. 
 %
-We were also able to identify sub-topics by mapping the documents into vectors using dense
+We were also able to identify sub-topics by clustering the documents using dense
 word representations, such as neural network--based word embeddings. 
 %
-We show that the sub-topic detection task yields similar external clustering
-criteria measures for our representation, compared to the raw tweets, with
-reduced running time.
+We show that the clustering based sub-topic detection task using our proposed
+representation yields similar external quality metrics to those obtained using
+the entire data. 
 %
-In summary, our contributions are the following:
+Hence, indicating that we are preserving relevant aspects of the information
+while considerably reducing running time.
+
+\subsection{Contributions}
+
+Our contributions in this chapter are the following:
 
 \begin{enumerate}
-  \item We present a novel compact representation for information about news
-        events in microblogs, based on shared URLs. This representation reduces
-        data volume.
+  \item We present a novel compact representation for news event information in
+  microblogs, based on shared URLs. This representation reduces data volume.
 
-  \item We study the usefulness of our representation through three case studies. We do so by introducing a methodology to represent news events in Twitter and find sub-topics.
-%
-We show that our methodology displays comparable performance to baseline methods at a fraction of the computational resources.
+  \item We study the usefulness of our representation through three case
+  studies. We do so by introducing a methodology to represent news events in
+  Twitter and find sub-topics. We show that our approach displays comparable
+  performance to baseline methods at a fraction of the computational resources.
 \end{enumerate}
 
 
