@@ -267,20 +267,36 @@ Table~\ref{table:searches} shows a few examples of searches.
 
 \subsection{Identifying Events}
 
-In order to identify events, it is necessary to group similar pairs of keywords.
+We make some notes about the data collection methodology. 
 %
-The next step is to identify events from the keywords. 
+Firstly, there is a temporal sensitivity to the methodology. 
 %
-For example, the pairs of keywords \{obama, syria\}, \{russia, g8\}, and
-\{russia, syria\} detected in the same day correspond to the same event (the G8
-summit about Syria on
-2013\footnote{\url{http://rt.com/news/syria-russia-assad-g8-876/}}). 
+For example, one of the keyword pairs obtained as soon the Malaysian airlines
+jet disappeared on 2014 was \{plane,missing\}. 
 %
-On the other hand, a sole pair of keywords could be not enough to identify an
-event. 
+Although this keyword pair does not specifically refer to the Malaysian Airlines
+jet, it is likely that the tweets retrieved from searching for this pair will
+indeed be about the Malaysian Airlines plane that went missing, since the search
+is performed as and when the event breaks out. 
 %
-For that reason, it is necessary to group pairs of keywords (and the
-corresponding tweets) into larger sets to form coherent events. 
+Secondly, Algorithm~\ref{alg:detect_keywords} may return multiple pairs of
+keywords (possibly different pairs) describing the same event. 
+%
+Some pair examples of keywords produced when there was a bomb threat at Harvard
+University in December 2013 were \{harvard, evacuated\}, \{harvard,
+explosives\}, etc. 
+%
+How do we merge the keyword pairs which belong to the same event? 
+%
+In order to address this, we collect all the pairs obtained in the past $24$
+hours, and build a graph with keywords as nodes, and keyword pairs (as obtained
+from Algorithm {\ref{alg:detect_keywords}}) as edges (see
+Figure~\ref{fig:connected-component}). 
+%
+We then discover the connected components of this graph, and treat each
+connected component as an ``event". 
+%
+
 
 
 \begin{table}
@@ -327,11 +343,8 @@ The tweets about the event did not last one hour, but instead several.
 %
 For that reason, it is necessary to group similar pairs of keywords to form
 events.
-
-In our pipeline, we identify events every 24 hours of keyword collection. 
 %
-Using more time results in having big components of unrelated events joined
-together, as we saw empirically.
+See Table~\ref{table:example-events} for example events retrieved.
 
 
 \begin{table}
@@ -359,17 +372,6 @@ together, as we saw empirically.
   2014. The largest event corresponds to the earthquake in Chile. They
   are sorted on the number of keywords.}\label{table:example-events}
 \end{table}
-
-The approach is as follows: join two pairs of keywords if they share a common
-word.
-%
-If each word is seen as a node in a graph, and a pair of keywords represents an
-(undirected) edge, then the events are connected components of the graph (see
-Figure~\ref{fig:connected-component}).
-%
-In Table~\ref{table:example-events} there are some events identified in April
-2nd, 2014. 
-
 
 \begin{figure}
     \centering
@@ -424,11 +426,10 @@ Then the first 5\% of the tweets would be significantly larger than the rest
 95\% in terms of time duration of the event. 
 
 
-
 \subsection{Detecting Articulation Words}
 
-A problem due to the methodology of identifying events is that some events can
-join two unrelated news events together. 
+A problem that arose during the data collection was that, sometimes unrelated
+events were joined together with keywords that was common to both events.  
 %
 This happens when two or more headlines from different events share a common
 keyword. 
@@ -460,9 +461,23 @@ Although we do not know beforehand which words those are.
 We call such words \emph{articulation words} in the sense that if they appear as
 keywords after processing a group of headlines, then when joining the searches
 together, those words would join unrelated events. 
+
+%%
+
+Intuitively, if a word appears in all the documents, then its {\em
+tf-idf}~\cite{sparck1972statistical} score is generally low in all the
+documents.  
 %
-To identify a group of those keywords, we used a modified
-\emph{tf-idf}~\cite{sparck1972statistical} to detect them from the headlines.
+However, if the word appears in very few documents, its statistic in those
+documents is fairly high, indicating that the word is somehow representative of
+the content of the document. 
+%
+It turns out the articulation words do not occur often enough for them to be
+detected by regular \emph{tf-idf}, but do occur enough times for them to falsely
+relate several unrelated events together. 
+%
+To identify a group of those keywords, we used a modified \emph{tf-idf} to
+detect them from the headlines.
 
 The modified version of \emph{tf-idf}, what we refer as \emph{maxtf-idf}, is
 meant to assign more weight to the terms that are frequent in any document. 
@@ -624,6 +639,7 @@ retweet}.
 %
 This could be a problem especially when we want to perform predictions using the
 first part of the data. 
+
 
 \begin{figure}
 \centering
