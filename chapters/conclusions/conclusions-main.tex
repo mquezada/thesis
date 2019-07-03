@@ -1,3 +1,170 @@
-\begin{conclusion}
-	
-\end{conclusion}
+\chapter{Conclusions}
+
+In this dissertation we have proposed different representations of news events
+from social media data.
+%
+Along with each representation, we also implemented some applications, showing
+the effectiveness and usefulness of the representations.
+%
+The summary of contributions is the following:
+
+\paragraph{Model of User Reaction.}
+%
+We proposed an event representation that allows us to model events based on the
+level of activity of users around news events. 
+%
+This model is based on the learned distribution of interarrival rates of social
+media posts.
+%
+Using a dataset of about five thousand news events obtained from Twitter, we
+computed the most frequent interarrival times of tweets, and used them to create
+a vector representation of events based on these rates.
+%
+This means that our model is independent of the scale of the event.
+%
+We characterized the high-activity and low-activity events separately, finding
+statistically significant differences between event types.
+%
+We also showed that other event features, such as the ratio of retweets or the
+amount of words in the messages, are predictors of the level of activity of an
+event, and that this level is very identifiable at early stages of the event.
+%
+The idea behind this representation was to model the impact that events cause in
+the community, unlike notions such as virality, which is applicable to memes or
+units of information, or popularity, which accounts for large-scale events.
+
+\paragraph{Model of Geopolitical Entities.}
+%
+In a similar fashion, we proposed an event representation aiming for another way
+to measure the impact, in this case, based on the locations from where users
+comment on the news, and the locations where the event happened.
+%
+This allows us to explore how different locations are affected by different
+events, and how users from different locations are interested in those events.
+%
+To show the effectiveness of this representation, we made an exploratory
+analysis of a 2-year datasets of news events from Twitter, encompassing about
+25,000 events, showing connections between locations and insights about
+international relations using tweets.
+
+\paragraph{Model for Shared Content.}
+%
+Lastly, we proposed a representation of content of news events, leveraging the
+redundancy of information and the evidence that users share URLs when exposed to
+a news event.
+%
+Our methodology generates a compact representation of events, allowing us to
+perform standard tasks using less data, with similar results.
+%
+We showed how our representation could be used to find sub-topics in events,
+comparing the sub-topics with those obtained by using all the data.
+%
+In our preliminary experiments, we showed that our model yields similar
+clustering metrics compared to the complete data, by using one order of
+magnitude less of vectors.
+
+\todo{yes}
+
+
+\section{Known Limitations}
+
+\todo{yes}
+
+There are several limitations that we consider important to address. 
+%
+In particular, these limitations are not related to our proposed event
+representation, framework and implementation of our applications, but rather to
+the data extraction methodology which depends on external functionalities.
+
+The news event extraction methodology relies on the headlines published by news
+media accounts. 
+%
+This technique provides good precision in terms of reporting events that did in
+fact exist in the real-world, but might omit informative events that did not
+receive media coverage.
+%
+Therefore, the current data extraction approach can fail to retrieve events such
+as citizen movements and other important events that were informed only via
+social networks.  
+%
+In addition, in the current data extraction setup the initial seeds for the
+event collection came from a reduced list of news media accounts, with limited
+country coverage and languages.
+%
+Although the news event dataset likely represents a great majority of the news
+events and related tweets posted on Twitter, the collection will miss the long
+tail of events that had impact in other less represented countries worldwide. 
+%
+We note that there are several ways in which this bias can be mitigated in the
+future, all of them related to replacing external modules in the data input
+phase of the framework.
+
+In addition, we note that although our proposed event representation can be
+considered generalizable to other social media platforms, we have not validated
+it on other sources of information besides Twitter. 
+%
+It is not certain that for other social media platforms we will have enough
+information, regarding user location and data availability, in order to produce
+accurate event representations.
+
+Overall, basic future improvements of our work should consider:
+%
+\begin{itemize}
+\item Implementing automatic event detection techniques for Twitter based on the
+data stream and network properties, as well as more comprehensive microblog
+event extraction approaches.
+
+\item Improving the geolocation tool accuracy. Despite CLAVIN's maturity as a
+geolocation tool, it does not recognize location names in languages other than
+English (even though the documentation of the tool indicates that it does
+recognize alternative location names~\cite{clavin}).
+
+\item Adding finer granularity to the geographical context extractor of our
+system, in order to include more precise administrative divisions such as cities
+and states.
+
+\item Merging events that discuss the same news topic in different languages.
+Recent approaches in cross-language microblogging retrieval
+\cite{Godavarthy2016} can be integrated for news event retrieval within our
+framework.
+\end{itemize}
+
+All of these improvements are however beyond the current scope of our work,
+which focuses on providing proof of the usefulness of the proposed event
+representation. 
+%
+Nevertheless, we are working on improving all of these features in future
+versions of our applications.  
+%
+For example, we have already started the task of providing more fine-grained
+locations for Chile and comprehensive sets of local news sources as in the work
+of Maldonado et al.~\cite{maldonado2015spatio}.
+
+\section{Future Directions}
+
+\todo{yes}
+
+
+In the future we will extend our representation to incorporate higher-level
+temporal properties of events, such as if the event is long-term, punctual or
+recurring, as defined in the work of Tan et al.~\cite{st-model_2009}.
+%
+
+Another interesting line of research for future work is that of studying how
+pairwise similarities between countries evolve over time. 
+%
+This could be useful to automatically discover when new relationships arise and
+when deviations from normal patterns occur.
+
+Finally, we are researching techniques to improve data extraction for news
+events, based on techniques such as those reported by Hasan et
+al.~\cite{doi:10.1177/0165551517698564}, to achieve a better representation of
+different locations, and to improve geolocation. 
+%
+We are also working towards creating automatic summaries of events in social
+media, on how to track and visualize event evolution over time. 
+%
+In particular the relations among protagonist countries that happen as
+consequence of these events, as well as incorporating approaches of
+cross-language information retrieval\cite{grefenstette2012cross} for news event
+recommendations in microblogs.

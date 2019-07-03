@@ -38,35 +38,38 @@ validate our representation.
 
 %We follow a similar approach to Kalyanam et al.~\cite{kalyanam2016prediction}.
 %
-%We collected tweets using the Twitter Search API using selected news accounts as seeds for extracting newsworthy search terms.
+%We collected tweets using the Twitter Search API using selected news accounts
+%as seeds for extracting newsworthy search terms.
 %
-%Given a set of verified news accounts in Twitter (such
-%as BBCNews, CNN, Al Jazeera, etc.), we identify the most common keywords across
-%their tweets published every hour, and then we use those keywords as search
-%terms in the Twitter API.
-%\footnote{The full list of news accounts is listed in \url{https://github.com/mquezada/twitter-event-detection/blob/master/settings.py}}
-% The data collection methodology is as follows. 
+%Given a set of verified news accounts in Twitter (such as BBCNews, CNN, Al
+%Jazeera, etc.), we identify the most common keywords across their tweets
+%published every hour, and then we use those keywords as search terms in the
+%Twitter API. \footnote{The full list of news accounts is listed in
+%\url{https://github.com/mquezada/twitter-event-detection/blob/master/settings.py}}
+%The data collection methodology is as follows. 
 % %
 % Every hour we fetch the latest tweets for each one of the seed accounts. 
 % %
-% Our assumption is that if an important event is happening in a certain moment in
-% time, then several news accounts will be reporting on that event shortly after.
+% Our assumption is that if an important event is happening in a certain moment
+% in time, then several news accounts will be reporting on that event shortly
+% after.
 % %
 % After the removal of stopwords, punctuation, URLs, hashtags, mentions, and
 % converting words to lowercase, we tokenize each headline and find named
 % entities, such as person names, locations, product names, organizations, etc.
 % %
-% This is possible due that the selected accounts generally employ formal language
-% in their tweets. 
+% This is possible due that the selected accounts generally employ formal
+% language in their tweets. 
 % %
 % Then we find common subsets of tokens across the tokenized headlines, using an
 % ad-hoc method resembling frequent itemset mining. 
 % %
 % Finally, from each common subset, we search for more related tweets in the
-% Twitter Search API using the top 3 ranked terms for the next hour until the next
-% batch of keywords is extracted. 
-% The source code of the data collection methodology is
-% available\footnote{\url{https://github.com/mquezada/twitter-event- detection/}}.
+% Twitter Search API using the top 3 ranked terms for the next hour until the
+% next batch of keywords is extracted. The source code of the data collection
+% methodology is
+% available\footnote{\url{https://github.com/mquezada/twitter-event-
+% detection/}}.
 %
 For the case studies, we selected three events from our dataset (see
 Chapter~\ref{chapter:data}). Namely, a terrorist attack (2015 Libya Hotel
