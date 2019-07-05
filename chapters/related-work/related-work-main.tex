@@ -3,4 +3,149 @@
 
 \section{Event Models in Social Media}
 
+Most of the research in social media event analysis has been directed towards
+the creation of event models for specific tasks such as detection, tracking, summarization
+and characterization of events in social media streams. However, not much work has
+been focused on high-level event modeling with context information, such as
+spatio-temporal information.
+
+
+In the work of Kamath et al.~\cite{Kamath:Spatio-temporal:2013}, Twitter
+\emph{hashtags} (i.e., user-generated
+string prefixed by \# that users add to tweets as a way to
+associate it with an event or a topic) were analyzed
+in a large-scale study of the spatio-temporal
+dynamics of {\em memes}. In this work a hashtag was represented
+as a tuple consisting of the coordinates of the hashtag's location over time.
+They used a simple model to find interesting insights about
+the adoption and spread of memes in social media. Memes are information which
+emerges from social networks and spreads in a viral way. However, meme
+dissemination does not necessarily resemble how other types of information
+will propagate, such as information about events that originate outside of the network (i.e., exogenous
+events). Following this motivation, Kalyanam et al.~\cite{10.1371/journal.pone.0166694}
+studied how exogenous events, in this case real-world news, propagate in social media.
+In their work, they modeled news events based on the interarrival time between
+social media posts, without considering any of the geographical information
+associated to the event. Their goal was to model the intensity of the user activity
+that is triggered by a real-world news event. Though, in our current work we also study real-world news using the
+same data extraction technique as Kalyanam et al.~\cite{10.1371/journal.pone.0166694},
+our approach differs in that our event model is not based on the interarrival
+times of tweets, but rather on the geographical context of social
+media information.
+
+In a different type of study, Leetaru~\cite{leetaru2011culturomics}
+performed a large-scale
+analysis of 30
+years of digitized news articles.  The author computed sentiment scores and
+geolocation for each article.  The study indicated that some critical events
+in the past, such as social revolutions, could have been forecasted by
+looking at sentiment scores over time.  In addition, the author performed
+community detection on country graphs by analyzing news in
+which two or more countries were involved.  In this sense, our approach is
+similar, because we model countries in terms of their co-occurrence in news.
+However, our work is focused on automatic information extraction from online
+social streams and on the creation of a more general representation.  We do
+not focus on the analysis of sentiment of edited content from
+formal news media outlets, but
+on the interactions between locations, based on the aggregated reactions and opinions
+of users of social platforms.
+
+There are other approaches for event information modeling, which come from
+the area of automatic text summarization. Chakrabarti and Punera~\cite{ICWSM112885},
+for example, used hidden Markov models to represent sub-events, within a
+broader event that is described using Twitter data. This model identified
+sub-events based on the burstiness of the input data stream and the word
+distribution of the main event. Another approach was presented
+by Quezada and Poblete~\cite{quezada2013understanding}, which focused on automatic
+summarization of multimedia content by using social media posts as surrogate
+text for multimedia documents. A similar approach was used by Alonso et al.~\cite{Alonso:2015:WCW:2740908.2745397},
+which was based on the \emph{social signature} of documents (that is, the set of keywords
+of social media messages that point to a document), to augment the
+document information.
+
+Several other features that have been used for modeling
+events on social media are worth mentioning, such as, users
+involved in an event~\cite{Wang:LeadLine:2012}, the credibility of the information
+that is published~\cite{Castillo:Information:2011}, and latent sentiment of
+content~\cite{Wang:2012:SRT:2390470.2390490}, among others.
+In addition, temporal features for events have been used in tasks such as,
+the detection of events based on the temporal dynamics of their mentions
+in social media~\cite{DBLP:journals/corr/GuilleF15}, and
+also for event categorization~\cite{Ritter:2012:ODE:2339530.2339704}.
+Nevertheless, we do not use those features at this time.
+
+Certain studies focused specifically on the task of detecting events and
+tagging their relevant geolocations.  In particular, some works targeted the
+detection of localized
+events~\cite{Watanabe:Jasmine:2011,Abdelhaq:EvenTweet:2013,Walther:2013fb,Lee:A:2011,Krumm:2015},
+others the detection of global events~\cite{sankaranarayanan:twitterstand:2009},
+and the detection of critical
+events~\cite{Sakaki:Tweet:2013,DeLongueville:2009}.  Dong et
+al.~\cite{Dong2015}, specifically, considered that events had different
+temporal and spatial scales and proposed a multi-scale event detection
+approach for social media.  This approach focuses on detecting and
+reporting events with geolocalization.  Our current approach differs from
+existing work, in that we create an aggregated representation of
+the information about real-world events, producing a high-level
+representation that includes the event's geographical
+context, which is extracted from social media.
+In addition, we enrich the information about an event by
+using the locations of the users that post information about it.
+%
+%In the work of Kamath et al.~\cite{Kamath:Spatio-temporal:2013},
+%already mentioned, the authors examine the spatio-temporal dynamics of
+%hashtags of geo-tagged tweets. 
+%Their work determines three categories for geographical movement;
+%local, regional and worldwide, and three for peak analysis; slow, medium
+%and fast.
+%The authors conclude that physical and geographical distances are
+%a constraint to the movement and adoption of hashtags.
+%However, a hashtag might not represent a real-world event.
+%One problem of these approaches is that they focus
+%in one aspect of the data: either
+%the text generated by users or the geographical distribution
+%of those users, and do not allow to make in depth analysis
+%of this two aspects.
+%In addition, none of them allow to inspect relationships between
+%countries as consequence of real world events.
+
+Wang et al.~\cite{Wang:LeadLine:2012} visualized topics based on the
+extraction of geographical entities from tweet text. They did not use this information to
+establish the location of an event, but rather for event exploration.
+SensePlace2~\cite{MacEachren:SensePlace2:2011} is a Visual Analytics
+tool that allows users to explore a set of tweets and models them by
+showing two geographical types of information: the locations from
+where users discussed the topic and the locations being
+mentioned in tweets. However, unlike our work, this information was only used
+at single tweet level, and not at event level.
+
+In the domain of cyber-physical systems, {\em events} are viewed as
+conditions of interest~\cite{st-model_2009} within a
+cyber-physical system, or as the co-occurrence of two people in the same
+physical place~\cite{STEvent_2010}.  In general, events are modeled
+according to the state of the objects in the system, considering attributes,
+time and location.  The work presented by Tan et al.~\cite{st-model_2009} bears
+certain similarities with our own, in the sense that they considered an event
+to encompasses multiple information about a condition of interest in the system (in our
+case in the online social network), including time and physical
+locations. In addition, the authors defined different kinds of temporal and
+geographical scopes for their events, which are similar to our definition of
+{\em event impact}. The main difference relies in that our approach aims to
+capture
+high-level information of how a complex exogenous event, such as a news
+event, is perceived by social network users in an aggregated way. Therefore,
+we focus on geopolitical divisions as units of aggregated spatial
+information and on representing geopolitical interactions.
+
+Despite that the idea of adding spatio-temporal context to social media data
+is not novel, to the best of our knowledge our work is the first that
+formally introduces {\em protagonist} and {\em interested} locations in a high-level
+event representation.  The novelty of our approach relies on the extension
+of the notion of spatial context, first by associating real-world news to
+one or more protagonist locations, and second by associating real-world news
+to the locations where they generated interest.  In addition, our work does
+not focus on event detection, classification or summarization, as most
+of the prior work on event analysis does.
+
+
 \section{Quantitative Analysis of News Events}
