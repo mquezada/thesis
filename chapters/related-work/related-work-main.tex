@@ -1,151 +1,349 @@
-\chapter{State of the Art}
+\chapter{Related Work}
+
+In this chapter we present the state of the art referring the design and
+development of news event models in social media to perform high-level
+quantitative analysis of events.
+
+%%
+
+High-level quantitative analysis of human-generated content has already been
+approached in the past. 
+%
+{\em Culturomics} is defined as {\em the application of high-throughput data
+collection and analysis to study of human culture}~\cite{Michel176}. 
+%
+The term was first introduced in a {\em Science} article from 2010, where the
+authors studied the contents of about 5 million digitized
+books~\cite{Michel176}. 
+%
+Our focus is concerned to the development of information models in the context
+of news events for studying trends and culture.
+%
+In the sense of information models, Suchanek and
+Preda~\cite{Suchanek:2014:SC:2732977.2732994} proposed the term ``Semantic
+Culturomics,'' or the use of knowledge bases and Semantic Web techniques to give
+structure to human-generated data to obtain new insights.
+%
+On the other hand, Leetaru~\cite{leetaru2011culturomics} proposed the
+application of culturomics to news events, applying standard Natural Language
+Processing techniques to traditional media, finding insights about international
+relations.
+%
+GDELT~\cite{leetaru2013gdelt} is one example of the application of culturomics
+to the traditional news media: it is a collection of news events with
+automatically added metadata, such as locations, sentiment, entities, etc.
+
+%%
+
+In the context of social media, there are scattered attempts to create an
+unified system to collect and annotate events, mainly due to the noisy nature of
+user-contributed messages.
+%
+The presence of irrelevant, redundant, or untrustworthy messages make it
+difficult to have robust models in social media.
+%
+Most of the representations proposed in the literature are tailored to specific
+applications in Information Retrieval, specifically, in Topic Detection and
+Tracking~\cite{allan2012topic} (TDT) tasks.
+%
+On social media, studies on news events have been specific to diverse tasks,
+such as event detection, tracking, prediction, sentiment analysis,
+summarization, and virality. 
+
+In this chapter we review some of these models and applications in social media.
 
 
 \section{Event Models in Social Media}
 
 Most of the research in social media event analysis has been directed towards
-the creation of event models for specific tasks such as detection, tracking, summarization
-and characterization of events in social media streams. However, not much work has
-been focused on high-level event modeling with context information, such as
-spatio-temporal information.
+the creation of event models for specific tasks such as detection, tracking,
+summarization and characterization of events in social media streams. 
+%
+Typically, event information is represented as bag of words, {\em tf-idf}
+vectors~\cite{tfidf,Marcus:2011:TAV:1978942.1978975}, language
+models~\cite{zellers2019neuralfakenews}, probability distributions over
+text~\cite{o2010tweetmotif,Hong:2010:EST:1964858.1964870,zhao2011comparing,Mehrotra:2013:ILT:2484028.2484166},
+or graph
+representations~\cite{Setty:2018:ENE:3209978.3210136,Lee:2013:KSK:2487575.2487711,Lee:2014:CCS:2661829.2661859}.
+%
+Some other works exploit domain-specific features, such as the occurrence of
+hashtags~\cite{Kamath:2013:SDO:2488388.2488447},
+URLs~\cite{Alonso:2015:WCW:2740908.2745397},
+locations~\cite{Abdelhaq:EvenTweet:2013}, or a mixture of them~\cite{castillo2011information}.
+%
+Below we mention different approaches instead of pure representations, as they
+are designed mostly for the target application.
+%
 
 
-In the work of Kamath et al.~\cite{Kamath:Spatio-temporal:2013}, Twitter
-\emph{hashtags} (i.e., user-generated
-string prefixed by \# that users add to tweets as a way to
-associate it with an event or a topic) were analyzed
-in a large-scale study of the spatio-temporal
-dynamics of {\em memes}. In this work a hashtag was represented
-as a tuple consisting of the coordinates of the hashtag's location over time.
-They used a simple model to find interesting insights about
-the adoption and spread of memes in social media. Memes are information which
-emerges from social networks and spreads in a viral way. However, meme
-dissemination does not necessarily resemble how other types of information
-will propagate, such as information about events that originate outside of the network (i.e., exogenous
-events). Following this motivation, Kalyanam et al.~\cite{10.1371/journal.pone.0166694}
-studied how exogenous events, in this case real-world news, propagate in social media.
-In their work, they modeled news events based on the interarrival time between
-social media posts, without considering any of the geographical information
-associated to the event. Their goal was to model the intensity of the user activity
-that is triggered by a real-world news event. Though, in our current work we also study real-world news using the
-same data extraction technique as Kalyanam et al.~\cite{10.1371/journal.pone.0166694},
-our approach differs in that our event model is not based on the interarrival
-times of tweets, but rather on the geographical context of social
-media information.
-
-In a different type of study, Leetaru~\cite{leetaru2011culturomics}
-performed a large-scale
-analysis of 30
-years of digitized news articles.  The author computed sentiment scores and
-geolocation for each article.  The study indicated that some critical events
-in the past, such as social revolutions, could have been forecasted by
-looking at sentiment scores over time.  In addition, the author performed
-community detection on country graphs by analyzing news in
-which two or more countries were involved.  In this sense, our approach is
-similar, because we model countries in terms of their co-occurrence in news.
-However, our work is focused on automatic information extraction from online
-social streams and on the creation of a more general representation.  We do
-not focus on the analysis of sentiment of edited content from
-formal news media outlets, but
-on the interactions between locations, based on the aggregated reactions and opinions
-of users of social platforms.
-
-There are other approaches for event information modeling, which come from
-the area of automatic text summarization. Chakrabarti and Punera~\cite{ICWSM112885},
-for example, used hidden Markov models to represent sub-events, within a
-broader event that is described using Twitter data. This model identified
-sub-events based on the burstiness of the input data stream and the word
-distribution of the main event. Another approach was presented
-by Quezada and Poblete~\cite{quezada2013understanding}, which focused on automatic
-summarization of multimedia content by using social media posts as surrogate
-text for multimedia documents. A similar approach was used by Alonso et al.~\cite{Alonso:2015:WCW:2740908.2745397},
-which was based on the \emph{social signature} of documents (that is, the set of keywords
-of social media messages that point to a document), to augment the
-document information.
-
-Several other features that have been used for modeling
-events on social media are worth mentioning, such as, users
-involved in an event~\cite{Wang:LeadLine:2012}, the credibility of the information
-that is published~\cite{Castillo:Information:2011}, and latent sentiment of
-content~\cite{Wang:2012:SRT:2390470.2390490}, among others.
-In addition, temporal features for events have been used in tasks such as,
-the detection of events based on the temporal dynamics of their mentions
-in social media~\cite{DBLP:journals/corr/GuilleF15}, and
-also for event categorization~\cite{Ritter:2012:ODE:2339530.2339704}.
-Nevertheless, we do not use those features at this time.
-
-Certain studies focused specifically on the task of detecting events and
-tagging their relevant geolocations.  In particular, some works targeted the
-detection of localized
+\paragraph{Event Detection.} 
+%
+The goal of event detection on social media is to identify coherent
+time-constrained topics from the content that is continuously being published.
+%
+The majority of the methods for event detection on Twitter rely on frequency
+analysis, semantic analysis, graph modeling, machine learning methods, or a
+mixture of them.
+%
+For example, the work of Sakaki et al.~\cite{Sakaki2010} attempts to develop a
+system for earthquake detection using Twitter.
+%
+The authors design a classifier to detect if a tweet is talking about an
+earthquake or not, using several features related to time, location, and
+information difussion between users.
+%
+Another example is the work of Poblete et al.~\cite{poblete2018robust}, which
+detects changes in tweet volume to detect earthquakes.
+%
+TwitInfo~\cite{Marcus:2011:TAV:1978942.1978975} is a system to detect events on
+Twitter, based on a set of features, such as content (bag of words and tf-idf
+vectorization), sentiment values, and time (detecting peaks in tweet volume).
+%
+Semantic methods involve the study of the relationship between n-grams in the
+text to detect topics or events, such as the work of Cai et
+al.~\cite{cai2015popular}, which relies in topic models (such as Latent
+Dirichlet Allocation, or LDA, and its variants) to detect events.
+%
+Graph modeling approaches attempt to create a graph representation of messages
+and then find appropiate sub-graphs that resembles events, such as the work of
+Lee et al.~\cite{Lee:2013:KSK:2487575.2487711,Lee:2014:CCS:2661829.2661859}.
+%
+Machine learning methods, such as clustering and classification, are also used
+to detect events.
+%
+Becker et al.~\cite{Becker:2010:LSM:1718487.1718524} proposed an incremental
+clustering approach that groups messages if they are similar above a threshold.
+%
+This threshold is set empirically, but the features used for similarity are fine
+tuned for the application.
+%
+TwitterStand~\cite{Sankaranarayanan:2009:TNT:1653771.1653781} is a system
+designed using similar principles as the previous work mentioned.
+%
+Certain studies focused specifically on the task of detecting events and tagging
+their relevant geolocations.  
+%
+In particular, some works targeted the detection of localized
 events~\cite{Watanabe:Jasmine:2011,Abdelhaq:EvenTweet:2013,Walther:2013fb,Lee:A:2011,Krumm:2015},
 others the detection of global events~\cite{sankaranarayanan:twitterstand:2009},
 and the detection of critical
-events~\cite{Sakaki:Tweet:2013,DeLongueville:2009}.  Dong et
-al.~\cite{Dong2015}, specifically, considered that events had different
-temporal and spatial scales and proposed a multi-scale event detection
-approach for social media.  This approach focuses on detecting and
-reporting events with geolocalization.  Our current approach differs from
-existing work, in that we create an aggregated representation of
-the information about real-world events, producing a high-level
-representation that includes the event's geographical
-context, which is extracted from social media.
-In addition, we enrich the information about an event by
-using the locations of the users that post information about it.
+events~\cite{Sakaki:Tweet:2013,DeLongueville:2009}.
 %
-%In the work of Kamath et al.~\cite{Kamath:Spatio-temporal:2013},
-%already mentioned, the authors examine the spatio-temporal dynamics of
-%hashtags of geo-tagged tweets. 
-%Their work determines three categories for geographical movement;
-%local, regional and worldwide, and three for peak analysis; slow, medium
-%and fast.
-%The authors conclude that physical and geographical distances are
-%a constraint to the movement and adoption of hashtags.
-%However, a hashtag might not represent a real-world event.
-%One problem of these approaches is that they focus
-%in one aspect of the data: either
-%the text generated by users or the geographical distribution
-%of those users, and do not allow to make in depth analysis
-%of this two aspects.
-%In addition, none of them allow to inspect relationships between
-%countries as consequence of real world events.
+Dong et al.~\cite{Dong2015}, specifically, considered that events had different
+temporal and spatial scales and proposed a multi-scale event detection approach
+for social media.
+%
+This approach focuses on detecting and reporting events with geolocalization.
+%
+Another approach is to use information extraction techniques to identify named
+entities, location names, etc. from Twitter
+data~\cite{Ritter:2012:ODE:2339530.2339704}.
+%
+Temporal features for events have been used in tasks such as the detection of
+events based on the temporal dynamics of their mentions in social
+media~\cite{guille2015event}, and also for event
+categorization~\cite{Ritter:2012:ODE:2339530.2339704}. 
+%
+The task in mind in this case is to perform event linking, that is, to match the
+same news from different sources.
+%
+A survey of event detection methods on Twitter can be found
+in~\cite{hasan2018survey}.
 
-Wang et al.~\cite{Wang:LeadLine:2012} visualized topics based on the
-extraction of geographical entities from tweet text. They did not use this information to
-establish the location of an event, but rather for event exploration.
-SensePlace2~\cite{MacEachren:SensePlace2:2011} is a Visual Analytics
-tool that allows users to explore a set of tweets and models them by
-showing two geographical types of information: the locations from
-where users discussed the topic and the locations being
-mentioned in tweets. However, unlike our work, this information was only used
-at single tweet level, and not at event level.
 
-In the domain of cyber-physical systems, {\em events} are viewed as
-conditions of interest~\cite{st-model_2009} within a
-cyber-physical system, or as the co-occurrence of two people in the same
-physical place~\cite{STEvent_2010}.  In general, events are modeled
-according to the state of the objects in the system, considering attributes,
-time and location.  The work presented by Tan et al.~\cite{st-model_2009} bears
-certain similarities with our own, in the sense that they considered an event
-to encompasses multiple information about a condition of interest in the system (in our
-case in the online social network), including time and physical
-locations. In addition, the authors defined different kinds of temporal and
-geographical scopes for their events, which are similar to our definition of
-{\em event impact}. The main difference relies in that our approach aims to
-capture
-high-level information of how a complex exogenous event, such as a news
-event, is perceived by social network users in an aggregated way. Therefore,
-we focus on geopolitical divisions as units of aggregated spatial
-information and on representing geopolitical interactions.
 
-Despite that the idea of adding spatio-temporal context to social media data
-is not novel, to the best of our knowledge our work is the first that
-formally introduces {\em protagonist} and {\em interested} locations in a high-level
-event representation.  The novelty of our approach relies on the extension
-of the notion of spatial context, first by associating real-world news to
-one or more protagonist locations, and second by associating real-world news
-to the locations where they generated interest.  In addition, our work does
-not focus on event detection, classification or summarization, as most
-of the prior work on event analysis does.
+\paragraph{Event Summarization.} 
+%
+Event summarization methods aim to reduce the amount of information in events,
+by fulfilling certain criteria, such as relevance (the summary has to be relevant
+to the event), diversity or coverage (the same aspects of the event must be
+present in the summary), conciseness (to be human readable), and so on.
+%
+In this case, current methods attempt to select the most relevant pieces of
+content in order to create a summary\footnote{This is known as {\em extractive
+summarization}, as opposed to {\em abstractive summarization}, which creates its
+own description of the event, not necessarily using content already in the
+data.}, by identifying relevant aspects of the event and then selecting the most
+important pieces of content.
+%
+Chakrabarti and Punera~\cite{chakrabarti2011event}, for example, used hidden
+Markov models to represent sub-events, within a broader event that is described
+using Twitter data. 
+%
+This model identified the corresponding time-windows when something relevant
+happened, and then using standard cosine similarity over the tf-idf vectors to
+extract the most relevant tweets.
+%
+Similarly, Alsaedi et al.~\cite{alsaedi2016temporal} proposed a way to process
+large amounts of data by splitting the dataset into time-framed segments, and
+then summarizing each frame using a tf-idf based approach.
+%
+Another approach was presented in a previous
+work~\cite{quezada2013understanding}, which focused on automatic summarization
+of multimedia content by using social media posts as surrogate text for
+multimedia documents.
+%
+A similar approach was used by Alonso et
+al.~\cite{Alonso:2015:WCW:2740908.2745397}, which was based on the \emph{social
+signature} of documents (that is, the set of keywords of social media messages
+that point to a document), to augment the document information.
+%
+MGraph~\cite{schinas2016mgraph} was designed to detect topics on images and text
+simultaneously from Twitter event data, and extracting the most important posts
+and images to create a summary.
+%
+The authors represented posts and images as a similarity graph and then ranked
+the most relevant pieces of content.
+%
+Likewise, Xu and Lu~\cite{Xu:2015:SBP:2678025.2701385} represented Tumblr posts
+as a graph and then ranked the posts in order to extract a summary.
+%
+Bian et al.~\cite{bian2014multimedia} represented events using graphical models
+with textual and visual features of text and images from Sina Weibo,
+respectively.
+%
+Similarly, the output of their model is the set of relevant images and texts,
+which fulfill their criteria.
+
+\paragraph{Exploratory Analyses and Systems.}
+%
+In the work of Kamath et al.~\cite{Kamath:2013:SDO:2488388.2488447}, the authors
+analyzed Twitter \emph{hashtags} in a large-scale study of the spatio-temporal
+dynamics of {\em memes}, or ``units'' of information. 
+%
+In this work, a hashtag was represented as a tuple consisting of the coordinates
+of the hashtag's location over time. 
+%
+They used a simple model to find interesting insights about the adoption and
+spread of memes in social media. 
+%
+Memes are information which emerges from social networks and spreads in a viral
+way. 
+%
+However, meme dissemination does not necessarily resemble how other types of
+information will propagate, such as information about events that originate
+outside of the network (i.e., exogenous events), or that originate from
+different sources at the same time.
+%
+Saravanou et al.~\cite{Saravanou:Twitter:2015} identified areas of interest
+after floods in the UK using tweets, by clustering messages based on their
+geographical coordinates and then selecting the most relevant messages from the
+most dense areas.
+%
+Alonso et al.~\cite{Alonso:2017:WHH:3091478.3091484} designed a system for
+exploring popular trends. 
+%
+The authors represented collections of tweets as diffussion trees, by
+aggregating tweets by shared URLs and then computing popularity metrics of each
+tree, and finally presenting the most relevant URLs with corresponding tweets.
+%
+Wang et al.~\cite{Wang:LeadLine:2012} visualized topics based on the extraction
+of geographical entities from tweet text. 
+%
+They did not use this information to establish the location of an event, but
+rather for event exploration.
+%
+SensePlace2~\cite{MacEachren:SensePlace2:2011} is a Visual Analytics tool that
+allows users to explore a set of tweets and models them by showing two
+geographical types of information: the locations from where users discussed the
+topic and the locations being mentioned in tweets. 
+%
+However, this information was only used at single tweet level.
+
+
+\paragraph{Social Media and News Media.}
+%
+Related work has also approached the analysis of social media data to support or
+improve news delivery. 
+%
+For example, \v{S}tajner et al.~\cite{Stajner:2013:ASS:2487575.2487659} proposed
+an optimization problem to select the most interesting response to a news
+article, where responses are tweets.
+%
+Diakopoulos et
+al.~\cite{Diakopoulos:2012:FAS:2207676.2208409,diakopoulos2010diamonds} designed
+a system to explore news events with journalists as the target users.
+%
+The authors propose different features as they deemed relevant for their use
+case: relevance, uniqueness, sentiment, verity, etc. 
+%
+The study of the spread of rumors, ``fake news'' and the veracity of content is
+a very active field to the date of this dissertation.
+%
+One of the first studies tackling this problem is the work of Castillo et
+al.~\cite{castillo2011information}, where the authors investigate the
+characteristics of rumors as they spread in Twitter, and developed a classifier
+using several content, network, and user-based features.
+
 
 
 \section{Quantitative Analysis of News Events}
+
+In a different type of study, Leetaru~\cite{leetaru2011culturomics} performed a
+large-scale analysis of 30 years of digitized news articles.  
+%
+The author computed sentiment scores and geolocation for each article.
+%
+The study indicated that some critical events in the past, such as social
+revolutions, could have been forecasted by looking at sentiment scores over
+time.
+%
+In addition, the author performed community detection on country graphs by
+analyzing news in which two or more countries were involved.  
+%
+In this sense, our approach is similar, because we model countries in terms of
+their co-occurrence in news. 
+%
+However, our work is focused on automatic information extraction from online
+social streams and on the creation of a more general representation.  
+%
+We do not focus on the analysis of sentiment of edited content from formal news
+media outlets, but on the interactions between locations, based on the
+aggregated reactions and opinions of users of social platforms.
+%
+
+Castillo et al.~\cite{Castillo:2014} studied the traffic
+that online news sources receive in response to news, finding two types of news
+articles, based on their ``shelf-life'' in social media responses. 
+%
+Their findings are similar to ours when analyzing the characteristics of
+high-activity events in Chapter~\ref{chapter:high-activity}.
+
+
+In the domain of cyber-physical systems, {\em events} are viewed as conditions
+of interest~\cite{st-model_2009} within a cyber-physical system, or as the
+co-occurrence of two people in the same physical place~\cite{STEvent_2010}.
+%
+In general, events are modeled according to the state of the objects in the
+system, considering attributes, time and location.
+%
+The work presented by Tan et al.~\cite{st-model_2009} bears certain similarities
+with our own, in the sense that they considered an event to encompasses multiple
+information about a condition of interest in the system (in our case in the
+online social network), including time and physical locations. 
+%
+In addition, the authors defined different kinds of temporal and geographical
+scopes for their events, which are similar to our definition of {\em event
+impact}. 
+%
+The main difference relies in that our approach aims to capture high-level
+information of how a complex exogenous event, such as a news event, is perceived
+by social network users in an aggregated way. 
+%
+Therefore, we focus on geopolitical divisions as units of aggregated spatial
+information and on representing geopolitical interactions.
+
+The work of Setty and Hose~\cite{Setty:2018:ENE:3209978.3210136} aims to create
+a common representation of events based on neural embeddings, on a procedure
+similar to Node2Vec~\cite{Grover:2016:NSF:2939672.2939754}.
+%
+A general representation of events is useful to perform high-level quantitative
+analysis, as it is flexible enough for arbitrary events.
+%
+However, it suffers from interpretability, as it is very difficult to determine
+the underlying factors that produced certain representation.
+%
+Sellam and Alonso~\cite{10.1007/978-3-319-19890-3_17} designed a system for
+information extraction from news events on Twitter that extracts quantitative
+data from events, such as dates, numbers, entities, etc.
+%
