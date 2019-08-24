@@ -2,21 +2,28 @@
 \chapter{Background}
 \label{chapter:background}
 
-In this chapter, we introduce some of the techniques we use in the following
-chapters. 
+In this chapter, we describe the particularities of Twitter, and introduce some
+of the techniques we use in the following chapters. 
 %
 In particular, we describe a form of supervised learning, classification, and of
 unsupervised learning, clustering.
 %
-We also describe the use of {\em word embeddings}, in particular, the modern use
-of neural network-based word embeddings, such as {\em word2vec} and {\em
+We also describe the use of {\em word embeddings}, in particular, the current
+usage of neural network-based word embeddings, such as {\em word2vec} and {\em
 fastText}.
 
 \section{Twitter and Social Media}
 
+In this section, we briefly describe Twitter: how it works, its social
+capabilities and the relevant endpoints of its API to retrieve newsworthy
+messages.
+
+\subsection*{Twitter platform}
+
 As mentioned in the Introduction, the collective of information published in
 Internet-based applications, such as microblogging platforms, blogs, wikis,
 etc., is called {\em social media}~\cite{kaplan2010users}.
+
 
 We used the microblogging service Twitter~\cite{twitter} as our data source and
 platform of study.
@@ -39,11 +46,11 @@ the platform.
 Social interaction between users in Twitter can occur not only from the follower
 relation, but by the content of the messages.
 %
-A user can {\em mention} another user by pre-pending her username with a {\tt
-@}, and this mention is notified to the mentioned user.
+A user can {\em mention} another user in a tweet by prepending her username with
+a {\tt @} symbol.
 %
-A {\em retweet} is the action of forwarding a message from an arbitrary user to
-the current user's followers.
+A {\em retweet} is the action of forwarding a message from a user to the current
+user's followers.
 %
 A {\em quote} is a retweet with an additional message from the user commiting
 the action.
@@ -51,8 +58,58 @@ the action.
 Additionaly, tweets can be {\em replied} and this action creates a {\em thread}
 that can be explored in the interface.
 %
-There are several ways for users to interact in Twitter, making it show its
-social capabilities.
+These ways to interact show the social aspect of Twitter.
+
+\subsection{Twitter API}
+
+Anyone with a Twitter account can sign up for a developer account and use the
+Twitter API. The API allows users to retrieve publicly available information,
+such as public tweets and public Twitter profiles.
+
+To retrieve tweets, there are two main endpoints in the API. They are described
+below.
+
+\begin{itemize}
+    \item {\bf Standard Search API}\footnote{\raggedright See
+    \url{https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets.html}
+    (Accessed: August 24, 2019)}. 
+    %
+    This endpoint allows us to retrieve tweets given search terms.
+    %
+    According to Twitter, this endpoint is ``{\em focused on relevance and not
+    completeness}'', meaning that it is not an exhaustive search and will not
+    retrieve all the available tweets relevant to a query. 
+    %
+    Another aspect of this endpoint is that it is supported to return at most 7
+    days old tweets, but in some cases we observed that it returned even older
+    tweets.
+    %
+    Furthermore, as the original tweet is included when the retrieved tweet is a
+    retweet, we can obtain information about much older tweets this way.
+
+    \item {\bf Filter realtime Tweets}\footnote{\raggedright Previously called
+    {\em Streaming API}. See
+    \url{https://developer.twitter.com/en/docs/tweets/filter-realtime/api-reference/post-statuses-filter.html}
+    (Accessed: August 24, 2019)}.
+    %
+    This endpoint allows us to retrieve tweets in real time by filtering the
+    stream by certain keywords.
+    %
+    It was previously documented to retrieve at most 1\% of the original stream
+    (or the full stream if there are no more than a certain amount of tweets
+    relevant to the query at a certain moment).
+    %
+    However, the distribution of tweets do not always match to the distribution
+    of the {\em Firehose}\footnote{Now renamed to {\em PowerTrack API}. See
+    \url{https://developer.twitter.com/en/docs/tweets/filter-realtime/overview/powertrack-api.html}
+    (Accessed: August 24, 2019)} (the full stream of tweets), as with some
+    filters the distributions differed
+    significantly~\cite{morstatter2013sample}.
+    
+\end{itemize}
+
+In this work, in particular described in Chapter~\ref{chapter:data}, we use the
+Standard Search API to retrieve the tweets used in the following chapters.
 
 
 
