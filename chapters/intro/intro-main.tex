@@ -26,7 +26,6 @@ such as microblogging platforms, blogs, wikis, etc., is what is called {\em
 social media}~\cite{kaplan2010users}.
 
 %%
-
 % CONTENT IN SM
 
 Content in social media is multimodal. 
@@ -197,7 +196,7 @@ This yields to new problems and challenges when studying social media.
 
 % PROPOSAL
 
-\section*{Proposal}
+\section{Objectives}
 
 In this dissertation, we tackle the problem of {\em extracting useful knowledge}
 from events on social media. 
@@ -249,7 +248,6 @@ three perspectives:
 
 
 % OBJETIVES
-\section*{Objectives}
 
 Our main objective is to define event representations through different data
 aggregations to perform quantitative analysis of news events on social media.
@@ -280,6 +278,7 @@ real-world events, from the perspectives described above.
 %%
 
 % WHY TWITTER
+\section{Why Twitter?} 
 
 We chose Twitter as our data source for this work. 
 %
@@ -304,6 +303,7 @@ content, as opposed to Facebook's ``What's in your mind?''
 Therefore we think that Twitter is a suitable platform for this type of work.
 
 % UTILITY
+\section{Applications}
 
 The study of news events on social media has several applications in the
 proposed setting. 
@@ -338,7 +338,7 @@ as to perform comparative historical research~\cite{wiki:comparative}.
 
 %%
 
-\section*{Thesis statement} 
+\section{Thesis statement} 
 %
 This dissertation defines flexible models for events on the social
 networking platform Twitter. 
@@ -370,7 +370,7 @@ high-level quantitative analyses of news events.
 %\todo[inline]{statement of purpose}
 
 
-\section*{Challenges} 
+\section{Challenges} 
 
 We identify three main challenges for this work:
 
@@ -439,13 +439,13 @@ We identify three main challenges for this work:
 \end{itemize}
 
 
-\section*{Contributions} 
+\section{Contributions} 
 
 There are four main contributions in this dissertation:
 
 \begin{enumerate}
 \item A novel event representation based on user activity triggered by news
-events on Twitter. 
+events on Twitter (Chapter~\ref{chapter:high-activity}). 
 %
 This representation allows us to rank events into different levels of activity. 
 %
@@ -456,13 +456,15 @@ We show that it is possible to {\em predict} early on the level of activity of
 an event using aggregated post features.
 
 \item A spatio-temporal representation based on the location where an event
-happens, and the locations the users commenting on the news are from.
+happens, and the locations the users commenting on the news are from
+(Chapter~\ref{chapter:geopolitical}).
 %
 With this type of representation, we can compare events and locations based on
 different factors, and track the evolution of an event based on the locations
 involved in it.
 
-\item A lightweight representation of content based on shared URLs.
+\item A lightweight representation of content based on shared URLs
+(Chapter~\ref{chapter:url}).
 %
 We aggregate event-related posts based on common relevant URLs, retweets and
 replies, generating a compact representation of an event.
@@ -474,7 +476,8 @@ At the same time, we observed that with our representation we can achieve
 comparable clustering results, with a fraction of running time and memory
 required.
 
-\item An event collection methodology based on {\em seed news outlets}.
+\item An event collection methodology based on {\em seed news outlets}
+(Chapter~\ref{chapter:data}).
 %
 Given a set of news outlets, every hour we extract the most relevant keywords
 from their headlines and use them to retrieve relevant tweets from regular
