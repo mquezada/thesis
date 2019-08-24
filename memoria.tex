@@ -29,7 +29,7 @@
 % line numbers 
 \usepackage[switch]{lineno}
 \renewcommand{\linenumberfont}{\normalfont\scriptsize\color{red}}
-\linenumbers
+%\linenumbers
 
 % algorithms
 \usepackage{algorithmic}
@@ -62,10 +62,10 @@
 
 \depto{Departamento de Ciencias de la Computación}
 \author{Mauricio Daniel Quezada Veas}
-\title{KNOWLEDGE DISCOVERY FROM NEWS EVENTS ON TWITTER}
+\title{\bf KNOWLEDGE DISCOVERY FROM NEWS EVENTS ON TWITTER}
 \auspicio{\break CONICYT PCHA/Doctorado Nacional 2015/21151445 y \break por el Instituto Milenio de Fundamentos de los Datos, IMFD}
-\date{Julio 2019}
-\guia{BÁRBARA POBLETE}
+\date{Septiembre 2019}
+\guia{BÁRBARA POBLETE LABRA}
 \carrera{Doctor en Ciencias, Mención Computación}
 \memoria{Tesis para optar al Grado de \break  Doctor en Ciencias, Mención Computación}
 \comision{AIDAN HOGAN \break MARCELO MENDOZA \break BRIAN D. DAVISON}
@@ -83,37 +83,49 @@
 \begin{abstract} 
 
     %\todo[inline]{revisar el abstract}
-    Online activity involves the consumption and production of event-related
-    content. 
+    Online activity on social media involves the consumption and production of
+    news event-related content. 
     %
     There are about 500 million Twitter messages published every day, and
     according to surveys, 59\% of its users use the platform as a way to get the
     news. 
     %
     Its high rate of production of multimodal content (text, images, and videos)
-    necessitates having flexible models to understand the dynamics of
-    the information disseminated on social media. 
+    necessitates having flexible models to understand the dynamics of the
+    information disseminated on social media. 
     %
     This thesis proposes the creation of context models from user-generated
     messages on Twitter to discover knowledge as a way to perform high-level
     quantitative analysis of news events. 
     %
-    These models are useful in three perspectives: the
-    spatio-temporal context in which the events develop, the activity of users
-    that react when a high-impact event happens, and the multimodal content that
-    can be exploited to generate a comprehensive summary of the event. 
+    The proposed models are useful in three perspectives: the activity of users
+    that react when an event happens, the spatio-temporal context in which the
+    events develop, and the content aggregations that can be exploited to
+    generate a comprehensive representation of the event. 
     %
-    Our current work involves the creation of a geopolitical model that relates
-    events and countries, allowing us to discover international relations; 
+    For this work, we collected a dataset of news-related tweets dating from
+    2013 to 2015, encompassing twenty thousand events, and almost two hundred
+    million tweets.
     %
-    the study of what features make an event susceptible to provoke high
-    activity from users, and a characterization that allows us to predict with
-    high precision which events are going to produce high activity. 
+    The first perspective concerns the study of what characteristics of news
+    events disseminated in social media provoke high levels of activity of its
+    users, showing that it is possible to identify with high precision these
+    kinds of events.
     %
-    This includes our ongoing work on generating automatic multimodal summaries
-    of events based on the assumption that the users describe the non-textual
-    content in their tweets when they express their facts and opinions around
-    events.
+    Then, the development of a spatio-temporal context representation of events
+    allows us to characterize geopolitical entities (e.g., countries) according
+    to the news, and we observe that we can study international relations based
+    on the news discussed on social media.
+    %
+    Finally, we propose an event representation based on common shared content,
+    such as URLs: this representation allows us to represent sub-topics, or
+    aspects, of the event by aggregating posts, and this process is
+    substantially faster than using individual posts, and this process yields
+    similar quality metrics.
+    %
+    These different event representations are useful, novel, and effective to
+    perform high-level quantitative analysis of news events.
+
 \end{abstract}
 
 %\begin{dedicatoria} % opcional
@@ -147,6 +159,6 @@
 
 \include{chapters/appendices/appendices-main} % opcionales
 
-\listoftodos[Notes]  % TODO QUITAR ESTA LISTA !
+%\listoftodos[Notes]  % TODO QUITAR ESTA LISTA !
 
 \end{document}
