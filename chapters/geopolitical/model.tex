@@ -10,9 +10,9 @@ relations among locations.
 
 \subsection{Event Representation Definition}\label{sec:model_definition}
 
-We represent an event as a complex information unit that encompasses all of the
-available social media content associated with a certain news topic, as well as
-its aggregated spatial and geographical information.
+We extend our previous definition of an event to a complex information unit that
+encompasses all of the available social media content associated with a certain
+news topic, as well as its aggregated spatial and geographical information.
 %
 %Events are represented
 %as: i) the set of {\em keywords} that describe a particular news topic,
@@ -281,7 +281,7 @@ Precision and recall were estimated based on a manual assessment of the
 protagonist locations of those events. 
 %
 Based on this variation $\alpha$ can be set as the value that provides the best
-tradeoff between $F_1$ and recall ($\alpha = 19\%$ in our experiment).
+trade-off between $F_1$ and recall ($\alpha = 19\%$ in our experiment).
 
 In addition, if $E$ has only one location $l$, we require that this location is
 mentioned a minimum percentage of tweets, which we define as $\beta$. This ratio
@@ -332,14 +332,14 @@ of our framework:
 
 \item{\bf Input:} 
 %
-This module requires two subparts, the {\em ``news event extractor''} and the
+This module requires two sub-parts, the {\em ``news event extractor''} and the
 {\em ``geographical context extractor''}.
 %
     \begin{enumerate}
     %
     \item{\em News event extractor:} 
     %
-    This submodule must output groups of tweets, where each group of tweets $T$
+    This sub-module must output groups of tweets, where each group of tweets $T$
     should represent a cohesive news topic $E$.  
     %
     In particular, most of the tweets in the set $T$ of an event $E$ must be on
@@ -350,7 +350,7 @@ This module requires two subparts, the {\em ``news event extractor''} and the
 
     \item{\em Geographical context extractor:} 
     %
-    This submodule associates spatial context to each tweet in $T$ of each event
+    This sub-module associates spatial context to each tweet in $T$ of each event
     $E$ produced by the ``news event extractor'' module. 
     %
     Therefore, it must provide the geographical locations of the places
@@ -360,8 +360,8 @@ This module requires two subparts, the {\em ``news event extractor''} and the
     %
     This module must locate the majority of the tweets in $E$ correctly (i.e.,
     with good precision) based on GPS coordinates and/or textual content, so
-    that locations mentioned in tweets can be geotagged, and users can be
-    geotagged as well (users can set their location using GPS coordinates or by
+    that locations mentioned in tweets can be geo-tagged, and users can be
+    geo-tagged as well (users can set their location using GPS coordinates or by
     using natural text).
 
     \end{enumerate}
@@ -414,15 +414,15 @@ We create a methodology for extracting the protagonist and interested locations,
 as well as their frequency for an event $E$ with a set of tweets $T$.  
 %
 The {\em toponym} (i.e., location name) extraction and resolution phases are
-carried out using the off-the-shelf geoparser, CLAVIN~\cite{clavin}. 
+carried out using the off-the-shelf geo-parser, CLAVIN~\cite{clavin}. 
 %
 However, since tweets are short and do not provide much context for toponym
-disambiguation, our methodology boosts the performance of the geoparser by
+disambiguation, our methodology boosts the performance of the geo-parser by
 adding context from other tweets in $E$.
 
 As detailed in Section~\ref{sec:geo:model}, this methodology relies in a ratio
 named $\alpha$ which we empirically set to $19\%$ as that which provides the
-best tradeoff between F1 and recall, according to Figure~\ref{fig:eval}. 
+best trade-off between F1 and recall, according to Figure~\ref{fig:eval}. 
 %
 This is, a location must have at least $19\%$ of the mentions of the most
 frequent location of an event, to be considered as part of that event as well.

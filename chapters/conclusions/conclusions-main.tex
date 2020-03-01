@@ -11,13 +11,13 @@ the effectiveness and usefulness of the representations.
 \paragraph{Model of User Reaction.}
 %
 We proposed an event representation that allows us to model events based on the
-level of activity of users around news events. 
+level of activity of users in relation to news events. 
 %
-This model is based on the learned distribution of interarrival rates of social
+This model is based on the learned distribution of inter-arrival rates of social
 media posts.
 %
 Using a dataset of about five thousand news events obtained from Twitter, we
-computed the most frequent interarrival times of tweets, and used them to create
+computed the most frequent inter-arrival times of tweets, and used them to create
 a vector representation of events based on these rates.
 %
 This means that our model is independent of the scale of the event.
@@ -36,8 +36,9 @@ units of information, or popularity, which accounts for large-scale events.
 \paragraph{Model of Spatio-Temporal Context.}
 %
 In a similar fashion, we proposed an event representation aiming for another way
-to measure the impact, in this case, based on the locations from where users
-comment on the news, and the locations where the event happened.
+to measure the impact of the occurrence, in this case, based on the locations
+from where users comment on the news, and the locations where the event
+happened.
 %
 This allows us to explore how different locations are affected by different
 events, and how users from different locations are interested in those events.
@@ -78,7 +79,7 @@ On the other hand, the modeling of the spatio-temporal context allows us to
 infer new relationships between geopolitical entities (e.g., countries) using
 social media data.
 %
-At long term, it can serve as a repository of historical data for further
+In the long run it can serve as a repository of historical data for further
 analysis of political or societal trends\footnote{Consider, for example, the
 applications to Comparative Historical Research.
 \url{https://en.wikipedia.org/wiki/Comparative_historical_research} (Accessed:
@@ -88,19 +89,19 @@ Finally, we showed a preliminary study of the potential of aggregating
 information based on shared content, in this case about shared URLs.
 %
 The ability of posts to preserve topical information when aggregated by the same
-shared URLs can be useful to, for instance, generate automatic summaries of
-events, contributing to the posibility of storing this information for posterior
+shared URLs can be useful to, for instance, to generate automatic summaries of
+events, contributing to the possibility of storing this information for posterior
 analyses.
 
 
 
 
-\section{Future Directions}
+\section{Limitations and Future Directions}
 
-Future work involves dealing with some of the limitations of our work, such as
+Future work involves some of the limitations of our work, such as
 the quality of our data collection methodology, the capabilities of our models
-to be transferable to other social media platforms beside Twitter, and the steps
-we need to perform in order to deal with biased data.
+to be transferable to other social media platforms besides Twitter, and the steps
+we need to perform to deal with biased data.
 
 \subsection*{Data Collection}
 % DATA
@@ -137,7 +138,7 @@ Recent approaches in cross-language microblogging retrieval
 \cite{Godavarthy2016} can be integrated for news event retrieval within our
 framework.
 %
-Also, we will consider the posibility of incorporating higher-level temporal
+Also, we will consider the possibility of incorporating higher-level temporal
 properties of events, such as if the event is long-term, punctual or recurring,
 as defined in the work of Tan et al.~\cite{st-model_2009}.
 
@@ -159,21 +160,21 @@ the same shared URLs?
 
 \subsection*{Veracity and Ethics}
 %
-Having more data or the posibility to explore different platforms involve other
+Having more data or the possibility to explore different platforms involve other
 problems, such as the veracity of the information.
 %
 In this work we did not tackle this issue, assuming that all the events in our
 dataset are trustworthy.
 %
-This problem raised an entire line of research in the last years.
+This problem raised an entire line of research over recent years.
 %
 Similar to this problem is the bias in the social platforms and the gathered
 data.
 %
 We already performed some data normalization (e.g., in
 Chapter~\ref{chapter:geopolitical}, we normalized the amount of messages in
-order to avoid certain countries to be overrepresented), however, there are
-implicit biases or biases that are dependant on demographic information, such as
+order to avoid certain countries to be over-represented), however, there are
+implicit biases or biases that are dependent on demographic information, such as
 age or gender~\cite{Graells-Garrido:2019:RAD:3292522.3326057}.
 %
 No platform is representative of the population, hence we need to incorporate a

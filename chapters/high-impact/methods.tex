@@ -1,5 +1,6 @@
 \section{The VQ-Event Model}
  
+\todo[inline]{mover esto a chap 4}
 We define an {\bf event} as a conglomerate of information that encompasses all
 of the social media content related to a real-world news occurrence. 
 %
@@ -16,8 +17,8 @@ collectively assigned to the event by groups of independent individuals
 \cite{barabasi2005origin, karsai2012universal}. 
 
 We characterize an event's discrete activity dynamics by using
-\emph{interarrival times} between consecutive social media messages within an
-event (e.g., $d_i = t_{i+1}-t_i$, where $d_i$ denotes the interarrival time
+\emph{inter-arrival times} between consecutive social media messages within an
+event (e.g., $d_i = t_{i+1}-t_i$, where $d_i$ denotes the inter-arrival time
 between two consecutive social media messages $i$ and $i+1$ that arrived in
 moments $t_i$ and $t_{i+1}$, respectively).
 
@@ -27,31 +28,31 @@ moments $t_i$ and $t_{i+1}$, respectively).
 % ``VQ-event model''}. 
 % %
 We introduce a novel vectorial representation based on a vector quantization of
-the interarrival time distribution, which we call ``VQ-event model". 
+the inter-arrival time distribution, which we call ``VQ-event model". 
 %
 This model is designed to filter events based on the distribution of the
-interarrival times between consecutive messages.  
+inter-arrival times between consecutive messages.  
 %
-The most representative interarrival times are learned from a large training
+The most representative inter-arrival times are learned from a large training
 corpus. 
 %
-This approach is inspired by the {\em codebook-based representation} from the
+This approach is inspired by the {\em code-book-based representation} from the
 field of multimedia content analysis, which has been used in audio processing
 and computer vision~\cite{ff,Vaizman}.
 %
 In our proposed approach, our method learns a set of the most representative
-interarrival times from a large training corpus of events; 
+inter-arrival times from a large training corpus of events; 
 %
-each one of the representative interarrival times is known as a {\em codeword}
-and the complete learned set is known as the {\em codebook}~\cite{Vaizman}. 
+each one of the representative inter-arrival times is known as a {\em codeword}
+and the complete learned set is known as the {\em code-book}~\cite{Vaizman}. 
 %
 Each event is then modeled using a vector quantization (VQ) that converts the
-interarrival times of an event into a discrete set of values, each value
-corresponding to the closest codeword in the codebook. 
+inter-arrival times of an event into a discrete set of values, each value
+corresponding to the closest codeword in the code-book. 
 %
 The resulting VQ-event model is then a vector in which each dimension contains
-the percentage of interarrival times of the event that were assigned a
-particular codeword in the codebook.
+the percentage of inter-arrival times of the event that were assigned a
+particular codeword in the code-book.
 
 %%
 
@@ -59,13 +60,13 @@ The VQ-event representation is relative to an event's overall size since the
 model is normalized with respect to the number of messages in the event.
 %
 Therefore the only criteria that are considered in the model are the
-interarrival times of each particular event. 
+inter-arrival times of each particular event. 
 %
 This model allows us to group events based on the {\em similarity of the
-distribution} of their interarrival times. 
+distribution} of their inter-arrival times. 
 %
 In those terms, we consider as high-activity events those events for which the
-distribution of interarrival times is most heavily skewed towards the smallest
+distribution of inter-arrival times is most heavily skewed towards the smallest
 possible interval, zero. 
 %
 In other words, events for which the overall activity is extremely intense in
@@ -85,46 +86,46 @@ the messages are posts from users about the event.
 
 %%\mathit{i}
 
-To learn the most representative interarrival times we perform the following:
+To learn the most representative inter-arrival times we perform the following:
 %
 for each $\mathit{e} \in \mathcal{E}$ with messages $\mathcal{M}_\mathit{e} =
 \lbrack m_{1}^\mathit{e}, m_{2}^\mathit{e}, \ldots m_{n}^\mathit{e} \rbrack$ and
 their corresponding time-stamps $\lbrack t_{1}^\mathit{e}, t_{2}^\mathit{e},
 \ldots t_{n}^\mathit{e} \rbrack$ where $t_{\mathit{i}} \leq t_{\mathit{i}+1}
-\forall \mathit{i} \in [1,n]$, we compute all the interarrival times
+\forall \mathit{i} \in [1,n]$, we compute all the inter-arrival times
 $d_{\mathit{i}}^\mathit{e} =
 t_{\mathit{i}}^\mathit{e}-t_{\mathit{i}-1}^\mathit{e}$ (the value of $t_{0}$ is
 considered equal to $t_{1}$ for initialization purposes). 
 %
 Then, the values of $d_{\mathit{i}}^\mathit{e}$ for all events in $\mathcal{E}$
-are clustered to identify the {\em most representative} interarrival times.
+are clustered to identify the {\em most representative} inter-arrival times.
 
 %%
 
-Once the most representative interarrival times have been learned, the vector
-quantizations for each event is produced as follows: 
+Once the most representative inter-arrival times have been learned, the vector
+quantization for each event is produced as follows: 
 %
-for each event, obtain all the interarrival times, and quantize each of the
-interarrival times to the closest codeword in the codebook.  
+for each event, obtain all the inter-arrival times, and quantize each of the
+inter-arrival times to the closest codeword in the code-book.  
 %
 This process is summarized in Algorithm~\ref{alg:learn_representation}.
 %
-Line~\ref{alg:line:all_time_diff} collects all of the interarrival times for all
+Line~\ref{alg:line:all_time_diff} collects all of the inter-arrival times for all
 the events in $\mathcal{E}$ in \textbf{f}. 
 %
 Line~\ref{alg:line:cluster} is a clustering algorithm which takes \textbf{f} and
 the number of clusters $k$ as inputs and returns the centroids of the clusters
 as the output in \textbf{c}. 
 %
-The centroids can be thought of as the most representative interarrival times
+The centroids can be thought of as the most representative inter-arrival times
 for the event set $\mathcal{E}$. 
 %
-After that, the interarrival times of each event $e$ is vector quantized in
+After that, the inter-arrival times of each event $e$ is vector quantized in
 terms of the centroids to obtain a $k$-dimensional real valued representation of
 the event (Line~\ref{alg:line:vq}). 
 %
 In this representation, each entry is the percentage of messages with that
-particular codeword as the interarrival time.
+particular codeword as the inter-arrival time.
 
 \begin{algorithm}
   \caption{{\scshape Learn-VQ-Representation}$(\mathcal{E}, k)$}
@@ -163,7 +164,7 @@ particular codeword as the interarrival time.
 To illustrate events with different levels of intensity in activity we present
 two examples taken from our analysis of Twitter data. 
 %
-These examples show the interarrival time histograms for the entire lifecycle of
+These examples show the inter-arrival time histograms for the entire life-cycle of
 the two events. 
 %
 In the first example, the majority of the messages about the death of political
@@ -175,7 +176,7 @@ On the contrary, the messages about The Oscars
 
 %%
 
-We note that, by using interarrival times to describe the intensity of the
+We note that, by using inter-arrival times to describe the intensity of the
 activity of an event, we make our analysis independent of the particular
 evolution of each event. 
 %

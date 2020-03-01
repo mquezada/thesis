@@ -18,7 +18,6 @@
  
 % spacing
 \usepackage{setspace}
-%\doublespacing
 
 % colors
 \usepackage{xcolor}
@@ -64,7 +63,7 @@
 \author{Mauricio Daniel Quezada Veas}
 \title{\bf KNOWLEDGE DISCOVERY FROM NEWS EVENTS ON TWITTER}
 \auspicio{\break CONICYT PCHA/Doctorado Nacional 2015/21151445 y \break por el Instituto Milenio de Fundamentos de los Datos, IMFD}
-\date{Septiembre 2019}
+\date{Marzo 2020}
 \guia{BÁRBARA POBLETE LABRA}
 \carrera{Doctor en Ciencias, Mención Computación}
 \memoria{Tesis para optar al Grado de \break  Doctor en Ciencias, Mención Computación}
@@ -87,42 +86,59 @@
     news event-related content. 
     %
     There are about 500 million Twitter messages published every day, and
-    according to surveys, 59\% of its users use the platform as a way to get the
+    according to surveys, 59\% of its users use the platform as a way to obtain
     news. 
     %
-    Its high rate of production of multimodal content (text, images, and videos)
-    necessitates having flexible models to understand the dynamics of the
+    The high rate at which users produce multimodal content (text, images, and
+    videos) requires flexible models to understand the dynamics of the
     information disseminated on social media. 
     %
-    This thesis proposes the creation of context models from user-generated
-    messages on Twitter to discover knowledge as a way to perform high-level
+    This thesis proposes the creation of context-aware models of events based on
+    from user-generated content in social networks.
+    %
+    The goal of these models is to provide a means to perform high-level
     quantitative analysis of news events. 
     %
-    The proposed models are useful in three perspectives: the activity of users
-    that react when an event happens, the spatio-temporal context in which the
-    events develop, and the content aggregations that can be exploited to
-    generate a comprehensive representation of the event. 
+    The proposed models are designed from three perspectives: 
+    %
+    (1) the activity of users that react to an event when it happens, 
+    %
+    (2) the spatio-temporal context in which events develop, and 
+    %
+    (3) the content aggregations that can be exploited to generate a
+    comprehensive representation of an event. 
     %
     For this work, we collected a dataset of news-related tweets dating from
-    2013 to 2015, encompassing twenty thousand events, and almost two hundred
-    million tweets.
+    2013 to 2015, encompassing twenty thousand events, corresponding to about
+    two hundred million tweets.
     %
-    The first perspective concerns the study of what characteristics of news
-    events disseminated in social media provoke high levels of activity of its
-    users, showing that it is possible to identify with high precision these
-    kinds of events.
+
     %
-    Then, the development of a spatio-temporal context representation of events
-    allows us to characterize geopolitical entities (e.g., countries) according
-    to the news, and we observe that we can study international relations based
-    on the news discussed on social media.
+    First, we observe that events have particular characteristics based on user
+    activity, and these characteristics are quite distinguishable at the early
+    stages of their outbreak.
     %
-    Finally, we propose an event representation based on common shared content,
-    such as URLs: this representation allows us to represent sub-topics, or
-    aspects, of the event by aggregating posts, and this process is
-    substantially faster than using individual posts, and this process yields
-    similar quality metrics.
+    We present an event representation model based on user activity,
+    characterize events based on different levels of activity, and show that it
+    is possible to predict with high precision the level of activity an event
+    would have by using aggregated event features.
+    % 
+    Second, we then develop a spatio-temporal representation of events based on
+    geopolitical entities (e.g., countries).
     %
+    We characterize events based on the countries related to them, and show that
+    this representation allows us to portray real-world relationships between
+    countries based on social media content.
+    %
+    Finally, we study content features of events and introduce a lightweight
+    representation of events based on common URLs shared in social media
+    messages.
+    %
+    We suggest that aggregating content based on shared URLs allows us to
+    identify event topics efficiently, without losing considerable content
+    quality.
+    %
+    \todo{reescribir}
     These different event representations are useful, novel, and effective to
     perform high-level quantitative analysis of news events.
 
@@ -159,6 +175,6 @@
 
 \include{chapters/appendices/appendices-main} % opcionales
 
-%\listoftodos[Notes]  % TODO QUITAR ESTA LISTA !
+\listoftodos[Notes]  % TODO QUITAR ESTA LISTA !
 
 \end{document}

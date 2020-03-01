@@ -1,9 +1,8 @@
-
 \chapter{Background}
 \label{chapter:background}
 
-In this chapter, we describe the particularities of Twitter, and introduce some
-of the techniques we use in the following chapters. 
+In this chapter, we describe the particularities of Twitter, and introduce
+relevant techniques used in this thesis.
 %
 In particular, we describe a form of supervised learning, classification, and of
 unsupervised learning, clustering.
@@ -28,35 +27,35 @@ etc., is called {\em social media}~\cite{kaplan2010users}.
 We used the microblogging service Twitter~\cite{twitter} as our data source and
 platform of study.
 %
-Twitter is a service that let users publish short 280-character messages, called
-{\em tweets}, which are broadcasted to the user's {\em followers}.
+Twitter is a service that lets users publish short 280-character messages, called
+{\em tweets}, which are broadcast to the user's {\em followers}.
 %
 A follower is simply another user of the platform, who can subscribe to other
 users (to follow them), and see their tweets in an interface called the {\em
 timeline}.
 %
 The timeline is a list of tweets; the timeline was originally displayed in
-anti-chronological order, that is, the newest tweets were shown at the
+reverse-chronological order, that is, the newest tweets were shown at the
 beginning.
 %
 Currently, the timeline uses a custom ordering based on the user
-characteristics, with the objective of encourage the user to interact more with
-the platform.
+characteristics, with the objective of encouraging the user to interact more
+with the platform.
 
 Social interaction between users in Twitter can occur not only from the follower
 relation, but by the content of the messages.
 %
-A user can {\em mention} another user in a tweet by prepending her username with
-a {\tt @} symbol.
+A user can {\em mention} another user in a tweet by prepending their username
+with a {\tt @} symbol.
 %
 A {\em retweet} is the action of forwarding a message from a user to the current
 user's followers.
 %
-A {\em quote} is a retweet with an additional message from the user commiting
+A {\em quote} is a retweet with an additional message from the user committing
 the action.
 %
-Additionaly, tweets can be {\em replied} and this action creates a {\em thread}
-that can be explored in the interface.
+Additionally, tweets can be {\em replied to} and this action creates a {\em
+thread} that can be explored in the interface.
 %
 These ways to interact show the social aspect of Twitter.
 
@@ -76,18 +75,18 @@ below.
     %
     This endpoint allows us to retrieve tweets given search terms.
     %
-    According to Twitter, this endpoint is ``{\em focused on relevance and not
+    According to Twitter, this endpoint focuses ``{\em on relevance and not
     completeness}'', meaning that it is not an exhaustive search and will not
     retrieve all the available tweets relevant to a query. 
     %
-    Another aspect of this endpoint is that it is supported to return at most 7
-    days old tweets, but in some cases we observed that it returned even older
+    Another aspect of this endpoint is that it is supported to return at most
+    7-day old tweets, but in some cases we observed that it returned even older
     tweets.
     %
     Furthermore, as the original tweet is included when the retrieved tweet is a
     retweet, we can obtain information about much older tweets this way.
 
-    \item {\bf Filter realtime Tweets}\footnote{\raggedright Previously called
+    \item {\bf Filter real-time Tweets}\footnote{\raggedright Previously called
     {\em Streaming API}. See
     \url{https://developer.twitter.com/en/docs/tweets/filter-realtime/api-reference/post-statuses-filter.html}
     (Accessed: August 24, 2019)}.
@@ -95,31 +94,31 @@ below.
     This endpoint allows us to retrieve tweets in real time by filtering the
     stream by certain keywords.
     %
-    It was previously documented to retrieve at most 1\% of the original stream
-    (or the full stream if there are no more than a certain amount of tweets
-    relevant to the query at a certain moment).
+    In the previous version of the API, Twitter stated that this endpoint
+    retrieves at most 1\% of the full, complete stream.
     %
-    However, the distribution of tweets do not always match to the distribution
-    of the {\em Firehose}\footnote{Now renamed to {\em PowerTrack API}. See
+    However, the tweets do not always match those distributed by the full
+    stream, called the {\em PowerTrack API}\footnote{Previously called the {\em
+    Firehose}. See
     \url{https://developer.twitter.com/en/docs/tweets/filter-realtime/overview/powertrack-api.html}
-    (Accessed: August 24, 2019)} (the full stream of tweets), as with some
-    filters the distributions differed
-    significantly~\cite{morstatter2013sample}.
+    (Accessed: August 24, 2019)}, as with some filters the distributions
+    differed significantly~\cite{morstatter2013sample}.
     
 \end{itemize}
 
-In this work, in particular described in Chapter~\ref{chapter:data}, we use the
-Standard Search API to retrieve the tweets used in the following chapters.
+In particular, Chapter~\ref{chapter:data} describes how we use the Standard
+Search API to retrieve the tweets used in the following chapters.
 
 
 
 \section{Supervised learning: Classification}
+\todo[inline]{ser explicito con las fuentes}
 
-The basic premise of learning from data is the use of a set of observations to
-uncover an underlying process~\cite{Abu-Mostafa:2012:LD:2207825}. 
+The basic premise of learning from data lies in the use of a set of observations
+to uncover an underlying process~\cite{Abu-Mostafa:2012:LD:2207825}. 
 %
-More formally, a way to see this is finding a function that optimizes certain
-score, based on the available data. 
+More formally, a way to see this is by finding a function that optimizes a
+certain score based on the available data. 
 %
 This function can be seen as an approximation of the real, unknown function
 that describes the process that generates the data.
@@ -130,13 +129,13 @@ When the {\em training data} (the available data) contains explicit examples of
 what the correct output should be, then we are within the supervised learning
 setting.
 %
-In this setting, classification is the process to assign a certain {\em label}
-to an observation, or data point, in order to categorize it into a certain class
+In this setting, classification is the process of assigning a certain {\em label}
+to an observation or data point, in order to categorize it into a certain class
 or category.
 %
-A {\em classifier} is a particular instance of the process, which can be {\em
-trained} from a set of previously labeled observations in order to set its
-appropiate parameters.
+A {\em classifier} is a particular instance of this process, and a classifier
+can be {\em trained} from a set of previously labeled observations to set its
+appropriate parameters.
 %
 The output of a classifier applied to an observation is the label corresponding
 to that observation (Figure~\ref{background:fig:clf-ex}).
@@ -148,9 +147,9 @@ tries to approximate to the {\em real} function $f$.
 A {\em binary classifier} is a function restricted to only two labels, $h:
 \mathcal{D} \rightarrow \{0, 1\}$.
 %
-The training process of a classifier corresponds to find a function $h$ from a
-{\em hypothesis set} $\mathcal{H}$ which contains all possible functions based
-on the selected {\em model}.
+The training process of a classifier corresponds to finding a function $h$ from
+a {\em hypothesis set} $\mathcal{H}$, which contains all possible functions
+based on the selected {\em model}.
 %
 For example, $\mathcal{H}$ would be all quadratic functions $h(x) = ax^2 + bx +
 c$, and the goal is to find the correct set of parameters $(a, b, c)$ that make
@@ -167,7 +166,7 @@ There are models that estimate bounds for which the in-sample error can
 approximate the out-of-sample error.
 %
 In the binary setting, the Vapnik–Chervonenkis (VC) dimension~\cite{Vapnik2015}
-is an estimation on how well a function $h$ from a hypothesis set can fit a set
+is an estimation of how well a function $h$ from a hypothesis set can fit a set
 of data points, based on the characteristics of $\mathcal{H}$ and the number of
 data points.
 
@@ -247,7 +246,7 @@ the change is small, a fixed number of times, when the error is small enough, or
 a combination of the above.
 %
 The magnitude of the movement is given by the parameter $\eta$, or {\em learning
-rate} which is usually a fixed value.
+rate}, usually a fixed value.
 
 \paragraph{Evaluation strategies.}
 
@@ -273,15 +272,15 @@ $E_{\text{out}}(\vect{h})$ is given by the test set.
 
 %%
 
-Another common technique used to reduce the uncertainty and making use of all
-the available data is {\em cross-validation}.
+Another common technique is to reduce the uncertainty by making use of all the
+available data. One of the methods to do so is called {\em cross-validation}.
 %
 Cross-validation splits the data set into $k$ folds, training with the data
 resulting from appending $k-1$ folds and testing with the remainder, and the
 repeating the process using another fold to test.
 %
-This reduces the variance of the estimates and is useful to estimate the
-hyperparameters instead of an unique validation set.
+This reduces the variance of the estimates and is useful for estimating the
+hyperparameters instead of a unique validation set.
 
 %%
 
@@ -295,12 +294,12 @@ observations.
     \text{Accuracy} = \frac{\text{\#(correctly\ classified\ observations)}}{N}
 \end{equation}
 
-Where $N$ is the total amoun of observations being classified.
+Where $N$ is the total amount of observations being classified.
 
 Accuracy does not account for an imbalance in the class distribution.
 %
 For example, when there are two classes, and they are split into 99\% class $0$
-and 1\% class $1$, then it is easy to obtain an accuracy of $0.99$ by
+and 1\% class $1$, it is then easy to obtain an accuracy of $0.99$ by
 classifying everything as class $0$.
 %
 The notion of {\em Precision} and {\em Recall} take into account two types of
@@ -377,8 +376,8 @@ recall, against the {\em false positive rate} or $(1 - \mathit{specificity})$.
 The false positive rate is given by $\cFP/(\cFP + \cTN)$.
 %
 The true positive and false positive rates are computed based on different
-threholds imposed to the decision boundary of a classifier, for example, at the
-threshold of a logistic regression classifier when deciding if an observations
+thresholds imposed on the decision boundary of a classifier, for example, at the
+threshold of a logistic regression classifier when deciding if an observation
 belongs to one or the other class.
 
 
@@ -494,33 +493,33 @@ this is equivalent to the assignment not changing.
 (v) terminate when the decrease of SSE falls below a certain threshold, meaning
 that we are close to convergence.
 %
-A common strategy is to combine criterions, such as a maximum number of
-iterations, a threhold on the value or decreasing rate of SSE, etc.
+A common strategy is to combine criteria, such as a maximum number of
+iterations, a threshold on the value or decreasing rate of SSE, etc.
 
 \item {\bf How to choose the initial seeds.} 
 %
-Effective heuristics for chosing the initial seeds include:
+Effective heuristics for choosing the initial seeds include:
 %
 (i) excluding outliers from the seed set;
 %
 (ii) trying multiple starting points and choosing the best clustering (in terms
 of SSE);
 %
-(iii) obtain the seeds from another methods, such as hierarchical clustering.
+(iii) obtain the seeds from other methods, such as hierarchical clustering.
 
 \item {\bf Selecting the number of clusters $K$.}
 %
-One of the most popular heuristics to choose the number of clusters $K$ on
-K-Means, when there is no previously conception of what the number should be, is
-as follows.
+The following is one of the most popular heuristics to choose the number of
+clusters $K$ on K-Means, when there is no previous conception of what the
+number should be.
 %
 For every value of $K$ in a chosen range, compute K-Means $t$ times (e.g. $t =
 10$), each with a different initialization of seeds, and take the minimum value
 of SSE of the $t$ runs.
 %
-Then, we can inspect the values of SSE for every $K$ and find the ``knee'' or
+We can then inspect the values of SSE for every $K$ and find the ``knee'' or
 ``elbow'' in the curve: the point where successive decreases in SSE become
-noticeable smaller.
+noticeably smaller.
 %
 This is known as the {\em elbow method} for selecting the number of clusters.
 %
@@ -534,13 +533,13 @@ The criterion uses a weighting factor $\lambda$ on the number of clusters: $K =
 %
 This is similar to the regularization factor in classification.
 %
-The value of $\lambda$ can be derived empirically or use a value that was being
+The value of $\lambda$ can be derived empirically or by use of a value being
 shown to be effective in the domain of study.
 \end{itemize}
 
 \paragraph{Evaluation of clustering.} 
 %
-Criterions on clustering quality involve two perspectives: internal and external
+Criteria on clustering quality involve two perspectives: internal and external
 evaluation.
 %
 Internal evaluation assesses the characteristics that objective functions in
@@ -549,7 +548,7 @@ within a cluster are similar), and low inter-clustering similarity (elements
 from different clusters are dissimilar).
 %
 On the other hand, when we have a {\em gold standard}, or a set of classes
-corresponding to the ``real'' clusters, we can perform external evaluation, by
+corresponding to the ``real'' clusters, we can perform an external evaluation by
 comparing our clustering solution to the gold standard.
 
 %%
@@ -558,7 +557,7 @@ In the case of K-Means, the value of the SSE is itself an internal criterion,
 because we are validating our solution in terms of the intra-cluster similarity.
 %
 One can use both intra and inter-cluster similarity to judge the quality of the
-clustering. There are other measures, such as the Silhouette
+clustering. There are other measures such as the Silhouette
 value~\cite{rousseeuw1987silhouettes}, and the Davies-Bouldin
 index~\cite{davies1979cluster}.
 
@@ -594,10 +593,10 @@ observation.
 
 %%
 
-To make a tradeoff between the number of clusters and the quality of the
+To make a trade-off between the number of clusters and the quality of the
 clustering solution, we can use normalized mutual information, or NMI.
 %
-NMI is defined as follow:
+NMI is defined as follows:
 
 $$ \text{NMI}(\Omega, \mathbb{C}) = \frac{I(\Omega; \mathbb{C})}{[H(\Omega) + H(\mathbb{C})]/2} $$
 
@@ -660,9 +659,9 @@ considered a True Positive (TP).
 A pair of dissimilar observations assigned to different clusters is a True
 Negative (TN).
 %
-Likewise, two similar observations in different clusters correspons to a False
-Negative (FN), and two dissimilar observations in the same cluster a False
-Positive (FP).
+Likewise, two similar observations in different clusters corresponds to a False
+Negative (FN), and two dissimilar observations in the same cluster correspond to
+a False Positive (FP).
 %
 The Rand Index (RI) measures the percentage of correct decisions, or just the
 accuracy.
@@ -674,20 +673,20 @@ accuracy.
 From this representation we can define the equivalent to precision, recall, and
 F-score.
 
-\section{Neural Network-based Word Embeddings}
+\section{Neural Network-based Language Models}
 
 A {\em language model} defines a probability distribution over sequences of
 tokens in a natural language.
 %
-Neural Language Models, or NLMs, are a class of language models designed to
+Neural Language Models are a class of language models designed to
 overcome the {\em curse of dimensionality} problem for modeling natural language
 sequences by using a distributed representation of words.
 %
-NMLs are able to recognize that two words are similar without losing the ability
-to encode each word as distinct from the other.
+Neural Language Models are able to recognize that two words are similar without
+losing the ability to encode each word as distinct from the other.
 %
-NMLs also share statistical strength between one word (and its context) and
-other similar words and contexts.
+Neural Language Models also share statistical strength between one word (and its
+context) and other similar words and contexts.
 %
 The distributed representation the model learns for each word enables this
 sharing by allowing the model to treat words that have features in common
@@ -701,7 +700,7 @@ and vice versa.
 The curse of dimensionality requires the model to generalize to a number of
 sentences that is exponential in the sentence length.
 %
-The model conters this curse by relating each training sentence to an
+The model counters this problem by relating each training sentence to an
 exponential number of similar sentences.
 
 %%
@@ -741,7 +740,7 @@ $$ \sum_{t=1}^T\sum_{c\in \mathcal{C}_t} \log P(w_c | w_t) $$
 words surrounding $w_t$. 
 %
 The probability of observing a context word $w_c$ given $w_t$ will be
-parametrized using the word vectors.
+parameterized using the word vectors.
 
 %%
 
@@ -772,7 +771,7 @@ We will describe negative sampling briefly.
 The problem of predicting context words can be framed as a set of independent
 binary classification tasks.
 %
-Then the goal is to predict the presence or the absence of context words. 
+The goal is then to predict the presence or the absence of context words. 
 %
 For the word at position $t$ we consider all context words as positive examples,
 and sample negative examples at random from the vocabulary.
@@ -790,14 +789,14 @@ can rewrite the objective function as:
 
 $$\sum_{t=1}^T \Big[ \sum_{c\in\mathcal{C}_t} \ell(s(w_t, w_c)) + \sum_{n\in\mathcal{N}_{t,c}}\ell(-s(w_t, n))\Big]$$
 
-Finally, the scoring function $s$ can be parametrized using the word vectors. 
+Finally, the scoring function $s$ can be parameterized using the word vectors. 
 %
 For each word $w$ we define two vectors $\vect{u}_w$ and $\vect{v}_w$.
 %
-These two vectors are sometimes referred as {\em input} and {\em output}
+These two vectors are sometimes referred to as {\em input} and {\em output}
 vectors, respectively.
 %
-Then the score is computed as the scalar product between the vectors as $s(w_t,
+The score is then computed as the scalar product between the vectors as $s(w_t,
 w_c) = \vect{u}^\text{T}_{w_t}\vect{v}_{w_c}$.
 %
 This model is the skipgram model with negative sampling, introduced by Mikolov
@@ -808,9 +807,9 @@ et al.~\cite{mikolov2013distributed}.
 By using a distinct vector representation for each word, the skipgram model
 ignores the internal structure of words. 
 %
-Some languages, such as French or Spanish, which contains several cases for
+Some languages, such as French or Spanish, which contain several cases for
 verbs or nouns, contain many word forms that occur rarely in the training
-corpus, making it difficutlt to learn good word representations.
+corpus, making it difficult to learn good word representations.
 %
 In the case of Twitter, the vocabulary is very large due to the usage of
 uncommon or rare words (misspellings, new words, abbreviations, etc.).

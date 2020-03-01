@@ -1,4 +1,6 @@
 \chapter{Related Work}
+\todo[inline]{dar contexto y cual es el criterio de unificacion de los trabajos, como se organiza el capitulo}
+
 
 In this chapter we present the state of the art referring the design and
 development of news event models in social media to perform high-level
@@ -16,7 +18,7 @@ The term was first introduced in a {\em Science} article from 2010, where the
 authors studied the contents of about 5 million digitized
 books~\cite{Michel176}. 
 %
-Our focus is concerned to the development of information models in the context
+Our focus is on the development of information models in the context
 of news events for studying trends and culture.
 %
 In the sense of information models, Suchanek and
@@ -55,7 +57,7 @@ In this chapter we review some of these models and applications in social media.
 
 \section{Event Models in Social Media}
 
-Most of the research in social media event analysis has been directed towards
+Most of the research in social media event analysis has been focused on
 the creation of event models for specific tasks such as detection, tracking,
 summarization and characterization of events in social media streams. 
 %
@@ -90,7 +92,7 @@ system for earthquake detection using Twitter.
 %
 The authors design a classifier to detect if a tweet is talking about an
 earthquake or not, using several features related to time, location, and
-information difussion between users.
+information diffusion between users.
 %
 Another example is the work of Poblete et al.~\cite{poblete2018robust}, which
 detects changes in tweet volume to detect earthquakes.
@@ -104,8 +106,8 @@ text to detect topics or events, such as the work of Cai et
 al.~\cite{cai2015popular}, which relies in topic models (such as Latent
 Dirichlet Allocation, or LDA, and its variants) to detect events.
 %
-Graph modeling approaches attempt to create a graph representation of messages
-and then find appropiate sub-graphs that resembles events, such as the work of
+Graph modeling approaches attempt to a graph representation of messages
+and then find appropriate sub-graphs that resemble events, such as the work of
 Lee et al.~\cite{Lee:2013:KSK:2487575.2487711,Lee:2014:CCS:2661829.2661859}.
 %
 Machine learning methods, such as clustering and classification, are also used
@@ -114,14 +116,14 @@ to detect events.
 Becker et al.~\cite{Becker:2010:LSM:1718487.1718524} proposed an incremental
 clustering approach that groups messages if they are similar above a threshold.
 %
-This threshold is set empirically, but the features used for similarity are fine
-tuned for the application.
+This threshold is set empirically, but the features used for similarity are
+fine-tuned for the application.
 %
 TwitterStand~\cite{Sankaranarayanan:2009:TNT:1653771.1653781} is a system
 designed using similar principles as the previous work mentioned.
 %
 Certain studies focused specifically on the task of detecting events and tagging
-their relevant geolocations.  
+their relevant geo-locations.  
 %
 In particular, some works targeted the detection of localized
 events~\cite{Watanabe:Jasmine:2011,Abdelhaq:EvenTweet:2013,Walther:2013fb,Lee:A:2011,Krumm:2015},
@@ -133,7 +135,7 @@ Dong et al.~\cite{Dong2015}, specifically, considered that events had different
 temporal and spatial scales and proposed a multi-scale event detection approach
 for social media.
 %
-This approach focuses on detecting and reporting events with geolocalization.
+This approach detects and reports events with geo-localization.
 %
 Another approach is to use information extraction techniques to identify named
 entities, location names, etc. from Twitter
@@ -233,7 +235,7 @@ most dense areas.
 Alonso et al.~\cite{Alonso:2017:WHH:3091478.3091484} designed a system for
 exploring popular trends. 
 %
-The authors represented collections of tweets as diffussion trees, by
+The authors represented collections of tweets as diffusion trees, by
 aggregating tweets by shared URLs and then computing popularity metrics of each
 tree, and finally presenting the most relevant URLs with corresponding tweets.
 %
@@ -270,10 +272,10 @@ case: relevance, uniqueness, sentiment, verity, etc.
 The study of the spread of rumors, ``fake news'' and the veracity of content is
 a very active field to the date of this dissertation.
 %
-One of the first studies tackling this problem is the work of Castillo et
-al.~\cite{castillo2011information}, where the authors investigate the
-characteristics of rumors as they spread in Twitter, and developed a classifier
-using several content, network, and user-based features.
+The work of Castillo et al.~\cite{castillo2011information} if one of the first
+approaches to this problem, where the authors investigate the characteristics of
+rumors as they spread in Twitter, and developed a classifier using several
+content, network, and user-based features.
 
 
 
@@ -282,10 +284,10 @@ using several content, network, and user-based features.
 In a different type of study, Leetaru~\cite{leetaru2011culturomics} performed a
 large-scale analysis of 30 years of digitized news articles.  
 %
-The author computed sentiment scores and geolocation for each article.
+The author computed sentiment scores and geo-location for each article.
 %
 The study indicated that some critical events in the past, such as social
-revolutions, could have been forecasted by looking at sentiment scores over
+revolutions, could have been forecastle by looking at sentiment scores over
 time.
 %
 In addition, the author performed community detection on country graphs by
@@ -326,11 +328,11 @@ In addition, the authors defined different kinds of temporal and geographical
 scopes for their events, which are similar to our definition of {\em event
 impact}. 
 %
-The main difference relies in that our approach aims to capture high-level
+The main difference lies in that our approach aims to capture high-level
 information of how a complex exogenous event, such as a news event, is perceived
 by social network users in an aggregated way. 
 %
-Therefore, we focus on geopolitical divisions as units of aggregated spatial
+We therefore focus on geopolitical divisions as units of aggregated spatial
 information and on representing geopolitical interactions.
 
 The work of Setty and Hose~\cite{Setty:2018:ENE:3209978.3210136} aims to create

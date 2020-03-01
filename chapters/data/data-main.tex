@@ -1,8 +1,12 @@
 \chapter{Data Collection Methodology}
 \label{chapter:data}  
 
+The goal of our work is to study real-world phenomena through social media.
+%
+Hence, we focus on the creation of a comprehensive event collection.
+%
 Our methodology consists in gathering tweets and then identifying coherent
-events. 
+real-world events. 
 %
 We use the Twitter Application Programming Interface~\cite{twitterapi}, or also
 {\em Twitter API}, to retrieve tweets from Twitter. 
@@ -10,7 +14,7 @@ We use the Twitter Application Programming Interface~\cite{twitterapi}, or also
 The data collection methodology resembles related work on identifying content
 for planned events~\cite{Becker:2012}.
 %
-The main idea is to aim for high precision by retrieving news by trusted
+The main idea is to aim for high precision by retrieving news from trusted
 sources, and then aiming for high recall by retrieving content from users about
 the obtained news events from the trusted sources.
 %
@@ -57,7 +61,7 @@ Finally, we grouped some of these sets into {\em events}.
 
 The Twitter API~\cite{twitterapi} provides an interface to retrieve tweets in an
 automated manner. For building a dataset of news events, it is necessary to
-somehow identify events from the Twitter stream.
+identify events from the Twitter stream.
 
 Essentially, there are two ways to retrieve tweets from Twitter: using the
 {\em Streaming API}, or the {\em REST API}. 
@@ -66,7 +70,7 @@ The Streaming API provides a way to retrieve real time tweets using zero or more
 keywords to filter the stream. 
 %
 The amount of tweets that we can obtain is capped up to 1\% of the real stream
-at a given moment\footnote{The \emph{firehose} or full stream corresponds to the
+at a given moment\footnote{The \emph{Firehose} or full stream corresponds to the
 full stream of tweets. The Streaming API samples up to 1\% of those tweets that
 come every second. However, there was evidence that the Streaming API is not a
 good random sample in some cases, for example, when looking for the top hashtags
@@ -78,12 +82,14 @@ retrieved.}, by giving it a search term, consisting on one or more keywords.
 %
 Both services return a set of tweets after a period of time. 
 
-As our initial motivation was to study the characteristics of a news event when
-it breaks, we wanted to obtain as many tweets as possible from that moment.
+As our initial motivation was to study the characteristics of a news event as
+soon as they break, we wanted to obtain as many tweets as possible from that
+moment.
 %
-For that reason, it was necessary to get tweets about events event before they
-were reported\footnote{Tweets related to the topic. For example, tweets about
-Nelson Mandela before his death.}, and after that, to see the change in volume.
+For that reason, it was necessary to obtain tweets about events event before
+they were reported\footnote{Tweets related to the topic. For example, tweets
+about Nelson Mandela before his death.}, and after that, to see the change in
+volume.
 %
 With this in mind, we chose to use the REST API.
 
@@ -153,7 +159,7 @@ retrieved using the API.
 We pre-process the retrieved headlines by removing stopwords, punctuation, URLs,
 hashtags, mentions, and converting words to lowercase.
 %
-Then, from the processed headlines the most frequent sets of words are chosen.
+From the processed headlines the most frequent sets of words are then chosen.
 %
 From the resulting sets, the top $k=2$ words are chosen from each of the top
 $g=6$ groups. 
@@ -165,8 +171,8 @@ The main idea is that if several headlines discuss the same topic, then it is
 considered an important topic, and users talk about it using some of the most
 frequent words. 
 %
-The algorithm to identify the frequent itemsets~\cite{zaki2000scalable} is
-described in Algorithm~\ref{alg:detect_keywords}.
+We describe the algorithm to identify the frequent
+itemsets~\cite{zaki2000scalable} in Algorithm~\ref{alg:detect_keywords}.
 %
 
 
@@ -224,12 +230,12 @@ one of those tweets contains both keywords in its text.
 The REST API allows us to get tweets from even before the corresponding headline
 was published.
 %
-Then the search continues for about one hour, to get all the related tweets. 
+The search then continues for about one hour, to get all the related tweets. 
 %
-If there is a high impact news event, then the users will be tweeting about it
+If there is a high impact news event, then the users will tweet about it
 frequently. 
 %
-For that reason, the search is perfomed no more than one hour from the
+For that reason, the search is performed no more than one hour from the
 publication time of the headlines. 
 %
 Figure~\ref{fig:pipeline} portrays the tweets collection methodology.
@@ -273,7 +279,7 @@ Table~\ref{table:searches} shows a few examples of searches.
 
 \subsection{Identifying Events}
 
-We make some notes about the data collection methodology. 
+We provide some notes about the data collection methodology. 
 %
 Firstly, there is a temporal sensitivity to the methodology. 
 %
@@ -333,7 +339,7 @@ connected component as an ``event".
 \end{table}
 
 
-For example, in Table~\ref{table:example-pairs}, there are some of the keywords
+For example, Table~\ref{table:example-pairs} demonstrates some of the keywords
 detected on April 2nd, 2014. 
 %
 Several of them contain the word ``earthquake'', ``tsunami'' or ``chile''.
@@ -421,14 +427,15 @@ The event durations are then analyzed in order to verify if including the first
 portion of the data, for each news event, makes sense in terms of their
 duration. 
 %
-For instance, the time span in the first 5\% of the total amount of tweets
-should be as half as the time of the first 10\%, one quarter of the 20\%, and so
-on. 
+For instance, if the tweets are evenly distributed, the time span in the first
+5\% of the total amount of tweets should be half the duration of the first 10\%,
+one quarter of the 20\%, and so on. 
 %
-For example, for some event a tweet from two years ago is retrieved, and the
-remaining tweets are retrieved from a period of only two hours. 
+However, our data shows that, for example, the first few tweets of an event are
+from two or more years previous to the occurrence, and the remaining tweets are
+mainly concentrated closely around the date of the event.
 %
-Then the first 5\% of the tweets would be significantly larger than the rest
+The first 5\% of the tweets would then be significantly older than the rest
 95\% in terms of time duration of the event. 
 
 
@@ -452,11 +459,12 @@ headline with more info about it.
 %
 By being common to different events (for example: ``Watch Jim Harbaugh's press
 conference
-live''\footnote{\url{https://twitter.com/49ers/status/519202023628374016}}  and
-``WATCH LIVE: Of the 48 people being monitored for contact with Dallas patient,
-no one is showing any
-symptoms''\footnote{\url{https://twitter.com/PzFeed/status/519203692898435072}}),
-they can end up in unrelated events by joining the keywords by those stopwords.
+live''\footnote{\url{https://twitter.com/49ers/status/519202023628374016}
+(Accessed: February 29, 2020)}  and ``WATCH LIVE: Of the 48 people being
+monitored for contact with Dallas patient, no one is showing any
+symptoms''\footnote{\url{https://twitter.com/PzFeed/status/519203692898435072}
+(Accessed: February 29, 2020)}), they can end up in unrelated events by joining
+the keywords by those stopwords.
 
 
 One approach to dealing with this problem is to have a pre-defined list of
@@ -485,15 +493,15 @@ relate several unrelated events together.
 To identify a group of those keywords, we used a modified \emph{tf-idf} to
 detect them from the headlines.
 
-The modified version of \emph{tf-idf}, what we refer as \emph{maxtf-idf}, is
+The modified version of \emph{tf-idf}, what we refer to as \emph{maxtf-idf}, is
 meant to assign more weight to the terms that are frequent in any document. 
 %
 For instance, \emph{tf-idf} of a term in a document tries to assign a weight
-related to how ``rare'' is that term in the whole collection, and how frequent
-is in that document, by indicating how representative the term is with respect
-to the document. 
+related to how ``rare'' that term is in the whole collection, and how frequent
+it is in that document, by indicating how representative the term is with
+respect to the document. 
 %
-On the other hand, what we want to achieve is to weigh a term more if the term
+On the other hand, what we want to achieve is to weigh a term more if it
 is more frequent in any document, relative to the frequency in the current
 document. 
 %
@@ -548,7 +556,7 @@ the words.
 
 \subsection{Validation of Event Modeling}\label{sub:valcoll}
 
-In order to validate the results of the events identification process, we
+In order to validate the results of the event identification process, we
 compared our results with a baseline consisting on randomly generated events.
 
 We generated artificially connected components taking randomly searches from the
@@ -610,8 +618,8 @@ $H_2$ & $\frac{I_2}{E_1}$ & Higher value is better \\
 \label{table:clustering_metrics}
 \end{table}
 
-We calculate standard internal clustering metrics (listed in
-Table~\ref{table:clustering_metrics}) over the found components and on the
+We calculated standard internal clustering metrics~\cite{zhao2001criterion}
+(listed in Table~\ref{table:clustering_metrics}) over the components and on the
 random components and then compare their results. 
 %
 The comparisons were made by taking components of the same size (in terms of
@@ -623,7 +631,7 @@ similarity intra- and inter-clusters.
 We compare the metrics against random clusters to see if our approach tends to
 join related events together, compared to a baseline.
 %
-Equal results means that our approach is no better than joining searches
+Equal results mean that our approach is no better than joining searches
 randomly. 
 %
 The results by metric are shown in
@@ -631,7 +639,7 @@ Figure~\ref{fig:connected_components_validation}. For almost every metric, our
 approach is better than random.
 
 
-\subsection{Events duration}\label{sub:dur}
+\subsection{Event duration}\label{sub:dur}
 
 Due to the capabilities of the REST API, the tweets collected can be older than
 the actual date of the event detected. 
@@ -681,31 +689,31 @@ at the ends of each dataset.
   \centering
   \begin{subfigure}{\textwidth}
     \includegraphics[width=\textwidth]{figures/data/dist-events-durations-o.pdf}
-    \caption[Distribution of events duration on the original
-      dataset.]{Distribution of events duration on the original dataset.} 
+    \caption[Distribution of event duration on the original
+      dataset.]{Distribution of event duration on the original dataset.} 
     \label{sfig:dist-events-durations-o}
   \end{subfigure}
 
   \begin{subfigure}{\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figures/data/dist-events-durations-5.pdf}
-    \caption[Distribution of events duration on the 5\%-trimmed
-      dataset.]{Distribution of events duration on the 5\%-trimmed dataset.} 
+    \caption[Distribution of event duration on the 5\%-trimmed
+      dataset.]{Distribution of event duration on the 5\%-trimmed dataset.} 
     \label{sfig:dist-events-durations-5}
   \end{subfigure}
 
-  \caption[Distribution of events duration]{Distribution of events duration. In
-    (a) it can be seen that there are a non negligible amount of events with a
+  \caption[Distribution of event duration]{Distribution of event duration. In
+    (a) we see that there is a non-negligible amount of events with a
     high duration (between 7 and 10 days). In (b), we see a clearer power law on
     the distribution of events after removing the first 5\% of tweets.}
   \label{fig:dist-events-durations}
 \end{figure}
 
-Events duration distributions are shown in
+Event duration distributions are shown in
 Figure~\ref{fig:dist-events-durations}. 
 %
-It can be seen in Figure~\ref{sfig:dist-events-durations-o} that there is a non
-negligible amount of events with a duration between 7 and 10 days. 
+Figure~\ref{sfig:dist-events-durations-o} shows that there is a non-negligible
+amount of events with a duration between 7 and 10 days. 
 %
 By considering the first 5\% of tweets from those events, the oldest tweets will
 correspond to situations when the event has not already happened yet, and it
