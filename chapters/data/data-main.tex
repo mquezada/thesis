@@ -8,8 +8,8 @@ Hence, we focus on the creation of a comprehensive event collection.
 Our methodology consists in gathering tweets and then identifying coherent
 real-world events. 
 %
-We use the Twitter Application Programming Interface~\cite{twitterapi}, or also
-{\em Twitter API}, to retrieve tweets from Twitter. 
+We use the Twitter Application Programming Interface, or {\em Twitter API} (see
+Section~\ref{sec:twitterapi}), to retrieve tweets from Twitter. 
 %
 The data collection methodology resembles related work on identifying content
 for planned events~\cite{Becker:2012}.
@@ -57,30 +57,30 @@ Finally, we grouped some of these sets into {\em events}.
 %   keywords from the search results, as described in Section~\ref{subsec:group}.
 % \end{enumerate}
 
-\subsection{Collecting related posts for news on Twitter}
+\subsection{Collecting Related Posts for News on Twitter}
 
 The Twitter API~\cite{twitterapi} provides an interface to retrieve tweets in an
 automated manner. For building a dataset of news events, it is necessary to
 identify events from the Twitter stream.
 
-Essentially, there are two ways to retrieve tweets from Twitter: using the
-{\em Streaming API}, or the {\em REST API}. 
-%
-The Streaming API provides a way to retrieve real time tweets using zero or more
-keywords to filter the stream. 
-%
-The amount of tweets that we can obtain is capped up to 1\% of the real stream
-at a given moment\footnote{The \emph{Firehose} or full stream corresponds to the
-full stream of tweets. The Streaming API samples up to 1\% of those tweets that
-come every second. However, there was evidence that the Streaming API is not a
-good random sample in some cases, for example, when looking for the top hashtags
-in a period of time~\cite{morstatter2013sample}.}.  
-%
-The REST API allows us to get tweets from the past\footnote{However, the
-documentation is not clear in terms of how long nor how many tweets can be
-retrieved.}, by giving it a search term, consisting on one or more keywords. 
-%
-Both services return a set of tweets after a period of time. 
+% Essentially, there are two ways to retrieve tweets from Twitter: using the
+% {\em Streaming API}, or the {\em REST API}. 
+% %
+% The Streaming API provides a way to retrieve real time tweets using zero or more
+% keywords to filter the stream. 
+% %
+% The amount of tweets that we can obtain is capped up to 1\% of the real stream
+% at a given moment\footnote{The \emph{Firehose} or full stream corresponds to the
+% full stream of tweets. The Streaming API samples up to 1\% of those tweets that
+% come every second. However, there was evidence that the Streaming API is not a
+% good random sample in some cases, for example, when looking for the top hashtags
+% in a period of time~\cite{morstatter2013sample}.}.  
+% %
+% The REST API allows us to get tweets from the past\footnote{However, the
+% documentation is not clear in terms of how long nor how many tweets can be
+% retrieved.}, by giving it a search term, consisting on one or more keywords. 
+% %
+% Both services return a set of tweets after a period of time. 
 
 As our initial motivation was to study the characteristics of a news event as
 soon as they break, we wanted to obtain as many tweets as possible from that
@@ -91,7 +91,8 @@ they were reported\footnote{Tweets related to the topic. For example, tweets
 about Nelson Mandela before his death.}, and after that, to see the change in
 volume.
 %
-With this in mind, we chose to use the REST API.
+With this in mind, we chose to use the Standard Search API, as described in
+Section~\ref{sec:twitterapi}.
 
 We manually crafted a set of about fifty verified news accounts in Twitter (such
 as BBCNews, CNN, Al Jazeera, etc.). 
@@ -639,7 +640,7 @@ Figure~\ref{fig:connected_components_validation}. For almost every metric, our
 approach is better than random.
 
 
-\subsection{Event duration}\label{sub:dur}
+\subsection{Event Duration}\label{sub:dur}
 
 Due to the capabilities of the REST API, the tweets collected can be older than
 the actual date of the event detected. 
