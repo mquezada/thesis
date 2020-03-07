@@ -52,7 +52,7 @@ myriad of different pieces of information.
 % UTILITY, APPLICATIONS OF SM
 
 The influence of social media on today's society cannot be denied, as it
-facilitates communication among people and speeds up the diffusion of
+facilitates co\-mmu\-nication among people and speeds up the diffusion of
 information. 
 %
 For instance, it is believed that the revolutionary wave of protests and
@@ -66,13 +66,19 @@ Twitter~\cite{Sakaki2010,Sakaki:Tweet:2013,Sarmiento:2018:DDE:3201064.3201077,Me
 %
 The usefulness of quantitative analysis of events through time is undeniable, and
 social media offers a window to see and capture information about those events,
-how they develop, and how the world interprets them.
+how they develop, and how the world interprets them.\\
 
-\todo[inline]{barb: falta por aca decir que se entiende por evento}
+%%% DEFINITION OF EVENT:
+We define an {\bf event} as a conglomerate of information that encompasses all
+of the social media content related to a real-world news occurrence. 
+%
+We will use this specification throughout this work, which considers an event as
+a complex unit of information, in contrast to other interpretations, such as
+those that consider an event as represented by a single unit or piece of
+information, like a news article, a video, or a structured and pre-defined
+description.
 
 % NEWS CONSUMPTION AND PRODUCTION
-
-
 One of the main uses of social media platforms is the consumption and generation
 of real-world event-related content. 
 %
@@ -352,18 +358,23 @@ the study of context involves modeling and exploratory data analysis;
 reaction analysis involves filtering and classification;
 %
 content involves topic detection and document modeling.
+%
+The proposed models are designed to be general and easily adaptable to other
+online social networks.
 
 The thesis statement is as follows:
 
 % version corregida por barb:
 
-{\bf \em 
-Novel and effective forms of high-level analysis of news events can be
-achieved by using models that integrate information from user publications in
-online social networks, based on their spatio-temporal context, as well as the
-reaction that users had to the event itself, including multimedia content shared
-for the event.
-}
+\begin{tcolorbox}
+        {\bf 
+        Novel and effective forms of high-level analysis of news events can be
+        achieved by using models that integrate information from user publications in
+        online social networks, based on their spatio-temporal context, as well as the
+        reaction that users had to the event itself, including multimedia content shared
+        for the event.
+        }
+\end{tcolorbox}
 
 % {\bf \em
 % Modeling news events from user-contributed content on Twitter, based on
@@ -379,15 +390,15 @@ for the event.
 
 \section{Challenges} 
 
-\todo[inline]{revisar y/o reescribir. empezar por definir que es relevante en este contexto}
 We identify three main challenges for this work:
 
 \begin{itemize}
     \item {\bf Retrieval of relevant social media posts.} 
-    Social media offers a partial view of the world. 
-    %    
-    Also, mainstream topics obfuscate distinct points of view, which can
-    obstruct retrieval of diverse content. 
+    Mainstream topics obfuscate distinct points of view, which can
+    obstruct retrieval of diverse and relevant content to an event. 
+    %
+    Here, relevance to a topic is defined as the similarity between a piece of
+    content and the topic which this piece refers to.
     %
     Because users are frequently posting messages about their own lives, daily
     situations, or general topics, trends can only be visible when looking at large
@@ -395,10 +406,10 @@ We identify three main challenges for this work:
     %
     This makes identification of events and relevant content a very difficult task.
     %
-    And due to the characteristics of Twitter (or any other social networking
-    service), messages are usually very short and with grammatical errors. 
+    Due to the characteristics of Twitter (or any other online social network),
+    messages are usually very short and noisy.
     %
-    Users also spontaneously create new ways to refer to the same entities
+    Users spontaneously create new ways to refer to the same entities
     (e.g., via the use of hashtags, emojis, or abbreviations), making it
     difficult to identify more relevant content when detecting events.
     %
@@ -410,12 +421,12 @@ We identify three main challenges for this work:
     This information can be exploited to improve the effectiveness of
     the proposed methodologies. 
     %
-    The challenge is just how to identify such content in an efficient way, how
-    to deal with duplicated or quasi-duplicated content, and how to evaluate the
-    effectiveness of methodologies when presenting multimedia content. 
+    The challenge consists of how to identify such content in an efficient way,
+    how to deal with duplicated or quasi-duplicated content, and how to evaluate
+    the effectiveness of methodologies when presenting multimedia content. 
 
-    \item {\bf Data bias.}
-    As stated above, social media offers a partial view of the world. 
+    \item {\bf Bias in the collected data.}
+    Social media offers a partial view of the world. 
     %
     Furthermore, the employed methodologies to retrieve or identify events from
     social media may be biased depending on several factors. 
@@ -429,10 +440,10 @@ We identify three main challenges for this work:
     This is a huge challenge in order to provide generalizable results from the
     proposed methodologies. 
     %
-    In addition, it is challenging to ensure that our results are as diverse as the
-    utilized data source. 
+    In addition, it is challenging to ensure that our results are as diverse as
+    the data source. 
 
-    \item {\bf Result validation.} 
+    \item {\bf Validation of results.} 
     As data in social media is being published at all times, it is unfeasible to
     apply standard measures such as Recall when evaluating a methodology,
     because we do not have all the relevant content available.
@@ -452,6 +463,8 @@ We identify three main challenges for this work:
 This thesis presents four main contributions, as follows:
 
 \begin{enumerate}
+    \setlength\itemsep{0.5em}
+
 \item A novel representation of event information based on user activity
 triggered by real-world events in Twitter (Chapter~\ref{chapter:high-activity}).
 
@@ -508,7 +521,7 @@ extracting knowledge or to serve as building blocks for new models and
 methodologies.
 
 
-
+\newpage
 
 \section*{Publications} 
 
@@ -516,6 +529,8 @@ The following publications are associated with this dissertation:
 
 {\bf Journal papers.}
 \begin{itemize}
+    \setlength\itemsep{1em}
+
     \item J. Kalyanam, {\bf M. Quezada}, B. Poblete, and G. Lanckriet. {\em
      Prediction and Characterization of High-Activity Events in Social Media
      Triggered by Real-World News}. In PLOS ONE 11(12): e0166694. 2016.
@@ -526,10 +541,13 @@ The following publications are associated with this dissertation:
     6, no. 1 (2017): 25. 2017.
 \end{itemize}
 
+\vspace{1em}
 
 {\bf Conference and Workshop papers.}
 
 \begin{itemize}
+    \setlength\itemsep{1em}
+
     \item {\bf M. Quezada}, V. Peña-Araya, and B. Poblete. {\em Location-Aware
     Model for News Events in Social Media.} In Proceedings of the 38th
     International ACM SIGIR Conference on Research and Development in
