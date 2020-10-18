@@ -75,7 +75,7 @@ context with the vectors $\mathbf{P}$ and $\mathbf{I}$, which correspond to the
 {\em protagonist} and {\em interested} location values, respectively, for the
 event $E$. 
 %
-This is, the $j$-th dimension of vector $\mathbf{P}$ contains the number of
+In particular, the $j$-th dimension of vector $\mathbf{P}$ contains the number of
 times that the location $l_j$ is mentioned by the tweets in $T$. 
 %
 On the other hand, the $j$-th dimension of vector $\mathbf{I}$ contains the
@@ -98,7 +98,7 @@ protagonist location.
 %
 We consider an event to be of {\em regional provenance} if it involves two or
 more protagonist locations that are all from a same region (e.g., for countries,
-this means neighboring countries or from a same continent\footnote{According to
+this means neighboring countries or countries from the same continent\footnote{According to
 the division that considers 7 continents: Asia, Africa, Europe, North America,
 South America, Antarctica and Australia.}). 
 %
@@ -156,7 +156,7 @@ Therefore, at times we use the concepts of ``locations'' and ``countries''
 interchangeably.
 %
 In particular, in the following section, we define a representation for
-relations among locations, which we exploit in Section~\ref{sec:mining} for
+relations among locations, which we leverage in Section~\ref{sec:geo:mining} for
 extracting international relations.
 
 
@@ -237,7 +237,7 @@ relation to the total of events for one of the two locations (e.g., where the
 number of events is normalized by the amount of events in which $l_j$ or $l_k$
 participates).
 %
-This can be useful in cases that the number of events in which different
+This can be useful in cases where the number of events in which different
 locations participate are very concentrated on specific locations. 
 %
 We explore cases such as these in Section~\ref{sec:geo:mining}, where we analyze
@@ -396,7 +396,7 @@ The news event extraction module corresponds to that proposed in
 Chapter~\ref{chapter:data}, which consists of an ongoing process that
 periodically retrieves tweets about real-world news. 
 %
-The process produces coherent sets of tweets about news topics, although with
+The process produces coherent sets of tweets about news topics, although with a
 certain degree of noise that is well tolerated by our system. 
 %
 In particular, this is a two-stage iterative process that consists of the
@@ -420,11 +420,11 @@ However, since tweets are short and do not provide much context for toponym
 disambiguation, our methodology boosts the performance of the geo-parser by
 adding context from other tweets in $E$.
 
-As detailed in Section~\ref{sec:geo:model}, this methodology relies in a ratio
+As detailed in Section~\ref{sec:geo:model}, this methodology relies on a ratio
 named $\alpha$ which we empirically set to $19\%$ as that which provides the
 best trade-off between F1 and recall, according to Figure~\ref{fig:eval}. 
 %
-This is, a location must have at least $19\%$ of the mentions of the most
+In other words, a location must have at least $19\%$ of the mentions of the most
 frequent location of an event, to be considered as part of that event as well.
 %
 Otherwise, we consider that this location was not actually involved in the

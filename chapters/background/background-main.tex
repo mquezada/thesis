@@ -4,8 +4,8 @@
 In this chapter, we describe the particularities of Twitter, and introduce
 relevant techniques used in this thesis.
 %
-In particular, we describe a form of supervised learning, classification, and of
-unsupervised learning, clustering.
+In particular, we describe a form of supervised learning: classification; and of
+unsupervised learning: clustering.
 %
 We also describe the use of {\em word embeddings}, in particular, the current
 usage of neural network-based word embeddings, such as {\em word2vec} and {\em
@@ -17,7 +17,7 @@ In this section, we briefly describe Twitter: how it works, its social
 capabilities and the relevant endpoints of its API to retrieve newsworthy
 messages.
 
-\subsection{Twitter platform}
+\subsection{Twitter Platform}
 
 As mentioned in the Introduction, the collective of information published in
 Internet-based applications, such as microblogging platforms, blogs, wikis,
@@ -31,8 +31,8 @@ Twitter is a service that lets users publish short 280-character messages, calle
 {\em tweets}, which are broadcast to the user's {\em followers}.
 %
 A follower is simply another user of the platform, who can subscribe to other
-users (to follow them), and see their tweets in an interface called the {\em
-timeline}.
+users (to {\em follow} them), and see their tweets in an interface called the
+{\em timeline}.
 %
 The timeline is a list of tweets; the timeline was originally displayed in
 reverse-chronological order, that is, the newest tweets were shown at the
@@ -106,7 +106,7 @@ below.
     
 \end{itemize}
 
-In particular, Chapter~\ref{chapter:data} describes how we use the Standard
+Chapter~\ref{chapter:data} describes how we use the Standard
 Search API to retrieve the tweets used in the following chapters.
 
 
@@ -138,8 +138,8 @@ A {\em classifier} is a particular instance of this process, and a classifier
 can be {\em trained} from a set of previously labeled observations to set its
 appropriate parameters.
 %
-The output of a classifier applied to an observation is the label corresponding
-to that observation (Figure~\ref{background:fig:clf-ex}).
+The output of a classifier applied to an observation is the label predicted for 
+that observation (Figure~\ref{background:fig:clf-ex}).
 %
 Formally, a classifier is a function $h: \mathcal{D} \rightarrow \{0, 1, \ldots,
 n\}$ from a domain $\mathcal{D}$ to a set of classes, or class labels, which
@@ -187,10 +187,8 @@ $\vect{x}\in \mathbb{R}^\textit{d}$ is an observation.
 %
 The {\em perceptron} is defined as $h(\vect{x}) =
 \text{sign}(\vect{w}^\customT\vect{x})$, which is the foundation of several
-linear models and neural network models.
-
-%%
-
+linear models and neural network models. 
+%
 The perceptron uses a hard threshold on the signal $s =
 \vect{w}^\customT\vect{x}$ by taking the sign of $s$ in order to perform linear
 classification.
@@ -202,9 +200,11 @@ output, $h(\vect{x}) = \vect{w}^\customT\vect{x}$.
 it interpretable as a probability: $h(\vect{x}) =
 \theta(\vect{w}^\customT\vect{x})$, where $\theta$ is the so-called logistic
 function, $\theta(s) = \frac{e^s}{1 + e^s}$.
+
 %
-There are several other linear models, which we will not mention in this brief
-summary, but some of them can be studied
+
+There are several linear-based models, which we will not mention in this brief
+summary, but most of them can be studied
 online\footnote{\url{https://scikit-learn.org/stable/modules/linear_model.html}
 (Accessed: April 8, 2019)}.
 
@@ -277,7 +277,7 @@ Another common technique is to reduce the uncertainty by making use of all the
 available data. One of the methods to do so is called {\em cross-validation}.
 %
 Cross-validation splits the data set into $k$ folds, training with the data
-resulting from appending $k-1$ folds and testing with the remainder, and the
+resulting from appending $k-1$ folds and testing with the remainder, and then 
 repeating the process using another fold to test.
 %
 This reduces the variance of the estimates and is useful for estimating the
@@ -535,7 +535,7 @@ The criterion uses a weighting factor $\lambda$ on the number of clusters: $K =
 %
 This is similar to the regularization factor in classification.
 %
-The value of $\lambda$ can be derived empirically or by use of a value being
+The value of $\lambda$ can be derived empirically or by use of a value 
 shown to be effective in the domain of study.
 \end{itemize}
 
@@ -653,10 +653,14 @@ where we decide for each pair of observations, if they belong to the same
 cluster or not.
 %
 We want to assign observations to the same cluster if they are similar (or if
-they both belong to the same class).
+they both belong to the same class). 
+%
+We can define similarity as a score of a pair of observations, such that a high score
+indicates that the two observations are {\em similar} in a sense, and a low score 
+indicates that the two observations are {\em different}.
 %
 So, if we assign a pair of similar observations to the same cluster, it is
-considered a True Positive (TP). 
+considered a True Positive (TP).
 %
 A pair of dissimilar observations assigned to different clusters is a True
 Negative (TN).
@@ -731,7 +735,7 @@ This often results in words with similar meaning being neighbors.
 Given a vocabulary of size $W$, where a word is identified by its index $w \in
 \{1, \ldots, W\}$, the goal is to learn a vector representation of each word $w$.
 %
-The word representations are trained with the goal of predict other words that
+The word representations are trained with the goal of predicting other words that
 are in the same context.
 %
 Given a large sequence of words $w_1, w_2, \ldots, w_T$, the objective of the

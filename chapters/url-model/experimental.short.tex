@@ -1,24 +1,24 @@
 \begin{table}[t]
   %\resizebox{\textwidth}{!}{%
   \makebox[\textwidth][c]{
- {\scriptsize
+ {\small
   \begin{tabular}{@{}ll@{}}
   \toprule
   Event                 & Sample tweets \\ \midrule
   Libya Hotel Attack    & \textit{\begin{tabular}[c]{@{}l@{}}
-  Gunmen possibly linked to Islamic State attack hotel popular with foreigners in Libyan capital Tripoli -officials {\tt <URL>}\\ 
-  \#Libya forces surround luxury hotel in \#Tripoli where gunmen have taken hostages after car bomb attack - Reuters/AP\\ 
-  %Gunmen at Libyan luxury hotel take hostages; 3 guards dead {\tt <URL>} via AP \#news
+  (1) Gunmen possibly linked to Islamic State attack hotel popular\\ with foreigners in Libyan capital Tripoli -officials {\tt <URL>}\\ 
+  (2) \#Libya forces surround luxury hotel in \#Tripoli where gunmen\\ have taken hostages after car bomb attack - Reuters/AP\\ 
+  (3) Gunmen at Libyan luxury hotel take hostages; 3 guards\\ dead {\tt <URL>} via AP \#news
   \end{tabular}}                                                \\ \midrule
   Oscar Pistorius Trial & \textit{\begin{tabular}[c]{@{}l@{}}
-  %Oscar Pistorius 'sorrow' over Reeva Steenkamp shooting - BBC News {\tt <URL>} \#news\\ 
-  Oscar Pistorius pleads not guilty Monday to all 4 charges against him, marking start of Olympian's murder trial. {\tt <URL>}\\ 
-  RT {\tt <mention>}: Oscar Pistorius murder trial set to begin in South Africa: {\tt <URL>}
+  (1) Oscar Pistorius 'sorrow' over Reeva Steenkamp shooting\\ - BBC News {\tt <URL>} \#news\\ 
+  (2) Oscar Pistorius pleads not guilty Monday to all 4 charges\\ against him, marking start of Olympian's murder trial. {\tt <URL>}\\ 
+  (3) RT {\tt <mention>}: Oscar Pistorius murder trial set to\\ begin in South Africa: {\tt <URL>}
   \end{tabular}}                                                                                                        \\ \midrule
   Nepal Earthquake      & \textit{\begin{tabular}[c]{@{}l@{}}
-  Buildings down \& roads out after major 7.5 magnitude earthquake hits \#Nepal. Quake could be felt as far as Delhi {\tt <URL>}\\ 
-  %Sounds bad in Kathmandu. Friends there tell me buildings down, tremors continuing. 'Really terrible'. \#nepal \#earthquake\\ 
-  BREAKING: 15-year-old girl dead near Nepal border after quake brings house wall down, reports Reuters. Read more: {\tt <URL>}
+  (1) Buildings down \& roads out after major 7.5 magnitude\\ earthquake hits \#Nepal. Quake could be felt as far as Delhi {\tt <URL>}\\ 
+  (2) Sounds bad in Kathmandu. Friends there tell me\\ buildings down, tremors continuing. 'Really terrible'. \#nepal \#earthquake\\ 
+  (3) BREAKING: 15-year-old girl dead near Nepal border\\ after quake brings house wall down, reports Reuters. Read more: {\tt <URL>}
   \end{tabular}} \\ \bottomrule
   
   \end{tabular}%
@@ -138,12 +138,12 @@ several unrelated tweets appeared in the dataset, such as the following:
 In April 25, 2015, Nepal was struck by a 7.8 $\text{M}_\text{W}$ earthquake,
 killing nearly 9,000
 people\footnote{\url{https://en.wikipedia.org/wiki/April_2015_Nepal_earthquake}
-(Accessed: 2019-01-30)}. There were historical buildings destroyed, an avalanche
-in Mount Everest, and several people killed by the earthquake.
+(Accessed: 2019-01-30)}. There were historical buildings destroyed and an avalanche
+in Mount Everest.
 %
-The dataset consists of 522,434 tweets, with the 70\% of them being retweets.
+The dataset consists of 522,434 tweets, with 70\% of them being retweets.
 %
-Also, 60,632 of the short URLs were unable to be resolved.
+60,632 of the short URLs were unable to be resolved.
 
 %%
 
@@ -187,10 +187,10 @@ for some sites they are relevant for identifying the resource (e.g., {\tt ?id=},
 
 \paragraph{Model generation.} 
 %
-We discarded all URLs that co-occurred with 3 or more other URLs in the same
-tweets. 
+%We discarded all URLs that co-occurred with 3 or more other URLs in the same
+%tweets. 
 %
-Then, we computed the representation for each event by identifying connected
+We computed the representation for each event by identifying connected
 components in the graph of tweets and URLs, considering only components with
 URLs.
 %
@@ -399,10 +399,10 @@ This resulted in 401 labeled tweets (1339 labels in total) for the Libya event,
 
 \paragraph{Validation using clustering.}
 %
-As our goal is to compare event representations, we chose k-means as a simple
+As our goal is to compare event representations, we chose K-Means as a simple
 baseline to validate the effectiveness of our model.
 %
-To find sub-topics, we ran k-means with different numbers of clusters, using our
+To find sub-topics, we ran K-Means with different numbers of clusters, using our
 representation and raw tweets.
 %
 For the baseline, we considered each tweet as a document, that is, we computed
@@ -433,7 +433,7 @@ We believe this is because the Libya event has more unrelated (spam and
 irrelevant) tweets, and the model captures more information about unrelated
 topics, as they use more URLs.
 %
-And in terms of running time, we observed that k-means under the representation
+And in terms of running time, we observed that K-Means under the representation
 runs one order of magnitude faster than the baseline (Figure~\ref{fig:times}). 
 %
 These results suggest that our representation is capable of preserving topical

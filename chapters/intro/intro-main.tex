@@ -42,7 +42,7 @@ users to tag and comment about locations around the world, which became a
 repository of data about businesses and points of interest.
 %
 Whether via text, images, videos, sounds or hyperlinks, social media lowered the
-entry barriers to content producers and made it easy for consumers to access a
+entry barriers for content producers and made it easy for consumers to access a
 myriad of different pieces of information.
 
 
@@ -164,7 +164,7 @@ platform~\cite{twitter2014}.
 %
 Facebook has nearly 2.32 billion monthly active users~\cite{fbnewsroom}. 
 %
-Sina Weibo has 462 million monthly active users, while 93\% of them are on
+Sina Weibo has 462 million monthly active users, where 93\% of them are on
 mobile devices~\cite{chinawatch}.
 %
 The amount of content being published requires novel ways to deal with social
@@ -188,13 +188,13 @@ social media posts describing or commenting on a real-world occurrence.
 In this sense, an event is a more complex piece of information compared to
 single posts.
 %
-The notion of event is convenient as it is the base unit for new tasks, such as
+This notion of event is useful as it is the base unit for new tasks, such as
 event detection, tracking, or summarization.
 %
 Also, an event is comprised of posts of heterogeneous quality, from different
 locations, and at different times.
 %
-This yields to new problems and challenges when studying social media.
+This yields new problems and challenges when studying social media.
 
 %%
 
@@ -245,7 +245,7 @@ three perspectives:
     However, each post can contribute to a different aspect of the event, while
     sharing some common features.
     %
-    We leverage these commonalities in content to produce a compact model that
+    We leverage these commonalities in content in order to produce a compact model that
     preserves topical information in events.
     
 \end{enumerate}
@@ -254,10 +254,10 @@ three perspectives:
 % OBJETIVES
 
 Our main objective is to define event representations through different data
-aggregations to perform quantitative analysis of news events on social media.
+aggregations in order to perform quantitative analysis of news events on social media.
 %
 Currently, it is very difficult to manage and analyze the high volume of
-information being published when a event happens in the world. 
+information being published when an event occurs. 
 %
 In particular, we study events through three perspectives: user reaction
 and activity, spatio-temporal context of events, and content aggregation.
@@ -270,7 +270,7 @@ different locations are affected by different events, as seen on social media,
 and identifying similar communities and events based on this context. 
 %
 Understanding content refers to the identification of the core aspects of an
-event, without having to go through all the --potentially various-- posts.
+event, without having to go through all the --potentially many-- posts.
 %
 In particular, our goal is to propose different models for representing events. 
 %
@@ -310,9 +310,9 @@ The study of news event dissemination in online social networks has several
 applications in the proposed setting. 
 %
 How the community reacts to different real-world phenomena can allow us to
-characterize those events. 
+characterize those events,
 %
-For example, by measuring user reaction, other social network features, or
+for example, by measuring user reaction, other social network features, or
 analyzing event content.
 %
 Using these characteristics, we would be able to identify or even predict which
@@ -321,7 +321,7 @@ improving journalistic coverage or providing better response from authorities in
 face of an emergency.
 %
 Additionally, by studying not only the response, but the context of different
-communities and how they respond to certain events, may give us insights about
+communities and how they respond to certain events, we may gain insights about
 the communities themselves, for example, by revealing unexpected relations
 between different communities, or by measuring event similarity using the
 context, instead of content-based features. 
@@ -415,7 +415,7 @@ We identify three main challenges for this work:
     %
     Relevant multimedia content is also difficult to identify. 
     %
-    Multimedia content is represented by images, videos, text, or mix of them,
+    Multimedia content is represented by images, videos, text, or a mix of them,
     etc. 
     %
     This information can be exploited to improve the effectiveness of
@@ -431,8 +431,8 @@ We identify three main challenges for this work:
     Furthermore, the employed methodologies to retrieve or identify events from
     social media may be biased depending on several factors. 
     %
-    For instance, we collected our dataset using news outlets as sources, being
-    the majority of the outlets coming from the USA or the UK. 
+    For instance, we collected our dataset using news outlets as sources, with
+    the majority of outlets coming from the USA or the UK. 
     %
     Our sources also use specific words and ways to express the information,
     which can also create a bias in the way we further retrieve more tweets.
@@ -467,7 +467,6 @@ This thesis presents four main contributions, as follows:
 
 \item A novel representation of event information based on user activity
 triggered by real-world events in Twitter (Chapter~\ref{chapter:high-activity}).
-
 %
 This representation allows us to rank events into different levels of user
 activity. 
@@ -479,7 +478,7 @@ We show that it is possible to {\em predict} early on the level of activity that
 an event will produce using aggregated features.
 
 \item A spatio-temporal representation based on the location where an event
-takes place, and the locations from where users are commenting the news
+takes place, and the locations from where users are commenting about the news
 (Chapter~\ref{chapter:geopolitical}).
 %
 With this type of representation, we can compare events and locations based on
@@ -489,13 +488,13 @@ involved in it.
 \item A lightweight representation of content based on shared URLs
 (Chapter~\ref{chapter:url}).
 %
-We aggregated event-related user posts based on common URLs, retweets
-and replies, generating a compact representation of an event.
+This representation consists of aggregation of user posts based on common URLs,
+retweets, and replies. 
 %
-In our preliminary experiments, we observed that the representation is one order
+In our preliminary experiments, we observe that the representation is one order
 of magnitude smaller than the original data.
 %
-At the same time, we observed that with our representation we can achieve
+At the same time, we observe that with our representation we can achieve
 comparable clustering results, with a fraction of running time and memory
 required.
 
@@ -506,7 +505,7 @@ Given a set of news outlets, every hour we extract the most relevant keywords
 from their headlines and use them to retrieve relevant tweets from regular
 users.
 %
-We also made available a dataset of 193 million tweets of $25,000$ news events,
+We also made available a dataset of 193 million tweets of $20,000$ news events,
 from 2013 to 2015.
 \end{enumerate}
 

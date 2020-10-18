@@ -2,7 +2,7 @@
 
 %%% INTRO
 
-In this chapter we briefly review the state of the art referring the creation of
+In this chapter we briefly review the state of the art regarding the creation of
 event models from social media data.
 %
 
@@ -68,10 +68,10 @@ vectorization), sentiment values, and time (detecting peaks in tweet volume).
 %
 Semantic methods involve the study of the relationship between $n$-grams in the
 text to detect topics or events, such as the work of Cai et
-al.~\cite{cai2015popular}, which relies in topic models (such as Latent
+al.~\cite{cai2015popular}, which relies on topic models (such as Latent
 Dirichlet Allocation) to detect events.
 %
-Graph modeling approaches attempt to a graph representation of messages
+Graph modeling approaches attempt to extract a graph representation of messages
 and then find appropriate sub-graphs that resemble events, such as the work of
 Lee et al.~\cite{Lee:2013:KSK:2487575.2487711,Lee:2014:CCS:2661829.2661859}.
 %
@@ -138,8 +138,8 @@ Chakrabarti and Punera~\cite{chakrabarti2011event}, for example, used hidden
 Markov models to represent sub-events within a broader event that is described
 using Twitter data. 
 %
-This model identified the corresponding time-intervals in which something
-relevant happened, and then using standard cosine similarity over the tf-idf
+This model identifies the corresponding time-intervals in which something
+relevant happened, and then uses standard cosine similarity over the tf-idf
 vectors to extract the most relevant tweets (see also Meladianos et
 al.~\cite{meladianos2018optimization}).
 %
@@ -161,7 +161,7 @@ signature} of documents (defined as the set of keywords of social media messages
 that point to a document), to augment document metadata.
 %
 MGraph~\cite{schinas2016mgraph} was designed to detect topics on images and text
-simultaneously from Twitter event data, and extracting the most important posts
+simultaneously from Twitter event data, extracting the most important posts
 and images to create a summary.
 %
 The authors represented posts and images as a similarity graph and then ranked
@@ -178,6 +178,10 @@ Similarly, the output of their model is the set of relevant images and texts,
 which fulfill their criteria.
 
 \subsection{Systems for Event Exploration}
+%
+Diverse event exploration systems have been proposed in the literature.
+%
+These systems refer to tools to gain insights about events using large-scale user-contributed data.
 %
 In the work of Kamath et al.~\cite{Kamath:2013:SDO:2488388.2488447}, the authors
 analyzed Twitter \emph{hashtags} in a large-scale study of the spatio-temporal
@@ -226,7 +230,7 @@ However, this information was only used at single tweet level.
 
 \subsection{Improving News Delivery from Social Media}
 %
-Related work has also approached the analysis of social media data to support or
+Related work has also approached the analysis of social media data in order to support or
 improve news delivery. 
 %
 For example, \v{S}tajner et al.~\cite{Stajner:2013:ASS:2487575.2487659} proposed
@@ -237,20 +241,20 @@ Diakopoulos et
 al.~\cite{Diakopoulos:2012:FAS:2207676.2208409,diakopoulos2010diamonds} designed
 a system to explore news events with journalists as the target users.
 %
-The authors propose different features as they deemed relevant for their use
+The authors propose different features they deemed relevant for their use
 case: relevance, uniqueness, sentiment, verity, etc. 
 %
 The study of the spread of rumors, ``fake news'' and the veracity of content is
 a very active field to the date of this dissertation.
 %
-The work of Castillo et al.~\cite{castillo2011information} if one of the first
+The work of Castillo et al.~\cite{castillo2011information} is one of the first
 approaches to this problem, where the authors investigate the characteristics of
 rumors as they spread in Twitter, and developed a classifier using several
 content, network, and user-based features.
 %
 
 From another point of view, {\em Culturomics} is defined as {\em the application
-of high-throughput data collection and analysis to study of human
+of high-throughput data collection and analysis to the study of human
 culture}~\cite{Michel176}. 
 %
 The term was first introduced in a {\em Science} article from 2010, where the
@@ -286,7 +290,7 @@ Most of the representations proposed in the literature are tailored to specific
 applications in Information Retrieval, specifically, in Topic Detection and
 Tracking~\cite{allan2012topic} (TDT) tasks.
 %
-On social media, studies on news events have been specific to diverse tasks,
+On social media, studies on news events have been used for diverse tasks,
 such as event detection, tracking, prediction, sentiment analysis,
 summarization, and virality. 
 %
@@ -350,7 +354,7 @@ high-level forms of information.
     \label{fig:hi:examples}
 \end{figure}
 
-Traditionally, the impact of information in on-line social networks has been
+Traditionally, the impact of information in online social networks has been
 measured in relation to the total amount of attention that this subject receives
 \cite{berger2012makes,iribarren2011branching,guerini2011exploring,mills2012virality,gaugaz2012predicting}.
 %
@@ -365,7 +369,7 @@ high volume of activity in a short time should be considered as having a strong
 impact on the network (Figure~\ref{fig:hi:example-mandela}).  
 %
 However, there are other types of events that can produce a similar reaction in
-smaller on-line communities such as, for example, on users from a particular
+smaller online communities such as, for example, on users from a particular
 country (e.g., the withdrawal of the main right wing presidential candidate in
 Chile due to psychiatric problems, just before
 elections~\cite{chile_elections}). 
@@ -379,8 +383,8 @@ such as {\em The Oscars} (Figure~\ref{fig:hi:example-oscars}), which span a long
 period of time and are discussed by social network users for weeks or even
 months, but do not spark intense user activity. 
 %
-Therefore, it is reasonable to consider additional dimensions, than just volume,
-when analyzing the impact of information in on-line communities.  
+Therefore, it is reasonable to consider additional dimensions, rather than just volume,
+when analyzing the impact of information in online communities.  
 
 Prior research has shown that certain types of individual activities, such as
 communications (studied in email exchanges), work patterns and entertainment,
@@ -398,7 +402,7 @@ critical situations, observed from the information flow in cell phone networks
 during emergencies\cite{gao2014quantifying}.  
 %
 Although, there is research towards modeling this type of collective behavior
-\cite{yan2013information} in on-line social networks, to the best of our
+\cite{yan2013information} in online social networks, to the best of our
 knowledge, it has not yet been analyzed quantitatively.
 
 
@@ -441,7 +445,7 @@ allows users to explore a set of tweets and models them by showing two
 geographical types of information: the locations from where users discussed the
 topic and the locations being mentioned in tweets. 
 %
-However, unlike our work, this information was only used at single tweet level,
+However, unlike our work, this information was only used at the single tweet level,
 and not at event level.
 
 In the domain of cyber-physical systems, {\em events} are viewed as conditions
@@ -452,7 +456,7 @@ In general, events are modeled according to the state of the objects in the
 system, considering attributes, time and location. 
 %
 The work presented by Tan et al.~\cite{st-model_2009} bears certain similarities
-with our own, in the sense that they considered an event to encompasses multiple
+with our own, in the sense that they considered an event to encompass multiple pieces of 
 information about a condition of interest in the system (in our case in the
 online social network), including time and physical locations. 
 %
@@ -460,7 +464,7 @@ In addition, the authors defined different kinds of temporal and geographical
 scopes for their events, which are similar to our definition of {\em event
 impact}. 
 %
-The main difference relies in that our approach aims to capture high-level
+The main difference is that our approach aims to capture high-level
 information of how a complex exogenous event, such as a news event, is perceived
 by social network users in an aggregated way. 
 %
@@ -469,7 +473,7 @@ information and on representing geopolitical interactions.
 
 %%
 
-Despite that the idea of adding spatio-temporal context to social media data is
+Although the idea of adding spatio-temporal context to social media data is
 not novel, to the best of our knowledge our work is the first that formally
 introduces {\em protagonist} and {\em interested} locations in a high-level
 event representation.  
@@ -497,11 +501,14 @@ summarization, as most of the prior work on event analysis does.
 % areas: modeling social media content, automatic summarization of news, and
 % usage of word embeddings in social media.
 
+
 Two lines of research are relevant to our work: the utility of anchor texts in
 microblogs and topic detection methods using different aggregation strategies. 
+%
+In this section, we briefly review related work in those two lines.
 
 %
-About the usefulness of anchor texts on Twitter, Raux et
+Raux et
 al.~\cite{raux2011describing} used anchor texts from tweets pointing to a
 predefined set of URLs to characterize general topics, by clustering a bipartite
 graph of words and URLs. 
@@ -695,21 +702,21 @@ high-activity events in Chapter~\ref{chapter:high-activity}.
 %
 
 The work of Setty and Hose~\cite{Setty:2018:ENE:3209978.3210136} aims to create
-a common representation of events based on neural embeddings, on a procedure
+a common representation of events based on neural embeddings, using a procedure
 similar to Node2Vec~\cite{Grover:2016:NSF:2939672.2939754}.
 %
 A general representation of events is useful to perform high-level quantitative
 analysis, as it is flexible enough for arbitrary events.
 %
-However, it suffers from interpretability, as it is very difficult to determine
-the underlying factors that produced certain representation.
+However, it suffers from a lack of interpretability, as it is very difficult to determine
+the underlying factors that produced a certain representation.
 %
 Sellam and Alonso~\cite{10.1007/978-3-319-19890-3_17} designed a system for
 information extraction from news events on Twitter that extracts quantitative
 data from events, such as dates, numbers, entities, etc.
 
 
-Compared to prior work, our approach among the first to consider user-generated
+Compared to prior work, our approach is among the first to consider user-generated
 information networks, such as online social networks, which are a growing data
 source at much larger scale.  
 %

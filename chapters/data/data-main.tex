@@ -23,7 +23,7 @@ tweets, produced by 26,127,624 different users.
 
 %%
 
-Section~\ref{sec:dataset} describes the steps to follow to build the dataset,
+Section~\ref{sec:dataset} describes the steps followed to build the dataset,
 while Section~\ref{sec:cleaning} describes data cleaning and validation.
 
 
@@ -90,7 +90,7 @@ As our initial motivation was to study the characteristics of a news event as
 soon as they break, we wanted to obtain as many tweets as possible from that
 moment.
 %
-For that reason, it was necessary to obtain tweets about events event before
+For that reason, it was necessary to obtain tweets about events before
 they were reported\footnote{Tweets related to the topic. For example, tweets
 about Nelson Mandela before his death.}, and after that, to see the change in
 volume.
@@ -103,7 +103,7 @@ as BBCNews, CNN, Al Jazeera, etc.).
 %
 The full list of news sources can be found in Appendix~\ref{ape:news}.
 %
-Most of the news accounts are from the United States, or English spoken.
+Most of the news accounts are from the United States, and other English-speaking countries.
 %
 The list was made manually by performing a search for ``news'' in the Twitter
 site\footnote{\url{https://twitter.com/search?q=news&src=typd&mode=users}} and
@@ -111,7 +111,7 @@ selecting verified users.
 %
 Verified accounts are accounts that were verified for identity
 authenticity\footnote{\url{https://support.twitter.com/articles/119135-faqs-about-verified-accounts}},
-although how the process of verification is made is unknown outside Twitter. 
+although how the process of verification is made is unknown outside of Twitter. 
 
 Each of these accounts posts messages about news, some of them breaking, and
 sometimes they post advertising, etc. 
@@ -167,7 +167,7 @@ hashtags, mentions, and converting words to lowercase.
 From the processed headlines the most frequent sets of words are then chosen.
 %
 From the resulting sets, the top $k=2$ words are chosen from each of the top
-$g=6$ groups. 
+$g=6$ sets of words. 
 %
 Each pair of words, or keywords, are used as input for the REST API to retrieve
 tweets related to the keywords. 
@@ -226,10 +226,9 @@ events per time unit.
 If there are not enough tweets or groups, we only choose the keywords available
 for that period of time.
 
-After one run of the process, a set of $g=6$ \emph{search results} or sets of
-tweets are created and stored. 
+After one run of the process, a set of $g=6$ sets of words are created and stored. 
 %
-A search is a tuple consisting of a pair of keywords and a set of tweets, each
+A search is a tuple consisting of a pair of keywords and a set of tweets; each
 one of those tweets contains both keywords in its text.
 
 The REST API allows us to get tweets from even before the corresponding headline
@@ -418,7 +417,7 @@ For example, words like ``update'' or ``breaking'' are commonly used by
 different news sources. 
 %
 We validated our methodology by comparing the resulting events with random
-events, those resulting from joining random keyword sets.
+events: those resulting from joining random keyword sets.
 
 Second, due to the REST API behavior, some tweets are very old with respect to
 the corresponding event. 
@@ -440,14 +439,14 @@ However, our data shows that, for example, the first few tweets of an event are
 from two or more years previous to the occurrence, and the remaining tweets are
 mainly concentrated closely around the date of the event.
 %
-The first 5\% of the tweets would then be significantly older than the rest
+The first 5\% of the tweets would then be significantly older than the remaining
 95\% in terms of time duration of the event. 
 
 
 \subsection{Detecting Articulation Words}
 
 A problem that arose during the data collection was that, sometimes unrelated
-events were joined together with keywords that was common to both events.  
+events were joined together with keywords that were common to both events.  
 %
 This happens when two or more headlines from different events share a common
 keyword. 
@@ -473,9 +472,9 @@ the keywords by those stopwords.
 
 
 One approach to dealing with this problem is to have a pre-defined list of
-stopwords to remove from the stream of headlines. 
+stopwords to remove from the stream of headlines, 
 %
-Although we do not know beforehand which words those are. 
+although we do not know beforehand which words those are. 
 %
 We call such words \emph{articulation words} in the sense that if they appear as
 keywords after processing a group of headlines, then when joining the searches
@@ -491,7 +490,7 @@ However, if the word appears in very few documents, its statistic in those
 documents is fairly high, indicating that the word is somehow representative of
 the content of the document. 
 %
-It turns out the articulation words do not occur often enough for them to be
+It turns out that the articulation words do not occur often enough for them to be
 detected by regular \emph{tf-idf}, but do occur enough times for them to falsely
 relate several unrelated events together. 
 %
@@ -501,9 +500,9 @@ detect them from the headlines.
 The modified version of \emph{tf-idf}, what we refer to as \emph{maxtf-idf}, is
 meant to assign more weight to the terms that are frequent in any document. 
 %
-For instance, \emph{tf-idf} of a term in a document tries to assign a weight
+For instance, the \emph{tf-idf} of a term in a document tries to assign a weight
 related to how ``rare'' that term is in the whole collection, and how frequent
-it is in that document, by indicating how representative the term is with
+it is in that document, in order to indicate how representative the term is with
 respect to the document. 
 %
 On the other hand, what we want to achieve is to weigh a term more if it
@@ -539,7 +538,7 @@ one hour, and $D$ the set of documents of that day.
   (right) of 2013. The top score words for both plots are ``says'' and ``live''.
   We used the top score words to disconnect connected components of events. The
   title indicates the date when those keywords were identified, while the number
-  beside corresponds to the total number of keywords.}
+  alongside corresponds to the total number of keywords.}
 \label{fig:stopwords}
 \end{center}
 \end{figure}
@@ -562,7 +561,7 @@ the words.
 \subsection{Validation of Event Modeling}\label{sub:valcoll}
 
 In order to validate the results of the event identification process, we
-compared our results with a baseline consisting on randomly generated events.
+compared our results with a baseline consisting of randomly generated events.
 
 We generated artificially connected components taking randomly searches from the
 first stage, and then merging their tweets to generate a ``random'' connected
@@ -675,7 +674,7 @@ first part of the data.
 \end{figure}
 
 After collecting tweets for an event, we remove the first 5\% of tweets of each
-event, in addition to restrict tweets of an event up to ten days before the day
+event, in addition to restricting tweets of an event up to ten days before the day
 of its publication. 
 %
 We saw that the first 5\% of the tweets cover the largest amount of time on all
@@ -752,7 +751,7 @@ the keywords detection phase, for example, words like ``update'', ``watch'', or
 ``live'', which do not add any value to the meaning of any event. 
 
 Finally, due to the nature of the methodology proposed, the tweet sets had to be
-trimmed because of their long duration. 
+trimmed because of their old age. 
 %
 Because of the Twitter REST API, sometimes tweets from long ago were retrieved,
 but since they add only noise to our dataset, they were removed.

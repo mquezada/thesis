@@ -4,7 +4,7 @@ Our main objective in this work is to analyze the characteristics of
 high-activity events which differentiate them from other types of events. 
 %
 In particular, we identify how early on in an event's life-cycle can we determine
-if an event is going produce high activity in the on-line social network.
+if an event is going produce high activity in the online social network.
 
 
 \input{chapters/high-impact/events_example_PLOS_revision.tex}
@@ -13,7 +13,7 @@ Tables~\ref{table:high-impact-sample} and~\ref{table:low-impact-sample} show
 examples of events from the high-activity category and low-activity category. 
 %
 We recall that the high-activity events are those which were in the top 8\% of
-the ranking obtained by sorting the event clusters according to concentration of
+the ranking obtained by sorting the event clusters according to the concentration of
 inter-arrival times of social media posts in the shortest inter-arrival time of
 the VQ-event model.  
 %
@@ -36,7 +36,7 @@ Hence, it makes sense for such an example to be a high-activity event.
 The second event, on the other hand, about the 2013 Mumbai Gang Rape is of much
 smaller scale, with a total of $\approx 1,700$ tweets. 
 %
-However, this event caused considerable amount of immediate reaction on social
+However, this event caused a considerable amount of immediate reaction on social
 media, with close to $50\%$ of its activity concentrated within high-activity
 periods. 
 %
@@ -102,7 +102,7 @@ their activity in the second bin with slower decay.
 %
 Figure~\ref{fig:hi:scatter} further characterizes the differences in behavior of
 the high and low-activity groups, showing that high-activity events concentrate
-on average $70\%$ of their activity in the smallest bin ($0$ sec.), against
+on average $70\%$ of their activity in the smallest bin ($0$ sec.), versus
 $8\%$ for low-activity events. 
 %
 In addition, Figure~\ref{fig:hi:cdf} (left) shows the cumulative distribution
@@ -189,11 +189,11 @@ the event is of high-impact.
       \toprule
       Feature Name &  \multicolumn{1}{l}{Description} & high-activity, others& Hypothesis, $p$-value\\
       \midrule
-      \texttt{retweet\_count} & \pbox{20cm}{$\log($total retweet count \\in the event divided by total\\ tweets in the event$)$} & $2.205, 1.473$ & $1$, $p = 0$ \\
+      \texttt{retweet\_count} & \pbox{20cm}{$\log($total retweet count \\in the event divided by\\ total tweets in the event$)$} & $2.205, 1.473$ & $1$, $p = 0$ \\
       \midrule
       \texttt{tweets\_retweeted} & \pbox{20cm}{$\log($number of tweets \\retweeted divided by\\ total tweets in the event$)$} & $-1.091, -0.964$ & $1$, $p = 2.7\times10^{-5}$ \\
       \midrule
-      \texttt{retweets\_most\_retweeted} & \pbox{20cm}{number of tweets of the most \\retweeted tweet} & $284.491, 40.261$ & $1$, $p = 0$ \\
+      \texttt{retweets\_most\_retweeted} & \pbox{20cm}{number of tweets of the\\ most retweeted tweet} & $284.491, 40.261$ & $1$, $p = 0$ \\
       \bottomrule
     \end{tabular}
   }
@@ -232,9 +232,7 @@ Events that are not high-activity did not exhibit these characteristics.
 We found that high-activity events in general tend to generate more conversation
 between users than the events in other categories. 
 %
-We observe this behavior through several features. 
-%
-Refer to Table~\ref{tab:conversational}.
+We observe this behavior through several features (Table~\ref{tab:conversational}).
 
 \begin{table}
   \centering
@@ -243,13 +241,13 @@ Refer to Table~\ref{tab:conversational}.
       \toprule
       Feature Name &  \multicolumn{1}{l}{Description} & high-activity, others & Hypothesis, $p$-value\\
       \midrule
-      \texttt{replies} & \pbox{20cm}{$\log($total replies divided by total tweets$)$} & $-1.4016, -1.6474$ & $1$, $p = 10^{-4}$ \\
+      \texttt{replies} & \pbox{20cm}{$\log($total replies divided by\\ total tweets$)$} & $-1.4016, -1.6474$ & $1$, $p = 10^{-4}$ \\
       \midrule
-      \texttt{norm\_replies} & \pbox{20cm}{$\log($number of replies divided by\\ total number of unique users$)$} & $-1.5796, -1.9294$ & $1$, $p = 6.7\times10^{-4}$ \\
+      \texttt{norm\_replies} & \pbox{20cm}{$\log($number of replies divided\\ by total number of\\ unique users$)$} & $-1.5796, -1.9294$ & $1$, $p = 6.7\times10^{-4}$ \\
       \midrule
-      \texttt{tweets\_replied} & \pbox{20cm}{$\log($number of tweets which generated\\ replies divided by total tweets$)$} & $-1.7784, -2.0668$ & $1$, $p = 0.001$ \\
+      \texttt{tweets\_replied} & \pbox{20cm}{$\log($number of tweets which\\ generated replies divided by\\ total tweets$)$} & $-1.7784, -2.0668$ & $1$, $p = 0.001$ \\
       \midrule
-      \texttt{uniq\_users\_replied} & \pbox{20cm}{$\log($unique users who have written\\ a reply divided by total tweets$)$} & $-1.7524, -2.0352$ & $1$, $p = 0.001$ \\
+      \texttt{uniq\_users\_replied} & \pbox{20cm}{$\log($unique users who have\\ written a reply divided by\\ total tweets$)$} & $-1.7524, -2.0352$ & $1$, $p = 0.001$ \\
       \bottomrule
     \end{tabular}
   } \caption[Conversational features of events]{Features which characterize the
@@ -391,7 +389,7 @@ A list of all the features used for classification is shown in Table
 The results are an average from a 5-fold cross validation with randomly selected
 60\% training, 20\% validation and 20\% test splits.
 %
-The classification was carried using logistic regression provided by the Weka
+The classification was carried out using logistic regression provided by the Weka
 package.
 %
 The high-activity events are identified with a precision of 82\% using only the
@@ -410,7 +408,7 @@ and~\ref{tab:confusion_matrix}).
       \toprule
       & \multicolumn{4}{c}{\textbf{Early 5\% Tweets}} & \multicolumn{4}{c}{\textbf{All Tweets}} \\
       \midrule
-      & FP-Rate & Precision & Recall & ROC-area & FP-Rate & Precision & Recall & ROC-area \\
+      & FP-Rate & $P$ & $R$ & ROC-area & FP-Rate & $P$ & $R$ & ROC-area \\
       % \midrule
       high-activity & 0.009 & 0.819 & 0.455 & 0.900 & 0.01 & 0.830 & 0.540 & 0.945 \\
       non-high-activity & 0.545 & 0.954 & 0.991 & 0.900 &  0.460 & 0.960 & 0.990 & 0.945 \\
