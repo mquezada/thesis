@@ -15,7 +15,7 @@ The data collection methodology resembles related work on identifying content
 for planned events~\cite{Becker:2012}.
 %
 The main idea is to aim for high precision by retrieving news from trusted
-sources, and then aiming for high recall by retrieving content from users about
+sources, and then aiming for retrieving all related content from users about
 the obtained news events from the trusted sources.
 %
 Our dataset consists of 20,066 news events. These events encompass 193,445,734
@@ -33,8 +33,7 @@ The dataset was constructed using a set of seed Twitter accounts, from which
 newsworthy messages were obtained.
 %
 From these messages, we identified relevant keywords which describe the current
-event, and used them to retrieve tweets from the general public to improve
-recall.
+event, and used them to retrieve tweets from the general public.
 %
 Finally, we grouped some of these sets into {\em events}.
 %
@@ -585,7 +584,7 @@ events together, so it would suffice to compare to a random baseline.
   corresponds to our approach, while the red line corresponds to the random
   components baseline. For visual clarity, the values obtained from connected
   components were sorted in ascending order, hence the blue line is
-  monotonically increasing. The values obtained were rearranged in the same
+  monotonically increasing. The red values were rearranged in the same
   order as well.}\label{fig:connected_components_validation} 
 \end{center}
 \end{figure}
@@ -630,7 +629,7 @@ The comparisons were made by taking components of the same size (in terms of
 keywords and tweets, taking samples of tweets). 
 %
 Essentially, considering a component as a cluster, the metrics evaluate the
-similarity intra- and inter-clusters. 
+similarity of intra- and inter-clusters. 
 %
 We compare the metrics against random clusters to see if our approach tends to
 join related events together, compared to a baseline.
@@ -680,7 +679,7 @@ of its publication.
 We saw that the first 5\% of the tweets cover the largest amount of time on all
 events, due to the problems exposed above. 
 %
-After removing the first 5\%, the events duration were more consistent (the
+After removing the first 5\%, the event durations were more consistent (the
 first 10\% covers twice the amount of time that the first 5\% covers, and so
 on). 
 %
