@@ -62,24 +62,9 @@ while at the same time improve the effectiveness of certain applications, such
 as topic detection or summarization. 
 
 
-%
-We propose a lightweight representation of newsworthy social media data. 
-%
-The proposed representation leverages microblog features, such as redundancy
-and re-sharing capabilities, by using surrogate texts from shared URLs and word embeddings.
-%
-Our representation allows us to achieve comparable clustering results to 
-those obtained by using the complete data, while reducing running time and 
-required memory.
-%
-This is useful when dealing with noisy and raw user-generated social media data.
-
-
 The overload of information in social media streams makes it difficult for users
-to obtain a comprehensive account of different emerging events reported by
-users.
-%
-%to get a complete picture of an event or find relevant messages.
+to obtain a comprehensive account of different emerging news events to get a 
+complete picture of an event or to find relevant messages about it.
 %
 The ability to identify and summarize relevant information about newsworthy
 topics that are accounted for by users in social media can be of great use to
@@ -94,13 +79,12 @@ of two ways: (1) by displaying user posts in reverse chronological order, or (2)
 by displaying posts in a personalized fashion, showing first what they deem more
 interesting to the user.
 %
-However, if the user 
-%consuming social media content 
+However, if the user consuming social media content 
 is seeking information about a specific event, the aforementioned approaches can
 result also in unnecessary exposure to redundant, irrelevant, or even misleading
 information.
 %
-In this context, delivery of key pieces of information to the user is important,
+In this context, the delivery of key pieces of information to the user is important,
 and even critical in some cases; 
 %
 for instance, social media is often used as a complementary source of
@@ -110,7 +94,8 @@ response~\cite{ICWSM1817816,Sarmiento:2018:DDE:3201064.3201077}
 and also to obtain information about newsworthy events not yet reported by
 formal news outlets. 
 %
-%In this sense, thThis need to produce high-quality real-time information requires effective ways to filter and organize information about real-world events on social media.
+In this sense, this need to produce high-quality real-time information requires 
+effective ways to filter and organize information about real-world events on social media.
 %
 
 Despite the usefulness of social media as a worldwide news information source,
@@ -120,7 +105,8 @@ These challenges include, among many others, correctly assessing information
 veracity and relevance to a specific topic, as well as dealing with a huge
 volume of data with variable quality. 
 %
-%In this sense, the consumption of social media content for information seeking about particular events requires effective ways to filter and organize streaming data.
+In this sense, the consumption of social media content for information seeking 
+about particular events requires effective ways to filter and organize streaming data.
 %%
 %
 %Specifically, the task of organizing and filtering
@@ -128,8 +114,8 @@ volume of data with variable quality.
 %Filtering and organizing information in social media can be a
 %particularly challenging task.
 %
-In particular, tweets can include links to images, videos, to
-external web-pages or to other tweets, making their content multimodal.
+In particular, as tweets can include links to images, videos, to
+external web-pages or to other tweets, this makes their content multimodal.
 
 %
 %From the perspective of understanding current events, tweets contain a large volume of irrelevant and redundant content, which can often be misspelled, or unreliably capitalized, 
@@ -149,21 +135,22 @@ than with traditional media~\cite{Alonso:2017:WHH:3091478.3091484}.
 Prior work has acknowledged the need of techniques for dealing with this type of
 social media data.
 
-
-
 %%
-
 
 In this chapter we focus on the problem of producing summarized representations of
 social media data related to news events without significant loss of
 information.
 %
-We present a compact representation for social media content related to news
+We present a compact or lightweight representation for social media content related to news
 events.
 %
 This representation allows us to preserve information about the topics involved
 in an event, and to identify relevant content, while reducing the volume of
 data.
+%
+This is done by leveraging microblog features, such as redundancy
+and re-sharing capabilities, by using surrogate texts from shared URLs and 
+word embeddings for vector representation of documents.
 %
 This can be especially useful for online data processing about developing news
 and news information seeking tasks.
@@ -182,6 +169,14 @@ them as non-relevant.
 %
 Then we aggregate all the anchor texts associated with relevant URLs into {\em
 documents}, and all the conversations around those documents as well. 
+%
+This representation allows us to achieve comparable clustering results to 
+those obtained by using the complete data, while reducing running time and 
+required memory.
+%
+This is useful when dealing with noisy and raw user-generated social media data.
+
+
 
 As a preliminary way to study the usefulness of our event representation, we
 applied it to three news events as a case study.

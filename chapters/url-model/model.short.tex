@@ -199,14 +199,14 @@ methodology for representation generation:
   
 {\bf Filter out generic URLs:} 
 %
-We identify generic URLs (too general with respect to the event) as those that
-co-occur with several different other URLs in the same messages. 
+We call generic URLs (too general with respect to the event) as those that
+co-occur with multiple different other URLs across many messages.
 %
-%A URL co-occur with another one if they both are shared by the same message.
+A URL co-occur with another one URL if they both are shared by the same message.
 %
-Highly connected URLs do not contribute to specific topics: links that are very
-generic (e.g., {\tt cnn.com}) or very general to the event (e.g., general
-reports). 
+Highly connected URLs are assumed to not contribute information to specific topics: 
+links that are very generic (e.g., {\tt cnn.com}) or very general to the event 
+(e.g., general reports). 
 %
 All of the messages mentioning these URLs would fall into the same component,
 regardless of their differences in content. 
@@ -236,6 +236,9 @@ Finally, we aggregate messages into documents in order to produce a vector
 representation, using neural network-based word embeddings.
 %
 This procedure generates dense document representations.
+%
+To aggregate messages, we simple compute a vector representation of each word in every message and 
+then aggregate all the vectors (for example, using the mean or the sum of all vectors).
 
 
 
