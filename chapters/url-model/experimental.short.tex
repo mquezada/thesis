@@ -225,7 +225,7 @@ Note that the training of vectors can be done off-line and is done only once.
 \subsection{Validation of Sub-Topic Detection Task}
 
 To validate our representation, we produced a ground-truth using a sample of
-tweets.
+tweets manually labeled by a group of people.
 %
 The ground-truth represented sub-topics in each event. 
 %
@@ -256,7 +256,7 @@ the events.
 \paragraph{Ground-truth generation.}
 %
 Sixteen people --mainly Computer Science undergrad and grad students-- labeled
-tweets independently using a custom Web interface.
+tweets independently using a custom Web interface made for this purpose.
 %
 The interface displayed a tweet and a list of labels, and each user could assign
 one or more labels to a tweet, mark the tweet as ``non relevant or not
@@ -265,10 +265,10 @@ informative'', or skip it if unsure (Figure~\ref{fig:gt-web}).
 Some tweets may refer to more than one sub-topic, so we preferred that users
 felt free to assign as many labels as they prefer.
 %
-The action of a user assigning labels to a tweet is referred as an evaluation,
+The process of a user assigning labels to a tweet is referred as an evaluation,
 and we imposed a limit of three evaluations per tweet.
 %
-This way, if three users evaluate the same tweet, that tweet will not be showed
+This way, if three users evaluate the same tweet, that tweet will not be shown
 again in the interface.
 
 % \begin{center}
@@ -327,7 +327,36 @@ again in the interface.
 % }
 % \end{center}
 
+To select the set of tweets to be displayed in the interface, we first removed
+all duplicated tweets.
+%
+For this removal we only considered the text in the tweets, not the URLs.
+%
+This way, all the tweets sharing the same text would receive the same labels.
+% 
 
+
+As there are sub-topics more popular than others (measured in terms of the
+amount of tweets referring to that sub-topic, as we observed in a manual
+inspection of the tweets), we distributed the resulting tweets in the interface
+in such a way that there were roughly no underrepresented sub-topics.
+%
+For this, we manually produced a list of keywords for each label, and for each
+label ranked the tweets using Okapi BM25;
+%
+in the interface a random label was chosen and the corresponding ranked tweet
+was presented.
+
+
+After all the evaluations were done, we processed the evaluations in order to
+have only one label per tweet or ground-truth.
+%
+To do this, for each label, if two or more judges selected that label, then it
+was assigned to the ground-truth.
+%
+This resulted in 401 labeled tweets (1339 labels in total when considering
+duplicate tweets) for the Libya event, 368 (531 labels) for Nepal, and 85 (362
+labels) for the Pistorius event.
 
 %
 We manually generated the list of labels to be displayed in the interface by
@@ -373,27 +402,6 @@ The lists of labels are the following:
     \item {\it Shooting in a restaurant}
   \end{enumerate}
 \end{itemize}
-
-To select the tweets to be displayed in the interface, we first removed all
-duplicated tweets.
-%
-For this, we only considered the text in the tweets, but not the URLs.
-%
-This way, all the tweets sharing the same text would receive the same labels.
-% 
-Then, we distributed the resulting tweets in the interface in such a way that
-there were roughly no underrepresented sub-topics.
-%
-For this, we manually produced a list of keywords for each label, and for each
-label ranked the tweets using Okapi BM25;  in the interface, a random label was
-chosen and the corresponding ranked tweet was presented.
-
-
-Finally, to assign a ground-truth label to a tweet, we selected the label users
-chose the most for that tweet.
-%
-This resulted in 401 labeled tweets (1339 labels in total) for the Libya event,
-368 (531 labels) for Nepal, and 85 (362 labels) for Pistorius.
 
 %%
 
