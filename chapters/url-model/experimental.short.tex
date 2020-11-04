@@ -33,6 +33,19 @@
 
 We describe the case studies, the data, and the experiment we performed to
 validate our representation.
+%
+
+We selected three events from our tweet collection (Chapter~\ref{chapter:data}). 
+%
+These events were selected to be very different in nature from one another, in
+order to test our methodology in diverse scenarios. 
+%
+The limited amount of events corresponds to the need of having manual tweet
+labels to validate our methodology, so in this case we were not able to use a
+large portion of our dataset. 
+%
+In the following section we describe the data for each event.
+
 
 \subsection{Datasets}
 
@@ -89,7 +102,7 @@ We also show example tweets (Table~\ref{tab:sample}).
   \centering
   \begin{tabular}{@{}lrrrr@{}}
   \toprule
-  Name                  & Duration & Tweets & Retweets & URLs  \\ \midrule
+  Name                  & Duration & Tweets & Retweets & Unique Resolved URLs  \\ \midrule
   Libya Hotel Attack    & 8 days   & 28,616 & 12,280 (43\%)  & 3,385            \\
   Nepal Earthquake      & 1 day   & 522,434 & 363,102 (70\%) & 22,661          \\ 
   Oscar Pistorius Trial & 70 days  & 113,189 & 26,307 (23\%)  & 9,335           \\ \bottomrule
@@ -143,7 +156,8 @@ in Mount Everest.
 %
 The dataset consists of 522,434 tweets, with 70\% of them being retweets.
 %
-60,632 of the short URLs were unable to be resolved.
+There were 498,283 total short URLs in this dataset, from which 60,632 short
+URLs were unable to be resolved.
 
 %%
 
@@ -157,7 +171,8 @@ sentences\footnote{\url{https://en.wikipedia.org/wiki/Trial_of_Oscar_Pistorius}
 % 
 The dataset consists of 113,189 tweets, with 23\% of them being retweets.
 %
-Also, 21,807 short URLs were unable to be resolved.
+There were 87,460 total short URLs, from which 21,807 short URLs were unable to
+be resolved.
 
 
 

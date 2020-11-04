@@ -301,6 +301,34 @@ Some pair examples of keywords produced when there was a bomb threat at Harvard
 University in December 2013 were \{harvard, evacuated\}, \{harvard,
 explosives\}, etc. 
 %
+Third, although Algorithm~\ref{alg:detect_keywords} is sensitive to the order of
+the headlines in order to output the most relevant keywords, we believe this is
+not an issue and it does not alter significantly the output result in the long
+run.
+%
+That is, when a breaking news occur in the context of highly popular (breaking)
+news in a given time window, the social network will be discussing the
+occurrence for several hours. 
+%
+In this case, it is unlikely that the keywords related to a prominent news event
+will not appear in any of the runs of the algorithm in the active time window of
+the event.
+%
+Lastly, we did not use a named entity recognition process to identify multi-word
+terms from the keyword sets, such as ``New York'', or ``Los Angeles.''
+%
+We believe this could have improved the quality of resulting searches by
+increasing the precision of the retrieved posts in terms of relevance.
+%
+Although it would not have improved from emerging new entities that could arise
+from social media, which could be the case when a new event occurs (as it can be
+seen below when discussing articulation words).
+%
+On the other hand, identifying named entities could have increased the query
+term size, potentially reducing the amount of tweets retrieved from the API, and
+thus reducing the recall in terms of relevance.
+
+%
 How do we merge the keyword pairs which belong to the same event? 
 %
 In order to address this, we collect all the pairs obtained in the past $24$
@@ -526,8 +554,11 @@ and for \emph{idf}, the usual formula:
 \noindent where $t$ is a term, $\mathit{d}$ is a document, and $D$ is the corpus
 of documents. 
 %
-In this case, we set $t$ as a keyword, $\mathit{d}$ as the set of keywords of
-one hour, and $D$ the set of documents of that day.
+
+
+In this case, we set $t$ as a keyword, a document $\mathit{d}$ as the bag of
+keywords detected in one hour, and $D$ the set of documents detected in one day.
+
 
 \begin{figure}
 \begin{center}
@@ -542,9 +573,13 @@ one hour, and $D$ the set of documents of that day.
 \end{center}
 \end{figure}
 
-
-After identifying such words, the idea was to disconnect the components
-connected by those words. 
+We computed the score of each term (keyword) in several documents (keywords in
+one hour) and reported the highest scores for different days.
+%
+We then manually selected a set of terms from these days.
+%
+After identifying such terms, the idea was to disconnect the components
+connected by those keywords. 
 %
 The process was to disconnect each component by the word with top normalized
 $1-\text{maxtf-idf}$ score each time until the component could not be

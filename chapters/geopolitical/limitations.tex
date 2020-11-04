@@ -1,0 +1,41 @@
+\section{Limitations}\label{sec:geo:limitations}
+
+There are some limitations in our proposed applications which we consider
+important to address. In particular, these limitations are not related to our
+proposed event representation, framework and implementation of our applications,
+but rather to the data extraction and toponym extraction and annotation
+methodology which depends on external tools.
+
+Overall, basic future improvements of our work should consider the following
+aspects:
+
+\begin{itemize}
+\item The incorporation of automatic event detection techniques for Twitter
+based on properties of the data stream and network themselves, as well as more
+comprehensive microblog event extraction approach. 
+\item Improvements to the geolocation tool accuracy, this is important because
+despite that CLAVIN is a powerful tool it does not recognize location names in
+languages other than English (even though the documentation of the tool
+indicates that it does recognize alternative location names~\cite{clavin}.
+\item Adding finer granularity to the geographical context extractor of our
+system in order to include administrative division such as cities and states.
+\item Multi-language integration for merging events in different languages that
+discuss a same news topic. Recent approaches in cross-language microblogging
+retrieval \cite{Godavarthy2016} can be integrated for news event retrieval
+within our framework.
+\end{itemize}
+
+However, all of these improvements are beyond the current scope of this work,
+which has been focused on providing proof of the usefulness of our proposed
+event representation. Nevertheless, we have already started the task of
+providing more fine grained locations for Chile and comprehensive sets of local
+news sources as well in~\cite{maldonado_2015}.
+
+Regarding our visualization tool, we note that even though it is an event
+retrieval tool, it is currently not focused on event ranking nor tweet ranking.
+These functionalities are not provided as the focus has been placed on event
+exploration within spatio-temporal filters. In the future, event and tweet
+ranking functionalities could be incorporated as optional, using
+state-of-the-art work on those areas. At the moment, the full display of events
+and chronological ordering of tweets, appears to work well for event
+exploration.

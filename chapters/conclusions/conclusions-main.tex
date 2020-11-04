@@ -98,10 +98,10 @@ analyses.
 
 \section{Limitations and Future Directions}
 
-Future work involves some of the limitations of our work, such as
-the quality of our data collection methodology, the capabilities of our models
-to be transferable to other social media platforms besides Twitter, and the steps
-we need to perform to deal with biased data.
+Future work involves some of the limitations of our work, such as the quality of
+our data collection methodology, the limitations regarding the evaluation, the
+capabilities of our models to be transferable to other social media platforms
+besides Twitter, and the steps we need to perform to deal with biased data.
 
 \subsection*{Data Collection}
 % DATA
@@ -143,6 +143,47 @@ properties of events, such as if the event is long-term, punctual or recurring,
 as defined in the work of Tan et al.~\cite{st-model_2009}.
 
 
+\subsection*{Evaluation}
+
+There is a limited amount of annotated datasets or ground-truths to perform
+evaluation in the context of social media data.
+%
+In particular, one of the reasons is the high volume of posts being
+published every moment.
+%
+Everyday posts contain little information due to their extension, are redundant
+(possibly re-sharing other posts), it is difficult to assign categorical
+labels from the content of the posts, etc.
+%
+Besides, new tasks or goals require new types of ground-truths, which may not be
+available at the moment.
+
+In our setting, {\em high-level analysis of news events} is not a well-defined
+task.
+%
+For instance, our spatio-temporal context representation
+(Chapter~\ref{chapter:geopolitical}) serves as a model for data exploration or
+international relations based on shared newsworthy posts, which depends on the
+quality of other tools (e.g., toponym extraction and annotation) and it is not
+directly evaluated against alternative representations.
+%
+This is a limitation of our proposal, and it is required for future works to
+assess the quality of the representation.
+%
+On the other hand, our content-based event representation
+(Chapter~\ref{chapter:url}) leveraged redundant posts in order to extract a
+useful and compact representation to perform data exploration or topic
+detection.
+%
+In this case, relevant ground-truths were clean and pre-processed 
+datasets~\cite{ICWSM1817816}, without duplicate posts, making our validation not
+useful in that context.
+%
+For that reason we carried out our validation on manually labeled un-curated
+datasets.
+
+
+
 \subsection*{Generalization Potential in other Platforms}
 % TRANSFERABILITY
 In addition, we note that although our proposed event representations can be
@@ -160,14 +201,36 @@ the same shared URLs?
 
 \subsection*{Veracity and Ethics}
 %
-Having more data or the possibility to explore different platforms involve other
-problems, such as the veracity of the information.
+Having more data or the possibility to explore different platforms involve new
+problems, such as the assessment of the veracity of the information.
 %
 In this work we did not tackle this issue, assuming that all the events in our
 dataset are trustworthy.
 %
-This problem raised an entire line of research over recent years.
+That means, that every event in our dataset corresponds to a real-world
+occurrence covered by recognized news outlets.
 %
+However, we cannot ensure that these outlets were reporting trustworthy
+information, and that users were posting misled information.
+%
+This problem raised an entire line of research over recent
+years~\cite{10.1145/3137597.3137600,bovet2019influence,10.5555/2893873.2893884,10.1145/1835449.1835522,benevenuto2010detecting,10.1145/1920261.1920263}.
+%
+In this work we employed simple measures on the data, such as the removal of
+tweets that share multiple URLs or hashtags, although specialized techniques
+could be applied.
+%
+This is a limitation that could affect our results throughout this work,
+notwithstanding that in the case of having fabricated content in our dataset,
+its impact in our results requires further investigation.
+%
+For instance, we anecdotally observed during the development of the
+representation presented in Chapter~\ref{chapter:url} that the URL graph was
+easily capable of partition the Libya event into two clusters:
+occurrence-related content (regarding the attack mentioned in the event), and
+unrelated content, such as advertising for luxury hotels in Libya.
+
+
 Similar to this problem is the bias in the social platforms and the gathered
 data.
 %
